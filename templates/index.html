@@ -13,40 +13,16 @@
 <script type="text/javascript">
 function init(){
  
-     //(148.767047, -35.761276) - (148.902290, -35.573877)
+     
         //var lon = 16818002.756909;
         //var lat = -4004397.0343331;
-
-    var forest = new OpenLayers.Layer.Vector("Информация", {
-            //isBaseLayer: true,
-            //projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/cotter",
-
-               
-                format: new OpenLayers.Format.GeoJSON()
-
-            }),
-           
-        });
-
-
-
-    var zoom = 3; 
+    //var zoom = 3;
     var options = {
         div: "map",
-        layers: [],
-        //projection: new OpenLayers.Projection("EPSG:4326"),
-         maxExtent: new OpenLayers.Bounds(148.767047, -35.761276, 148.902290, -35.573877)
+        layers: [new OpenLayers.Layer.OSM()],
+        projection: new OpenLayers.Projection("EPSG:4326"),
+         maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
     };
-
-
-
-
-
-
     var  map = new OpenLayers.Map(options);
 
 
@@ -61,7 +37,23 @@ function init(){
       
 
 
-        
+        forest = new OpenLayers.Layer.Vector("Информация", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/cotter",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON()
+
+            }),
+           
+        });
 
 
          
