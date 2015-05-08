@@ -33,7 +33,40 @@ function init(){
             $('#status-message').hide();
             }
 
+            var style = new OpenLayers.Style({fillColor : "green",
+                                          label: '${gridcode}',
+                                          fillOpacity : 0.4});
 
+            var stylemap =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "green",
+                        fillOpacity: .7,
+                        label: '${number}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "#ffff33",
+                        fillOpacity: .3,
+                        label: '${number}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        label: '${number}',
+                        cursor: "pointer"
+                    })
+                    }) ;
       
 
 
@@ -49,7 +82,8 @@ function init(){
                     attrs: 'id,name',
                     epsg: '900913'
                 },
-                format: new OpenLayers.Format.GeoJSON()
+                format: new OpenLayers.Format.GeoJSON(),
+                styleMap: stylemap
 
             }),
            
