@@ -1,0 +1,77 @@
+zdimon@home:~/www/fbr_ve/fbr/vector_data$ ogrinfo slope_250.shx slope_250 -so
+
+INFO: Open of `cotter_veg_original.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: cotter_veg_original
+Geometry: Polygon
+Feature Count: 291
+Extent: (659752.727281, 6040783.679494) - (676400.894535, 6095665.781663)
+Layer SRS WKT:
+PROJCS["AGD_1966_AMG_Zone_55",
+    GEOGCS["GCS_Australian_1966",
+        DATUM["Australian_Geodetic_Datum_1966",
+            SPHEROID["Australian",6378160.0,298.25]],
+        PRIMEM["Greenwich",0.0],
+        UNIT["Degree",0.0174532925199433]],
+    PROJECTION["Transverse_Mercator"],
+    PARAMETER["False_Easting",500000.0],
+    PARAMETER["False_Northing",10000000.0],
+    PARAMETER["Central_Meridian",147.0],
+    PARAMETER["Scale_Factor",0.9996],
+    PARAMETER["Latitude_Of_Origin",0.0],
+    UNIT["Meter",1.0]]
+Veg_Key: Integer (9.0)
+Veg_Types: String (254.0)
+
+
+
+INFO: Open of `radiation250.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: radiation250
+Geometry: Polygon
+Feature Count: 3127
+Extent: (148.767047, -35.761276) - (148.902290, -35.573877)
+Layer SRS WKT:
+GEOGCS["GCS_WGS_1984",
+    DATUM["WGS_1984",
+        SPHEROID["WGS_84",6378137.0,298.257223563]],
+    PRIMEM["Greenwich",0.0],
+    UNIT["Degree",0.0174532925199433]]
+ID: Integer (10.0)
+GRIDCODE: Integer (10.0)
+
+
+
+INFO: Open of `slope_250.shx'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: slope_250
+Geometry: Polygon
+Feature Count: 2548
+Extent: (148.767047, -35.761276) - (148.902290, -35.573877)
+Layer SRS WKT:
+GEOGCS["GCS_WGS_1984",
+    DATUM["WGS_1984",
+        SPHEROID["WGS_84",6378137.0,298.257223563]],
+    PRIMEM["Greenwich",0.0],
+    UNIT["Degree",0.0174532925199433]]
+ID: Integer (10.0)
+GRIDCODE: Integer (10.0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
