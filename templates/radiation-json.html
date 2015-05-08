@@ -106,6 +106,10 @@ function init(){
 
 
 
+       map.events.register("click", map, function (e) {            
+        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+            alert('lon:'+point.lon+'  lat:'+point.lat)
+        });
 
 
 
