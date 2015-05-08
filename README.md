@@ -15,3 +15,7 @@ virtualenv fbr_ve
 cd fbr_ve
 
 git clone git@github.com:zdimon/fbr.git
+
+Update project
+
+git pull
