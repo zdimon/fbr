@@ -31,6 +31,19 @@
                     console.log(data);
                 })
 
+                shapefile2 = new Shapefile({
+                    shp: "/static/data/radiation250.shp",
+                    dbf: "/static/data/radiation250.dbf"
+                }, function(data){
+                    var features = parser.read(data.geojson);
+                    vector.addFeatures(features);
+                    map.zoomToExtent(vector.getDataExtent());
+
+                    console.log("took",new Date - starttime,"milliseconds")
+                    console.log(data);
+                })
+
+
             map.addLayer(vector);
         </script>
 
