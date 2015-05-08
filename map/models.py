@@ -23,8 +23,8 @@ class Slope(models.Model):
         return 'Slope #%s' % self.gid
 
     class Meta:
-        verbose_name=_(u'Cotter')
-        verbose_name_plural=_(u'Cotters')
+        verbose_name=_(u'Slope')
+        verbose_name_plural=_(u'Slope')
 
 
 class Radiation(models.Model):
