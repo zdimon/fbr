@@ -10,7 +10,7 @@ Deploy.
 
 virtualenv fbr_ve
 
-2. Clone repo
+2.  Clone repo
 
 cd fbr_ve
 
