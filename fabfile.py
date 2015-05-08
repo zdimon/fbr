@@ -29,7 +29,7 @@ def deploy():
     production_env()  # Инициализация окружения
     with virtualenv():
         run('git pull') # Пуляемся из репозитория
-        run('pip install -r requirements.txt') # ставим пакеты
+        #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
         #run('./manage.py collectstatic --noinput') # Собираем статику
         #run('./manage.py migrate')
