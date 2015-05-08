@@ -6,6 +6,15 @@ from django.conf import settings
 # Register your models here.
 
 
+
+
+
+
+
+
+
+
+
 class MapLayer(GeoJSONLayerView):
     # Options
     precision = 4   # float
