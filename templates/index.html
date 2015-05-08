@@ -36,7 +36,24 @@
                 slope_map.addLayer(vector);
 
 
-                
+                radiation_map = new OpenLayers.Map("radiation",{allOverlays: true}),
+                parser = new OpenLayers.Format.GeoJSON(),
+                vector = new OpenLayers.Layer.Vector("Converted"),
+
+                shapefile = new Shapefile({
+                    shp: "/static/data/radiation250.shp",
+                    dbf: "/static/data/radiation250.dbf"
+                }, function(data){
+                    var features = parser.read(data.geojson);
+                    vector.addFeatures(features);
+                    radiation_map.zoomToExtent(vector.getDataExtent());
+
+                    console.log("took",new Date - starttime,"milliseconds")
+                    console.log(data);
+                })
+
+                radiation_map.addLayer(vector);
+
         </script>
 
 {% endblock %}
