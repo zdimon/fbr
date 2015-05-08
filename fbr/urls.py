@@ -11,9 +11,10 @@ urlpatterns = patterns('',
      url(r'^cot$', 'map.views.cot', name='cotter'),  
      url(r'^radiation$', 'map.views.radiation', name='radiation'),  
      url(r'^slope$', 'map.views.cotter', name='slope'),  
+     url(r'^test$', 'map.views.test', name='test'),  
 
 
-    #url(r'^cotter/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types')), name='cotter'),
+    url(r'^cotter/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types')), name='cotter'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

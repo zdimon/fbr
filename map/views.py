@@ -27,6 +27,8 @@ def slope(request):
     return render_to_response('slope.html', context, RequestContext(request))
 
 
+
+
 class GetPolygonJsonCotter(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
