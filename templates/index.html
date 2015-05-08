@@ -77,6 +77,10 @@ function init(){
         map.zoomToMaxExtent();
      }
 
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+ 
+    markers.addMarker(new OpenLayers.Marker(lonLat));
  
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);
