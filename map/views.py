@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import loader, RequestContext
-from map.models import Cotter
+from map.models import Cotter, Radiation
 from djgeojson.views import GeoJSONLayerView
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # Create your views here.
