@@ -9,7 +9,7 @@
                 o = typeof o == "string" ? {shp: o} : o
 
             if (!worker) {
-                var path = (o.jsRoot || "") + "shapefile.js"
+                var path = (o.jsRoot || "") + "/static/js/shapefile.js"
                 var w = worker = this.worker = new Worker(path)
             } else {
                 var w = worker

@@ -1,7 +1,7 @@
 (function(window,undefined){
 
     if(window.document && window.Worker){
-        var worker = new Worker("dbf.js")
+        var worker = new Worker("static/js/dbf.js")
 
         var DBF = function(url, callback){
             var
@@ -22,7 +22,7 @@
 
     var IN_WORKER = !window.document
     if (IN_WORKER) {
-        importScripts('stream.js')
+        importScripts('static/js/stream.js')
         onmessage = function(e){
             new DBF(e.data);
         };
