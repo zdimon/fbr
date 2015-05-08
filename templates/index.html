@@ -3,7 +3,9 @@
 
  {% block body %}
 
-     <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
+     <div id="radiation" style="width:700px; height:700px; border: 2px solid silver"></div>
+
+     <div id="slope" style="width:700px; height:700px; border: 2px solid silver"></div>
 
 
 
@@ -15,7 +17,7 @@
 
 
             var starttime = +new Date,
-                map = new OpenLayers.Map("map",{allOverlays: true}),
+                slope_map = new OpenLayers.Map("slope",{allOverlays: true}),
                 parser = new OpenLayers.Format.GeoJSON(),
                 vector = new OpenLayers.Layer.Vector("Converted"),
 
@@ -31,9 +33,16 @@
                     console.log(data);
                 })
 
-                shapefile2 = new Shapefile({
-                    shp: "/static/data/radiation250.shp",
-                    dbf: "/static/data/radiation250.dbf"
+                slope_map.addLayer(vector);
+
+
+                radiation_map = new OpenLayers.Map("radiation",{allOverlays: true}),
+                parser = new OpenLayers.Format.GeoJSON(),
+                vector = new OpenLayers.Layer.Vector("Converted"),
+
+                shapefile = new Shapefile({
+                    shp: "/static/data/radiation_250.shp",
+                    dbf: "/static/data/radiation_250.dbf"
                 }, function(data){
                     var features = parser.read(data.geojson);
                     vector.addFeatures(features);
@@ -43,8 +52,8 @@
                     console.log(data);
                 })
 
+                radiation_map.addLayer(vector);
 
-            map.addLayer(vector);
         </script>
 
 {% endblock %}
