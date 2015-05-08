@@ -14,6 +14,18 @@ def home(request):
     return render_to_response('index.html', context, RequestContext(request))
 
 
+def radiation(request):
+    context = {}
+    return render_to_response('radiation.html', context, RequestContext(request))
+
+def cotter(request):
+    context = {}
+    return render_to_response('cotter.html', context, RequestContext(request))
+
+def slope(request):
+    context = {}
+    return render_to_response('slope.html', context, RequestContext(request))
+
 
 class GetPolygonJsonCotter(GeoJSONLayerView):
     # Options
