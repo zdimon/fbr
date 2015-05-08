@@ -33,7 +33,7 @@ class Radiation(models.Model):
     gridcode = models.IntegerField(_(u'Grid code'))
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
-        return 'Radiation #%s' % self.gid
+        return 'Radiation #%s' % self.gridcode
 
     class Meta:
         verbose_name=_(u'Radiation')
