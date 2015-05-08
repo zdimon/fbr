@@ -92,12 +92,16 @@ function init(){
 
 
          
-        
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(geodetdom, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+            });        
         
 
          
          map.addLayer(forest);
-
+         map.addControl(highlightCtrl);
 
 
 
