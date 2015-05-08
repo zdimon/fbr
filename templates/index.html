@@ -16,10 +16,10 @@ function init(){
      
         var lon = 16818002.756909;
         var lat = -4004397.0343331;
-    var zoom = 12;
+    var zoom = 6;
     var options = {
         div: "map",
-        
+        layers: [new OpenLayers.Layer.OSM()],
         projection: new OpenLayers.Projection("EPSG:4326"),
          maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
     };
