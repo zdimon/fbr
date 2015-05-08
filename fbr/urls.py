@@ -12,7 +12,7 @@ urlpatterns = patterns('',
      url(r'^radiation$', 'map.views.radiation', name='radiation'),  
      url(r'^slope$', 'map.views.slope', name='slope'),  
      url(r'^radiation_json$', 'map.views.radiation_json', name='radiation_json'),  
-    #url(r'^test$', 'map.views.test', name='test'),  
+    url(r'^crap$', 'map.views.home', name='crap'),  
 
 
     url(r'^cotter-json/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types'))),
