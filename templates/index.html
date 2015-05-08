@@ -3,7 +3,90 @@
 
  {% block body %}
 
-wd qwdqw qwdqwdqw
+     <div id="map" style="width:800px; height:700px; border: 2px solid silver"></div>
 
 {% endblock %}
+
+
+
+
+<script type="text/javascript">
+function init(){
+        var lon = 3665941.92388;
+        var lat = 5880439.46213;
+    var zoom = 13;
+    var options = {
+        div: "map",
+        layers: [new OpenLayers.Layer.OSM()],
+        projection: new OpenLayers.Projection("EPSG:4326"),
+         maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
+    };
+    var  map = new OpenLayers.Map(options);
+
+
+
+
+            function setHTML(response) {
+            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            $('#status-message').hide();
+            }
+
+
+      
+
+
+        forest = new OpenLayers.Layer.Vector("Информация", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "{{ base_url }}/get-polygon-json?id=0",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON()
+
+            }),
+            styleMap: style
+        });
+
+
+         var select_options = {
+            hover: false,
+            onSelect: updateinfo
+          };
+         
+        
+        
+
+         
+         #map.addLayer(forest);
+
+
+
+
+
+
+
+
+
+   
+
+    if(!map.getCenter()){
+        map.zoomToMaxExtent();
+     }
+
+ 
+        var point = new OpenLayers.LonLat(lon, lat);
+        map.setCenter(point, zoom);
+
+   // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
+} ;
+$(document).ready(function(){ init() });
+</script>
+
+
 
