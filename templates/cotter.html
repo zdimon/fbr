@@ -24,8 +24,8 @@
                 vector = new OpenLayers.Layer.Vector("Converted"),
 
                 shapefile = new Shapefile({
-                    shp: "/static/data/radiation250.shp",
-                    dbf: "/static/data/radiation250.dbf"
+                    shp: "/static/data/cotter_veg_original.shp",
+                    dbf: "/static/data/cotter_veg_original.dbf"
                 }, function(data){
                     var features = parser.read(data.geojson);
                     vector.addFeatures(features);
