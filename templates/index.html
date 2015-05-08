@@ -14,14 +14,14 @@
 function init(){
  
      
-        var lon = 16818002.756909;
-        var lat = -4004397.0343331;
-    var zoom = 3;
+        //var lon = 16818002.756909;
+        //var lat = -4004397.0343331;
+    //var zoom = 3; (148.767047, -35.761276) - (148.902290, -35.573877)
     var options = {
         div: "map",
-        layers: [new OpenLayers.Layer.OSM()],
+        layers: [forest],
         projection: new OpenLayers.Projection("EPSG:4326"),
-         maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
+         maxExtent: new OpenLayers.Bounds(148.767047, -35.761276, 148.902290, -35.573877)
     };
     var  map = new OpenLayers.Map(options);
 
@@ -61,7 +61,7 @@ function init(){
         
 
          
-         map.addLayer(forest);
+         //map.addLayer(forest);
 
 
 
@@ -73,19 +73,19 @@ function init(){
 
    
 
-    if(!map.getCenter()){
-        map.zoomToMaxExtent();
-     }
+    //if(!map.getCenter()){
+    //    map.zoomToMaxExtent();
+    // }
 
-        map.events.register("click", map, function (e) {            
-        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
-            console.log(point.lon, point.lat)
-        });
+    //   map.events.register("click", map, function (e) {            
+    //    var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+     //       console.log(point.lon, point.lat)
+     //   });
 
 
  
-        var point = new OpenLayers.LonLat(lon, lat);
-        map.setCenter(point, zoom);
+       // var point = new OpenLayers.LonLat(lon, lat);
+       // map.setCenter(point, zoom);
 
    // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
 } ;
