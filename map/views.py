@@ -18,7 +18,7 @@ def radiation(request):
     context = {}
     return render_to_response('radiation.html', context, RequestContext(request))
 
-def cotter(request):
+def cot(request):
     context = {}
     return render_to_response('cotter.html', context, RequestContext(request))
 
