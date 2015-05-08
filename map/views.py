@@ -26,7 +26,9 @@ def slope(request):
     context = {}
     return render_to_response('slope.html', context, RequestContext(request))
 
-
+def radiation_json(request):
+    context = {}
+    return render_to_response('radiation-json.html', context, RequestContext(request))
 
 
 class GetPolygonJsonCotter(GeoJSONLayerView):
@@ -67,4 +69,45 @@ class GetPolygonJsonCotter(GeoJSONLayerView):
         f.write(response.content)
         f.close()
         return response
+
+
+class GetPolygonJsonCotter(GeoJSONLayerView):
+    # Options
+    from fbr.settings import BASE_DIR
+    precision = 4   # float
+    simplify = 0.5  # generalization
+    def get_queryset(self):
+        return Cotter.objects.all()
+
+    def render_to_response(self, context, **response_kwargs):
+        from fbr.settings import BASE_DIR
+        import os.path
+        cpath = BASE_DIR+'/map_cache/radiation.txt'
+        if(os.path.exists(cpath)):
+            from django.http import HttpResponse
+            f = open(cpath,'r')
+            out = f.read()
+            f.close()
+            return HttpResponse(out, content_type="application/json")
+
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        serializer = GeoJSONSerializer()
+        response = self.response_class(**response_kwargs)
+        options = dict(properties=self.properties,
+                       precision=self.precision,
+                       simplify=self.simplify,
+                       srid=self.srid,
+                       geometry_field=self.geometry_field,
+                       force2d=self.force2d)
+        serializer.serialize(self.get_queryset(), stream=response, ensure_ascii=False,
+                             **options)
+
+        #import pdb; pdb.set_trace()
+        f = open(cpath,'w')
+        f.write(response.content)
+        f.close()
+        return response
+
 
