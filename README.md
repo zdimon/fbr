@@ -6,11 +6,11 @@ Database - PostrgeSQL + PostGIS
 
 Deploy.
 
-1. Create virtualenvironment
+1 Create virtualenvironment
 
 virtualenv fbr_ve
 
-2.  Clone repo
+2 Clone repo
 
 cd fbr_ve
 
