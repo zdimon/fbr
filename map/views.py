@@ -77,7 +77,7 @@ class GetPolygonJsonRadiation(GeoJSONLayerView):
     precision = 4   # float
     simplify = 0.5  # generalization
     def get_queryset(self):
-        return Cotter.objects.all()
+        return Radiation.objects.all()
 
     def render_to_response(self, context, **response_kwargs):
         from fbr.settings import BASE_DIR

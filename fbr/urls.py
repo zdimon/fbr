@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 
     url(r'^cotter-json/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types'))),
 
-    url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','veg_types'))),
+    url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
 
 
     url(r'^admin/', include(admin.site.urls)),
