@@ -140,6 +140,8 @@ function init(){
         map.setCenter(point, zoom);
         map.addControl(select);
 
+        select.activate();
+
    // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
 } ;
 $(document).ready(function(){ init() });
