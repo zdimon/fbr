@@ -77,10 +77,10 @@ function init(){
         map.zoomToMaxExtent();
      }
 
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
- 
-    markers.addMarker(new OpenLayers.Marker(lonLat));
+        map.events.register("mousemove", map, function (e) {            
+        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+            console.log(point.lon, point.lat)
+        });
  
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);
