@@ -81,3 +81,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),
     )
 
+POSTGIS_VERSION = (2, 0, 1)
+
+
