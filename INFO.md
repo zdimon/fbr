@@ -1,4 +1,21 @@
+
+Usefull links
+
+http://suite.opengeo.org/4.1/dataadmin/pgGettingStarted/shp2pgsql.html
+http://prj2epsg.org/search
+
+
+GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]]
+
+CRID
+
+4326 - GCS_WGS_1984
+
+
+Command to see info 
 zdimon@home:~/www/fbr_ve/fbr/vector_data$ ogrinfo slope_250.shx slope_250 -so
+
+
 
 INFO: Open of `cotter_veg_original.shp'
       using driver `ESRI Shapefile' successful.
@@ -59,6 +76,30 @@ GEOGCS["GCS_WGS_1984",
     UNIT["Degree",0.0174532925199433]]
 ID: Integer (10.0)
 GRIDCODE: Integer (10.0)
+
+
+Creating temlplate
+
+
+createdb test_db -T template_postgis2.1
+psql -d template_postgis2.1 -f /usr/share/postgresql/9.1/extension/postgis--2.1.0SVN.sql
+psql -d template_postgis2.1 -c "GRANT ALL ON geometry_columns TO PUBLIC;"
+psql -d template_postgis2.1 -c "GRANT ALL ON geography_columns TO PUBLIC;"
+psql -d template_postgis2.1 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
+
+
+
+
+Import to db files
+radiation250.shp
+slope_250.shp
+cotter_veg_original.shp
+
+
+shp2pgsql -I -s 4326 radiation250.shp  public.map_radiation | psql -d fbr
+shp2pgsql -I -s 4326 cotter_veg_original.shp  public.map_cotter | psql -d fbr
+shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
+
 
 
 
