@@ -33,7 +33,7 @@
 
     var IN_WORKER = !window.document
     if (IN_WORKER) {
-        importScripts('static/js/stream.js')
+        importScripts('/static/js/stream.js')
         onmessage = function(e){
             switch (e.data[0]) {
                 case "Load":
