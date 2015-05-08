@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from map.views import GetPolygonJsonCotter
+from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation
 from map.models import Cotter, Radiation
 
 from django.contrib import admin
