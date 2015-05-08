@@ -13,31 +13,11 @@
 <script type="text/javascript">
 function init(){
  
-     
+     //(148.767047, -35.761276) - (148.902290, -35.573877)
         //var lon = 16818002.756909;
         //var lat = -4004397.0343331;
-    //var zoom = 3; (148.767047, -35.761276) - (148.902290, -35.573877)
-    var options = {
-        div: "map",
-        layers: [forest],
-        projection: new OpenLayers.Projection("EPSG:4326"),
-         maxExtent: new OpenLayers.Bounds(148.767047, -35.761276, 148.902290, -35.573877)
-    };
-    var  map = new OpenLayers.Map(options);
 
-
-
-
-            function setHTML(response) {
-            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
-            $('#status-message').hide();
-            }
-
-
-      
-
-
-        forest = new OpenLayers.Layer.Vector("Информация", {
+forest = new OpenLayers.Layer.Vector("Информация", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
@@ -54,6 +34,37 @@ function init(){
             }),
            
         });
+
+
+
+    var zoom = 3; 
+    var options = {
+        div: "map",
+        layers: [forest],
+        projection: new OpenLayers.Projection("EPSG:4326"),
+         maxExtent: new OpenLayers.Bounds(148.767047, -35.761276, 148.902290, -35.573877)
+    };
+
+
+
+
+
+
+    var  map = new OpenLayers.Map(options);
+
+
+
+
+            function setHTML(response) {
+            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            $('#status-message').hide();
+            }
+
+
+      
+
+
+        
 
 
          
