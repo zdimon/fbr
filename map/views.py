@@ -15,7 +15,7 @@ def home(request):
 
 
 
-class GetPolygonJsonFirerisk(GeoJSONLayerView):
+class GetPolygonJsonCotter(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
     precision = 4   # float
@@ -26,7 +26,7 @@ class GetPolygonJsonFirerisk(GeoJSONLayerView):
     def render_to_response(self, context, **response_kwargs):
         from config.settings import BASE_DIR
         import os.path
-        cpath = BASE_DIR+'/map_cache/firerisk.txt'
+        cpath = BASE_DIR+'/map_cache/cotter.txt'
         if(os.path.exists(cpath)):
             from django.http import HttpResponse
             f = open(cpath,'r')
