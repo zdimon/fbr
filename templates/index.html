@@ -19,16 +19,13 @@ function init(){
 
     var forest = new OpenLayers.Layer.Vector("Информация", {
             //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
+            //projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
                 url: "/cotter",
 
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
+               
                 format: new OpenLayers.Format.GeoJSON()
 
             }),
