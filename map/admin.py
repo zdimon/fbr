@@ -2,7 +2,7 @@ from django.contrib import admin
 from map.models import Cotter, Slope, Radiation
 from djgeojson.views import GeoJSONLayerView
 from django.contrib.gis.admin import OSMGeoAdmin, GeoModelAdmin
-
+from django.conf import settings
 # Register your models here.
 
 
