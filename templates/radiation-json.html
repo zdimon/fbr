@@ -98,7 +98,19 @@ function init(){
                 renderIntent: "temporary"
             });        
         
+        function updateinfo() {
 
+             alert('ssss')
+                //forest.selectedFeatures[0].data['id']},
+               
+        }
+
+
+        var select_options = {
+            hover: false,
+            onSelect: updateinfo
+          };
+         var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
          map.addLayer(forest);
          map.addControl(highlightCtrl);
