@@ -14,9 +14,9 @@
 function init(){
  
      
-        //var lon = 16818002.756909;
-        //var lat = -4004397.0343331;
-    //var zoom = 3;
+        var lon = 16818002.756909;
+       var lat = -4004397.0343331;
+    var zoom = 3;
     var options = {
         div: "map",
         layers: [new OpenLayers.Layer.OSM()],
@@ -84,8 +84,8 @@ function init(){
 
 
  
-       // var point = new OpenLayers.LonLat(lon, lat);
-       // map.setCenter(point, zoom);
+        var point = new OpenLayers.LonLat(lon, lat);
+        map.setCenter(point, zoom);
 
    // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
 } ;
