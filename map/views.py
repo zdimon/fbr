@@ -71,7 +71,7 @@ class GetPolygonJsonCotter(GeoJSONLayerView):
         return response
 
 
-class GetPolygonJsonCotter(GeoJSONLayerView):
+class GetPolygonJsonRadiation(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
     precision = 4   # float
