@@ -87,5 +87,3 @@ POSTGIS_VERSION = (2, 0, 1)
 
 GOOGLE_MAPS_API_KEY='abcdefg'
 
-
-
