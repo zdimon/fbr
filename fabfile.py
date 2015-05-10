@@ -34,9 +34,9 @@ def deploy():
         with warn_only():
             run('./manage.py schemamigration map --auto') # Собираем статику
         run('./manage.py migrate')
-        #run('git add --all')
-        #run('git commit -m "from server"')
-        #run('git push')
+        run('git add --all')
+        run('git commit -m "from server"')
+        run('git push')
         #run('find . -name "*.mo" -print -delete')  # Чистим старые скомпиленные файлы gettext'а
         #run('./manage.py compilemessages')  # Собираем новые файлы gettext'а
         #run('sudo supervisorctl restart all')
