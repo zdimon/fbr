@@ -33,7 +33,9 @@ def deploy():
         #run('bower install')
         run('./manage.py schemamigration map --auto') # Собираем статику
         run('./manage.py migrate')
-        #run('sudo service uwsgi restart')
+        run('git add --all')
+        run('git commit -m "from server"')
+        run('git push')
         #run('find . -name "*.mo" -print -delete')  # Чистим старые скомпиленные файлы gettext'а
         #run('./manage.py compilemessages')  # Собираем новые файлы gettext'а
         #run('sudo supervisorctl restart all')
