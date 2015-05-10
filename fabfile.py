@@ -31,7 +31,7 @@ def deploy():
         run('git pull') # Пуляемся из репозитория
         #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
-        #run('./manage.py collectstatic --noinput') # Собираем статику
+        run('./manage.py schemamigration map --auto') # Собираем статику
         run('./manage.py migrate')
         #run('sudo service uwsgi restart')
         #run('find . -name "*.mo" -print -delete')  # Чистим старые скомпиленные файлы gettext'а
