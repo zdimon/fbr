@@ -31,7 +31,7 @@ def deploy():
         run('git pull') # Пуляемся из репозитория
         #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
-        run('./manage.py schemamigration map --auto') # Собираем статику
+        #run('./manage.py schemamigration map --auto') # Собираем статику
         run('./manage.py migrate')
         #run('git add --all')
         #run('git commit -m "from server"')
