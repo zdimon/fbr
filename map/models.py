@@ -5,6 +5,7 @@ class Cotter(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     veg_key = models.IntegerField(_(u'Veg key'))
     veg_key3 = models.IntegerField(_(u'Veg key3'))
+    veg_key4 = models.IntegerField(_(u'Veg key4'))
     veg_types = models.IntegerField(_(u'Veg key'))
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
