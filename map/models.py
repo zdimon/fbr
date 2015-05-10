@@ -20,7 +20,8 @@ class Slope(models.Model):
     gridcode = models.IntegerField(_(u'Grid code'))
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
-        return 'Slope #%s' % self.gridcode
+    #    return 'Slope #%s' % self.gridcode
+        return u'id - %s gridcode - %s' % (self.id, self.gridcode)
 
     class Meta:
         verbose_name=_(u'Slope')
