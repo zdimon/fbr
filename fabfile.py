@@ -32,7 +32,7 @@ def deploy():
         #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
         #run('./manage.py collectstatic --noinput') # Собираем статику
-        #run('./manage.py migrate')
+        run('./manage.py migrate')
         #run('sudo service uwsgi restart')
         #run('find . -name "*.mo" -print -delete')  # Чистим старые скомпиленные файлы gettext'а
         #run('./manage.py compilemessages')  # Собираем новые файлы gettext'а
