@@ -2,7 +2,7 @@
 from fabric.api import *
 import os
 from contextlib import contextmanager as _contextmanager
-        
+      
 def production_env():
     """Окружение для продакшена"""
 #    env.hosts = ['chat.mirbu.com']
@@ -31,7 +31,8 @@ def deploy():
         run('git pull') # Пуляемся из репозитория
         #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
-        run('./manage.py schemamigration map --auto') # Собираем статику
+        with warn_only():
+            run('./manage.py schemamigration map --auto') # Собираем статику
         run('./manage.py migrate')
         #run('git add --all')
         #run('git commit -m "from server"')
