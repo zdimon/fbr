@@ -6,7 +6,6 @@ class Cotter(models.Model):
     veg_key = models.IntegerField(_(u'Veg key'))
     veg_types = models.IntegerField(_(u'Veg key'))
     geom = models.MultiPolygonField(null=True, blank=True)
-    myf = models.IntegerField(_(u'myf'))
     def __unicode__(self):
         return 'Cotter #%s  (%s)' % (self.gid,self.veg_types)
 
