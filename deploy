@@ -1,4 +1,5 @@
 git add --all
 git commit -m 'auto'
 git push
+./manage.py schemamigration map --auto
 fab deploy
