@@ -12,8 +12,8 @@ class Cotter(models.Model):
         return 'Cotter_ #%s  (%s)' % (self.gid,self.veg_types)
 
     class Meta:
-        verbose_name=_(u'Cotter')
-        verbose_name_plural=_(u'Cotters')
+        verbose_name=_(u'Vegetation')
+        verbose_name_plural=_(u'Vegetation')
 
 
 class Slope(models.Model):
