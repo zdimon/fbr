@@ -7,11 +7,11 @@ class Cotter(models.Model):
     veg_types = models.IntegerField(_(u'Veg key'))
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
-        return 'Cotter_ #%s  (%s)' % (self.gid,self.veg_types)
+        return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_types)
 
     class Meta:
-        verbose_name=_(u'Cotter')
-        verbose_name_plural=_(u'Cotter')
+        verbose_name=_(u'Vegetation')
+        verbose_name_plural=_(u'Vegetation')
 
 
 class Slope(models.Model):
