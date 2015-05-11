@@ -33,8 +33,7 @@ def deploy():
         #run('bower install')
         with warn_only():
             run('./manage.py schemamigration map --auto') # Собираем статику
-        run('./manage.py migrate')
-        with warn_only():
+            run('./manage.py migrate')
             run('git add --all')
             run('git commit -m "from server"')
             run('git push')

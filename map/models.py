@@ -4,8 +4,11 @@ from django.utils.translation import ugettext as _
 class Cotter(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     veg_key = models.IntegerField(_(u'Veg key'))
+<<<<<<< HEAD
     veg_key3 = models.IntegerField(_(u'Veg key3'))
     veg_key4 = models.IntegerField(_(u'Veg key4'))
+=======
+>>>>>>> 3ff834a701964b5c00513ddeedd4f7ed7dbb760e
     veg_types = models.IntegerField(_(u'Veg key'))
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
