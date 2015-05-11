@@ -124,6 +124,10 @@ shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
 
 
 
+пароль на сервере    HEvfhbyrf76
+
+
+
 
 
 
