@@ -116,6 +116,7 @@ function init(){
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
 
+         map.addControl(new OpenLayers.Control.LayerSwitcher({}));
 
 
        map.events.register("click", map, function (e) {            
