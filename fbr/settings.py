@@ -36,7 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'map'
+    'django.contrib.gis',
+    'map',
+    'south'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,6 +86,4 @@ TEMPLATE_DIRS = (
 POSTGIS_VERSION = (2, 0, 1)
 
 GOOGLE_MAPS_API_KEY='abcdefg'
-
-
 

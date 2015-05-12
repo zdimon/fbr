@@ -109,9 +109,35 @@ slope_250.shp
 cotter_veg_original.shp
 
 
+ИМПОРТ SHP
+
+Скопировать файлы в vector_data
+
+сделать деплой
+
+зайти на сервер
+
+ssh zdimon@hntu.com.ua
+
+перейти в эту директорию cd fbr_ve/fbr/vector_data
+
+перейти в пользователя postgres
+sudo -s
+su postgres
+
+запустить команду
+
+shp2pgsql -I -s 4326 <shape file>  public.<table name> | psql -d fbr
+
+например
+
 shp2pgsql -I -s 4326 radiation250.shp  public.map_radiation | psql -d fbr
 shp2pgsql -I -s 4326 cotter_veg_original.shp  public.map_cotter | psql -d fbr
 shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
+
+
+
+
 
 
 

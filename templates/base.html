@@ -13,6 +13,10 @@
         <script src="{% static 'js/jquery-1.10.2.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
         <script src="http://openlayers.org/api/OpenLayers.js"></script>
+        <script src="{% static 'js/stream.js' %}"></script>
+        <script src="{% static 'js/shapefile.js' %}"></script>
+        <script src="{% static 'js/dbf.js' %}"></script>
+
     </head>
     <body>
 
@@ -20,6 +24,15 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">{% block header %}FBR{% endblock %}</a>
+
+                <!-- <a class="navbar-brand" href="{% url 'radiation' %}">Radiation (shape)</a> -->
+
+                <a class="navbar-brand" href="{% url 'radiation_json' %}">Radiation</a>
+
+               
+                <a class="navbar-brand" href="{% url 'slope' %}">Slope</a>
+
+                <a class="navbar-brand" href="{% url 'crap' %}">Vegetation</a>
                 
             </div>
                

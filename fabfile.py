@@ -2,7 +2,7 @@
 from fabric.api import *
 import os
 from contextlib import contextmanager as _contextmanager
-        
+      
 def production_env():
     """Окружение для продакшена"""
 #    env.hosts = ['chat.mirbu.com']
@@ -29,11 +29,14 @@ def deploy():
     production_env()  # Инициализация окружения
     with virtualenv():
         run('git pull') # Пуляемся из репозитория
-        run('pip install -r requirements.txt') # ставим пакеты
+        #run('pip install -r requirements.txt') # ставим пакеты
         #run('bower install')
-        #run('./manage.py collectstatic --noinput') # Собираем статику
-        #run('./manage.py migrate')
-        #run('sudo service uwsgi restart')
+        with warn_only():
+            run('./manage.py schemamigration map --auto') # Собираем статику
+            run('./manage.py migrate')
+            run('git add --all')
+            run('git commit -m "from server"')
+            run('git push')
         #run('find . -name "*.mo" -print -delete')  # Чистим старые скомпиленные файлы gettext'а
         #run('./manage.py compilemessages')  # Собираем новые файлы gettext'а
         #run('sudo supervisorctl restart all')

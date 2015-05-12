@@ -12,11 +12,11 @@
 
 <script type="text/javascript">
 function init(){
-
+ 
      
-        var lon = 3665941.92388;
-        var lat = 5880439.46213;
-    var zoom = 6;
+        var lon = 16818002.756909;
+       var lat = -4004397.0343331;
+    var zoom = 1;
     var options = {
         div: "map",
         layers: [new OpenLayers.Layer.OSM()],
@@ -43,7 +43,7 @@ function init(){
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
-                url: "{{ base_url }}/get-polygon-json?id=0",
+                url: "/cotter-json",
 
                 params: {
                     attrs: 'id,name',
@@ -61,7 +61,7 @@ function init(){
         
 
          
-         //map.addLayer(forest);
+         map.addLayer(forest);
 
 
 
@@ -73,14 +73,16 @@ function init(){
 
    
 
-    if(!map.getCenter()){
-        map.zoomToMaxExtent();
-     }
+    //if(!map.getCenter()){
+    //    map.zoomToMaxExtent();
+    // }
 
-        map.events.register("mousemove", map, function (e) {            
-        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
-            console.log(point.lon, point.lat)
-        });
+    //   map.events.register("click", map, function (e) {            
+    //    var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+     //       console.log(point.lon, point.lat)
+     //   });
+
+
  
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);

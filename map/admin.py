@@ -6,6 +6,15 @@ from django.conf import settings
 # Register your models here.
 
 
+
+
+
+
+
+
+
+
+
 class MapLayer(GeoJSONLayerView):
     # Options
     precision = 4   # float
@@ -28,6 +37,7 @@ admin.site.register(Slope, SlopeAdmin)
 
 
 class RadiationAdmin(OSMGeoAdmin):
+    search_fields = ("gridcode",)
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
