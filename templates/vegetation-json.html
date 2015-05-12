@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+
+ {% block body %}
+
+     <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
+
+
+
+
+
+
+<script type="text/javascript">
+function init(){
+ 
+     
+        var lon = 16569028.246562;
+       var lat = -4253744.1751931;
+    var zoom = 12;
+    var options = {
+        div: "map",
+        layers: [new OpenLayers.Layer.OSM()],
+        projection: new OpenLayers.Projection("EPSG:4326"),
+         maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
+    };
+    var  map = new OpenLayers.Map(options);
+
+
+
+
+            function setHTML(response) {
+            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            $('#status-message').hide();
+            }
+
+            var style = new OpenLayers.Style({fillColor : "green",
+                                          label: '${gridcode}',
+                                          fillOpacity : 0.4});
+
+            var stylemap =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "green",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+      
+
+
+        forest = new OpenLayers.Layer.Vector("Information", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/vegetation-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap
+           
+        });
+
+
+         
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+            });        
+        
+        function updateinfo() {
+
+             alert('GRIDCODE:'+forest.selectedFeatures[0].data['gridcode']);
+                
+               
+        }
+
+
+        var select_options = {
+            hover: false,
+            onSelect: updateinfo
+          };
+         var select = new OpenLayers.Control.SelectFeature(forest, select_options);
+         
+         map.addLayer(forest);
+         map.addControl(highlightCtrl);
+         highlightCtrl.activate();
+
+
+
+       map.events.register("click", map, function (e) {            
+        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+            alert('lon:'+point.lon+'  lat:'+point.lat)
+        });
+
+
+
+
+   
+
+    //if(!map.getCenter()){
+    //    map.zoomToMaxExtent();
+    // }
+
+       
+
+
+ 
+        var point = new OpenLayers.LonLat(lon, lat);
+        map.setCenter(point, zoom);
+        map.addControl(select);
+
+        select.activate();
+
+   // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
+} ;
+$(document).ready(function(){ init() });
+</script>
+
+{% endblock %}
+
