@@ -30,7 +30,7 @@ class Vegetation(models.Model):
     state = models.CharField(_(u'State'), max_length=6, null=True, blank=True)
     fueltype = models.IntegerField(_(u'Fuel type'), null=True, blank=True)
     fuelcode_v = models.CharField(_(u'Fuel code'), max_length=50, null=True, blank=True)
-    acres = models.DecimalField(_(u'Acres'), max_digits=20, decimal_places=15, null=True, blanc=True)
+    acres = models.DecimalField(_(u'Acres'), max_digits=20, decimal_places=15, null=True, blank=True)
     hectares = models.DecimalField(_(u'Hectares'), max_digits=25, decimal_places=15, null=True, blank=True)      
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
