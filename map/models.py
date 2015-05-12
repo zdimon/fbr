@@ -17,7 +17,7 @@ class Cotter(models.Model):
 class Vegetation(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     objectid = models.IntegerField(_(u'Objectid'))
-    area = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blanc=True)
+    area1 = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blanc=True)
     perimeter = models.DecimalField(_(u'Perimeter'), max_digits=25, decimal_places=15, null=True, blanc=True)
     veg_ = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blanc=True)
     veg_id = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blanc=True)
