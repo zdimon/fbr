@@ -78,14 +78,65 @@ ID: Integer (10.0)
 GRIDCODE: Integer (10.0)
 
 
+
+
+INFO: Open of `ACVege_Cut_projected.shx'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ACVege_Cut_projected
+Geometry: 3D Polygon
+Feature Count: 129
+Extent: (148.767047, -35.761276) - (148.902290, -35.573877)
+Layer SRS WKT:
+GEOGCS["GCS_WGS_1984",
+    DATUM["WGS_1984",
+        SPHEROID["WGS_84",6378137.0,298.257223563]],
+    PRIMEM["Greenwich",0.0],
+    UNIT["Degree",0.0174532925199433]]
+OBJECTID: Real (11.0)
+AREA: Real (19.15)
+PERIMETER: Real (19.15)
+VEG_: Real (19.15)
+VEG_ID: Real (19.15)
+VEG_SP_1: String (25.0)
+VEG_SP_2: String (25.0)
+VEG_SP_3: String (25.0)
+STRUCTURE: String (20.0)
+CLASS: Integer (6.0)
+SYMBOL: Real (19.15)
+STATE: String (6.0)
+FuelType: Integer (6.0)
+FuelCode_V: String (50.0)
+Acres: Real (19.15)
+Hectares: Real (19.15)
+
+
+
+
+#######Instalation POSTGIS in Ubuntu
+
+Repo for ubuntu 14 in  /etc/apt/sources.list.d/postgresql.list
+
+deb http://apt.postgresql.org/pub/repos/apt/ codename-pgdg main
+
+ls /usr/share/postgresql/9.3/extension
+
+
 Creating temlplate
 
+su postgres
+createdb -E UTF8 template_postgis
+psql -d template_postgis -f /usr/share/postgresql/9.3/extension/postgis--2.1.4.sql
 
 createdb test_db -T template_postgis2.1
+
+
 psql -d template_postgis2.1 -f /usr/share/postgresql/9.1/extension/postgis--2.1.0SVN.sql
 psql -d template_postgis2.1 -c "GRANT ALL ON geometry_columns TO PUBLIC;"
 psql -d template_postgis2.1 -c "GRANT ALL ON geography_columns TO PUBLIC;"
 psql -d template_postgis2.1 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
+
+psql -d template_postgis -f /usr/share/postgresql/9.3/extension/postgis--2.1.4.sql
 
 
 
@@ -109,7 +160,7 @@ ssh zdimon@hntu.com.ua
 перейти в эту директорию cd fbr_ve/fbr/vector_data
 
 перейти в пользователя postgres
-
+sudo -s
 su postgres
 
 запустить команду
@@ -121,6 +172,10 @@ shp2pgsql -I -s 4326 <shape file>  public.<table name> | psql -d fbr
 shp2pgsql -I -s 4326 radiation250.shp  public.map_radiation | psql -d fbr
 shp2pgsql -I -s 4326 cotter_veg_original.shp  public.map_cotter | psql -d fbr
 shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
+
+
+
+
 
 
 
