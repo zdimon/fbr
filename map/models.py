@@ -32,7 +32,7 @@ class Vegetation(models.Model):
     fuelcode_v = models.CharField(_(u'Fuel code'), max_length=50, null=True, blank=True)
     acres = models.DecimalField(_(u'Acres'), max_digits=20, decimal_places=15, null=True, blank=True)
     hectares = models.DecimalField(_(u'Hectares'), max_digits=25, decimal_places=15, null=True, blank=True)      
-    geom2d = models.MultiPolygonField(null=True, blank=True)
+    geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
         return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_sp_1)
 
