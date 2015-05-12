@@ -88,7 +88,9 @@ ls /usr/share/postgresql/9.3/extension
 
 Creating temlplate
 
+su postgres
 createdb -E UTF8 template_postgis
+psql -d template_postgis -f /usr/share/postgresql/9.3/extension/postgis--2.1.4.sql
 
 createdb test_db -T template_postgis2.1
 
