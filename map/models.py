@@ -25,7 +25,7 @@ class Vegetation(models.Model):
     veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_kength=25, null=True, blanc=True)
     veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_kength=25, null=True, blanc=True) 
     structure = models.CharField(_(u'Veg_sp_1'), max_kength=20, null=True, blanc=True)
-    class = models.IntegerField(_(u'Class'), null=True, blanc=True)
+    class1 = models.IntegerField(_(u'Class'), null=True, blanc=True)
     symbol = models.DecimalField(_(u'Symbol'), max_digits=20, decimal_places=15, null=True, blanc=True)
     state = models.CharField(_(u'State'), max_kength=6, null=True, blanc=True)
     fueltype = models.IntegerField(_(u'Fuel type'), null=True, blanc=True)
