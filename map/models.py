@@ -19,7 +19,7 @@ class Vegetation(models.Model):
     objectid = models.IntegerField(_(u'Objectid'))
     area = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blank=True)
     perimeter = models.DecimalField(_(u'Perimeter'), max_digits=25, decimal_places=15, null=True, blank=True)
-    veg_ = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
+    veg = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_id = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_sp_1 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
