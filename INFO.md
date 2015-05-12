@@ -77,15 +77,28 @@ GEOGCS["GCS_WGS_1984",
 ID: Integer (10.0)
 GRIDCODE: Integer (10.0)
 
+#######Instalation POSTGIS in Ubuntu
+
+Repo for ubuntu 14 in  /etc/apt/sources.list.d/postgresql.list
+
+deb http://apt.postgresql.org/pub/repos/apt/ codename-pgdg main
+
+ls /usr/share/postgresql/9.3/extension
+
 
 Creating temlplate
 
+createdb -E UTF8 template_postgis
 
 createdb test_db -T template_postgis2.1
+
+
 psql -d template_postgis2.1 -f /usr/share/postgresql/9.1/extension/postgis--2.1.0SVN.sql
 psql -d template_postgis2.1 -c "GRANT ALL ON geometry_columns TO PUBLIC;"
 psql -d template_postgis2.1 -c "GRANT ALL ON geography_columns TO PUBLIC;"
 psql -d template_postgis2.1 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
+
+psql -d template_postgis -f /usr/share/postgresql/9.3/extension/postgis--2.1.4.sql
 
 
 
