@@ -101,7 +101,13 @@ function init(){
         function updateinfo() {
 
              alert('GRIDCODE:'+forest.selectedFeatures[0].data['gridcode']);
-                
+
+                var request = OpenLayers.Request.GET({
+                url: "/get-region-info",
+                params: {id: forest.selectedFeatures[0].data['gridcode']},
+                callback: setHTML
+
+            });           
                
         }
 
