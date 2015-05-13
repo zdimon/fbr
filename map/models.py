@@ -11,7 +11,7 @@ class Cotter(models.Model):
 
     class Meta:
         verbose_name=_(u'Vegetation')
-        verbose_name_plural=_(u'Vegetation')
+        verb ose_name_plural=_(u'Vegetation')
 
 
 class Structure(models.Model):
@@ -38,7 +38,8 @@ class Vegetation(models.Model):
     veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
     
-    structure = models.ForeignKey(Structure)
+    #structure = models.ForeignKey(Structure)
+    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
     
     class1 = models.IntegerField(_(u'Class'), null=True, blank=True)
     symbol = models.DecimalField(_(u'Symbol'), max_digits=20, decimal_places=15, null=True, blank=True)
