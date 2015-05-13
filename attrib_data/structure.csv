@@ -1,0 +1,7 @@
+Structure,fuel_moisture,fuel_load
+ALPINE SEDGELAND,medium,medium
+LOW WOODLAND,low,high
+NATIVE GRASSLAND,very low,low
+OPEN FOREST,medium,medium
+ROCKY HEATH,very high,very low
+TALL OPEN FOREST,high,very high

@@ -1,0 +1,1 @@
+﻿COPY map_structure FROM '/fbr/attrib_data/structure.csv' DELIMITER ',' CSV;

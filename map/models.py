@@ -11,7 +11,7 @@ class Cotter(models.Model):
 
     class Meta:
         verbose_name=_(u'Vegetation')
-        verb ose_name_plural=_(u'Vegetation')
+        verbose_name_plural=_(u'Vegetation')
 
 
 class Structure(models.Model):
