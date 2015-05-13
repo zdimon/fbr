@@ -35,8 +35,8 @@
                 vector = new OpenLayers.Layer.Vector("Converted"),
 
                 shapefile = new Shapefile({
-                    shp: "/static/data/slope_250.shp",
-                    dbf: "/static/data/slope_250.dbf"
+                    shp: "testdata/slope_250.shp",
+                    dbf: "testdata/slope_250.dbf"
                 }, function(data){
                     var features = parser.read(data.geojson);
                     vector.addFeatures(features);

@@ -70,7 +70,7 @@ function init(){
       
 
 
-        forest = new OpenLayers.Layer.Vector("Information", {
+        forest = new OpenLayers.Layer.Vector("Vegetation", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
@@ -89,6 +89,28 @@ function init(){
             styleMap: stylemap
            
         });
+
+
+        radiation = new OpenLayers.Layer.Vector("Radiation", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/radiation-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap
+           
+        });
+
 
 
          
@@ -113,9 +135,11 @@ function init(){
          var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
          map.addLayer(forest);
+         map.addLayer(radiation);
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
 
+         map.addControl(new OpenLayers.Control.LayerSwitcher({}));
 
 
        map.events.register("click", map, function (e) {            

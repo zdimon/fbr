@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 
     url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure'))),
+    
 
 
     url(r'^admin/', include(admin.site.urls)),
