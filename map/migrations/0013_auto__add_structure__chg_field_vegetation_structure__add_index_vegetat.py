@@ -21,7 +21,7 @@ class Migration(SchemaMigration):
         # Renaming column for 'Vegetation.structure' to match new field type.
         db.rename_column(u'map_vegetation', 'structure', 'structure_id')
         # Changing field 'Vegetation.structure'
-        db.alter_column(u'map_vegetation', 'structure_id', self.gf('django.db.models.fields.related.ForeignKey')(default=datetime.datetime(2015, 5, 13, 0, 0), to=orm['map.Structure']))
+        db.alter_column(u'map_vegetation', 'structure_id', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['map.Structure']))
         # Adding index on 'Vegetation', fields ['structure']
         db.create_index(u'map_vegetation', ['structure_id'])
 
