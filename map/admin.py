@@ -29,6 +29,9 @@ admin.site.register(Cotter, CotterAdmin)
 
 
 class VegetationAdmin(OSMGeoAdmin):
+    list_display = ("gid", "structure", "objectid", "area", "perimeter", "veg", "veg_id")
+    search_fields = ("gid", "objectid")
+    list_filter = ("struct",)    
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 

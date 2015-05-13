@@ -202,8 +202,8 @@ ALTER TABLE map_vegetation
 
 
 
-ALTER TABLE veg_tmp ADD geom2d geometry
-UPDATE veg_tmp SET geom2d = ST_Force_2D(geom) 
+ALTER TABLE veg_tmp ADD geom2d geometry;
+UPDATE veg_tmp SET geom2d = ST_Force_2D(geom); 
 
 
 
