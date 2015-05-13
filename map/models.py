@@ -14,6 +14,19 @@ class Cotter(models.Model):
         verbose_name_plural=_(u'Vegetation')
 
 
+class Structure(models.Model):
+    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
+    fuel_moisture = models.CharField(_(u'Fuel moisture'), max_length=25, null=True, blank=True)
+    fuel_load = models.CharField(_(u'Fuel load'), max_length=25, null=True, blank=True)
+    def __unicode__(self):
+        return 'Structure_ #%s  (%s)' % (self.structure,self.fuel_moisture1)
+
+    class Meta:
+        verbose_name=_(u'Structure')
+        verbose_name_plural=_(u'Structures')    
+    
+    
+
 class Vegetation(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     objectid = models.IntegerField(_(u'Objectid'))
@@ -24,7 +37,9 @@ class Vegetation(models.Model):
     veg_sp_1 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
-    structure = models.CharField(_(u'Veg_sp_1'), max_length=20, null=True, blank=True)
+    
+    structure = models.ForeignKey(Structure)
+    
     class1 = models.IntegerField(_(u'Class'), null=True, blank=True)
     symbol = models.DecimalField(_(u'Symbol'), max_digits=20, decimal_places=15, null=True, blank=True)
     state = models.CharField(_(u'State'), max_length=6, null=True, blank=True)
@@ -39,6 +54,9 @@ class Vegetation(models.Model):
     class Meta:
         verbose_name=_(u'Vegetation')
         verbose_name_plural=_(u'Vegetation')
+
+
+
         
 
 

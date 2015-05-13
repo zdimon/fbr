@@ -96,7 +96,23 @@ createdb test_db -T template_postgis2.1
 
 
 psql -d template_postgis2.1 -f /usr/share/postgresql/9.1/extension/postgis--2.1.0SVN.sql
-psql -d template_postgis2.1 -c "GRANT ALL ON geometry_columns TO PUBLIC;"
+psql -d template_postgis2.1 -c "GRANT ALL ON geometry_columns TO PUBLIC;" я тебе для удобства захода на сервер сделал команду fbr
+[14:27:27] Dima: запуская ее ты попадаешь на сервер
+[14:27:51] Dima: далее чтобы вывести список работающий скринов набираешь screen -ls
+[14:28:08] Dima: там щас один скрин с запущенным веб сервером
+[14:28:43] Dima: There is a screen on:
+	10405.fbr-server	(05/11/15 12:02:16)	(Detached)
+1 Socket in /var/run/screen/S-zdimon.
+[14:29:12] Dima: чтоб к нему присоединиться нужно набрать screen -r fbr-server или screen -r 10405 (по идентификатору)
+[14:29:27] Dima: и там ты увидишь причину
+[14:30:17] Dima: когда ты протупила с blanc зы загнала на сервер код с синтаксической (грубой) ошибкой и обрушила сервер в скрине
+[14:30:50] Dima: все что нужно это остановить его по crtl+c и запустить снова (стрелочка вверх)
+[14:31:23] Dima: далее чтобы выйти из скрина нужно нажать комбинацию ctrl+a и потом d
+[14:31:42] Dima: и ты попадеш в обычный терминал сервера
+[14:33:12] Dima: сам скрин это копия терминала в памяти которая продолжает работу после того как ты покидаешь сервер
+[14:33:52] Dima: в противном случае чтобы работал сайт нужно постоянно держать открытым терминал с запущенным сервером
+[14:35:11] Dima: впринципе неплохо перед деплоем заходить в скрин и смотреть что там происходит после деплоя
+
 psql -d template_postgis2.1 -c "GRANT ALL ON geography_columns TO PUBLIC;"
 psql -d template_postgis2.1 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
 
