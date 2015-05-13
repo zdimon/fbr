@@ -15,7 +15,7 @@ class Cotter(models.Model):
 
 
 class Structure(models.Model):
-    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
+    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True, default='')
     fuel_moisture = models.CharField(_(u'Fuel moisture'), max_length=25, null=True, blank=True)
     fuel_load = models.CharField(_(u'Fuel load'), max_length=25, null=True, blank=True)
     def __unicode__(self):
