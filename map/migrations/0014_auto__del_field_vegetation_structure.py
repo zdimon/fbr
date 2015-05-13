@@ -8,23 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting field 'Vegetation.geom2d'
-        db.delete_column(u'map_vegetation', 'geom2d')
-
-        # Adding field 'Vegetation.geom'
-        db.add_column(u'map_vegetation', 'geom',
-                      self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(null=True, blank=True),
-                      keep_default=False)
+        # Deleting field 'Vegetation.structure'
+        db.delete_column(u'map_vegetation', 'structure')
 
 
     def backwards(self, orm):
-        # Adding field 'Vegetation.geom2d'
-        db.add_column(u'map_vegetation', 'geom2d',
-                      self.gf('django.contrib.gis.db.models.fields.MultiPolygonField')(null=True, blank=True),
+        # Adding field 'Vegetation.structure'
+        db.add_column(u'map_vegetation', 'structure',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['map.Structure']),
                       keep_default=False)
-
-        # Deleting field 'Vegetation.geom'
-        db.delete_column(u'map_vegetation', 'geom')
 
 
     models = {
@@ -49,6 +41,13 @@ class Migration(SchemaMigration):
             'gridcode': ('django.db.models.fields.IntegerField', [], {}),
             'id': ('django.db.models.fields.IntegerField', [], {})
         },
+        u'map.structure': {
+            'Meta': {'object_name': 'Structure'},
+            'fuel_load': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            'fuel_moisture': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'structure': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '25', 'null': 'True', 'blank': 'True'})
+        },
         u'map.vegetation': {
             'Meta': {'object_name': 'Vegetation'},
             'acres': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '20', 'decimal_places': '15', 'blank': 'True'}),
@@ -62,7 +61,6 @@ class Migration(SchemaMigration):
             'objectid': ('django.db.models.fields.IntegerField', [], {}),
             'perimeter': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '25', 'decimal_places': '15', 'blank': 'True'}),
             'state': ('django.db.models.fields.CharField', [], {'max_length': '6', 'null': 'True', 'blank': 'True'}),
-            'structure': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
             'symbol': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '20', 'decimal_places': '15', 'blank': 'True'}),
             'veg': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),
             'veg_id': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),

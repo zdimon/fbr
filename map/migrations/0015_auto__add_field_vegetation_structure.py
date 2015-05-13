@@ -8,36 +8,16 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Structure'
-        db.create_table(u'map_structure', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('structure', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
-            ('fuel_moisture', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
-            ('fuel_load', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
-        ))
-        db.send_create_signal(u'map', ['Structure'])
-
-
-        # Renaming column for 'Vegetation.structure' to match new field type.
-        #db.rename_column(u'map_vegetation', 'structure', 'structure_id')
-        # Changing field 'Vegetation.structure'
-        #db.alter_column(u'map_vegetation', 'structure_id', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['map.Structure']))
-        # Adding index on 'Vegetation', fields ['structure']
-        #db.create_index(u'map_vegetation', ['structure_id'])
+        # Adding field 'Vegetation.structure'
+        db.add_column(u'map_vegetation', 'structure',
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['map.Structure'], null=True, blank=True),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Removing index on 'Vegetation', fields ['structure']
-        db.delete_index(u'map_vegetation', ['structure_id'])
+        # Deleting field 'Vegetation.structure'
+        db.delete_column(u'map_vegetation', 'structure_id')
 
-        # Deleting model 'Structure'
-        db.delete_table(u'map_structure')
-
-
-        # Renaming column for 'Vegetation.structure' to match new field type.
-        db.rename_column(u'map_vegetation', 'structure_id', 'structure')
-        # Changing field 'Vegetation.structure'
-        db.alter_column(u'map_vegetation', 'structure', self.gf('django.db.models.fields.CharField')(max_length=20, null=True))
 
     models = {
         u'map.cotter': {
@@ -66,7 +46,7 @@ class Migration(SchemaMigration):
             'fuel_load': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
             'fuel_moisture': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'structure': ('django.db.models.fields.CharField', [], {'max_length': '25', 'null': 'True', 'blank': 'True'})
+            'structure': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '25', 'null': 'True', 'blank': 'True'})
         },
         u'map.vegetation': {
             'Meta': {'object_name': 'Vegetation'},
@@ -81,7 +61,7 @@ class Migration(SchemaMigration):
             'objectid': ('django.db.models.fields.IntegerField', [], {}),
             'perimeter': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '25', 'decimal_places': '15', 'blank': 'True'}),
             'state': ('django.db.models.fields.CharField', [], {'max_length': '6', 'null': 'True', 'blank': 'True'}),
-            'structure': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['map.Structure']"}),
+            'structure': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['map.Structure']", 'null': 'True', 'blank': 'True'}),
             'symbol': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '20', 'decimal_places': '15', 'blank': 'True'}),
             'veg': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),
             'veg_id': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),
