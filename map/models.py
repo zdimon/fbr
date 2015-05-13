@@ -19,7 +19,7 @@ class Structure(models.Model):
     fuel_moisture = models.CharField(_(u'Fuel moisture'), max_length=25, null=True, blank=True)
     fuel_load = models.CharField(_(u'Fuel load'), max_length=25, null=True, blank=True)
     def __unicode__(self):
-        return 'Structure_ #%s  (%s)' % (self.structure,self.fuel_moisture1)
+        return 'Structure_ #%s  (%s)' % (self.structure,self.fuel_moisture)
 
     class Meta:
         verbose_name=_(u'Structure')
