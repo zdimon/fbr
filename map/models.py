@@ -38,7 +38,7 @@ class Vegetation(models.Model):
     veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
     
-    structure = models.ForeignKey(Structure, null=True, blank=True, default=0)
+    structure = models.ForeignKey(Structure, null=True, blank=True)
     
     class1 = models.IntegerField(_(u'Class'), null=True, blank=True)
     symbol = models.DecimalField(_(u'Symbol'), max_digits=20, decimal_places=15, null=True, blank=True)

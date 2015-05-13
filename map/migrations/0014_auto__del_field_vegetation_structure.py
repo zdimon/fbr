@@ -8,14 +8,16 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Deleting field 'Vegetation.structure'
+        db.delete_column(u'map_vegetation', 'structure')
 
-        # Changing field 'Vegetation.structure'
-        db.alter_column(u'map_vegetation', 'structure_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['map.Structure'], null=True))
 
     def backwards(self, orm):
+        # Adding field 'Vegetation.structure'
+        db.add_column(u'map_vegetation', 'structure',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['map.Structure']),
+                      keep_default=False)
 
-        # Changing field 'Vegetation.structure'
-        db.alter_column(u'map_vegetation', 'structure_id', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['map.Structure']))
 
     models = {
         u'map.cotter': {
@@ -59,7 +61,6 @@ class Migration(SchemaMigration):
             'objectid': ('django.db.models.fields.IntegerField', [], {}),
             'perimeter': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '25', 'decimal_places': '15', 'blank': 'True'}),
             'state': ('django.db.models.fields.CharField', [], {'max_length': '6', 'null': 'True', 'blank': 'True'}),
-            'structure': ('django.db.models.fields.related.ForeignKey', [], {'default': '0', 'to': u"orm['map.Structure']", 'null': 'True', 'blank': 'True'}),
             'symbol': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '20', 'decimal_places': '15', 'blank': 'True'}),
             'veg': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),
             'veg_id': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '5', 'blank': 'True'}),
