@@ -15,6 +15,8 @@ CRID
 Command to see info 
 zdimon@home:~/www/fbr_ve/fbr/vector_data$ ogrinfo slope_250.shx slope_250 -so
 
+ogrinfo vegetation_structure.shx vegetation_structure -so
+
 
 
 INFO: Open of `cotter_veg_original.shp'
@@ -193,6 +195,8 @@ shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
 
 
 shp2pgsql -I -s 4326 ACVege_Cut_projected.shp  public.veg_tmp | psql -d fbr
+
+shp2pgsql -I -s 4326 vegetation_structure.shp  public.veg_tmp | psql -d fbr
 
 
 ALTER TABLE map_vegetation
