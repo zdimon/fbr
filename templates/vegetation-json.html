@@ -91,6 +91,29 @@ function init(){
         });
 
 
+
+        forest_old = new OpenLayers.Layer.Vector("Vegetation_old", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/vegetation-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap
+           
+        });
+
+
+
         radiation = new OpenLayers.Layer.Vector("Radiation", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
@@ -135,6 +158,7 @@ function init(){
          var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
          map.addLayer(forest);
+         map.addLayer(forest_old);
          map.addLayer(radiation);
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
