@@ -134,13 +134,13 @@ function init(){
            
         });
 
-        cotter = new OpenLayers.Layer.Vector("Cotter", {
+        slope = new OpenLayers.Layer.Vector("Slope", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
-                url: "/cotter-json",
+                url: "/slope-json",
 
                 params: {
                     attrs: 'id,name',
@@ -176,7 +176,7 @@ function init(){
          var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
          map.addLayer(forest);
-         map.addLayer(cotter);
+         map.addLayer(slope);
          map.addLayer(forest_old);
          map.addLayer(radiation);
          map.addControl(highlightCtrl);

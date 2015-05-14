@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import loader, RequestContext
-from map.models import Cotter, Radiation, Vegetation, Veget
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope
 from djgeojson.views import GeoJSONLayerView
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # Create your views here.
@@ -203,6 +203,46 @@ class GetPolygonJsonVeget(GeoJSONLayerView):
         f.close()
         return response
 
+
+
+class GetPolygonJsonSlope(GeoJSONLayerView):
+    # Options
+    from fbr.settings import BASE_DIR
+    precision = 4   # float
+    simplify = 0.5  # generalization
+    def get_queryset(self):
+        return Slope.objects.all()
+
+    def render_to_response(self, context, **response_kwargs):
+        from fbr.settings import BASE_DIR
+        import os.path
+        cpath = BASE_DIR+'/map_cache/slope.txt'
+        if(os.path.exists(cpath)):
+            from django.http import HttpResponse
+            f = open(cpath,'r')
+            out = f.read()
+            f.close()
+            return HttpResponse(out, content_type="application/json")
+
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        serializer = GeoJSONSerializer()
+        response = self.response_class(**response_kwargs)
+        options = dict(properties=self.properties,
+                       precision=self.precision,
+                       simplify=self.simplify,
+                       srid=self.srid,
+                       geometry_field=self.geometry_field,
+                       force2d=self.force2d)
+        serializer.serialize(self.get_queryset(), stream=response, ensure_ascii=False,
+                             **options)
+
+        #import pdb; pdb.set_trace()
+        f = open(cpath,'w')
+        f.write(response.content)
+        f.close()
+        return response
 
 
 

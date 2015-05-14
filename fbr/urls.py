@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget
-from map.models import Cotter, Radiation, Vegetation, Veget
+from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget, GetPolygonJsonSlope
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure'))),
     url(r'^veget-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure'))),
+    url(r'^slope-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure'))),
     
 
 
