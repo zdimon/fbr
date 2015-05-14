@@ -13,11 +13,14 @@ CRID
 
 
 Command to see info 
-zdimon@home:~/www/fbr_ve/fbr/vector_data$ ogrinfo slope_250.shx slope_250 -so
+zdimon@home:~/www/fbr_ve/fbr/vector_data$ ACVege_Cut_projected.shx slope_250 -so
+
+ogrinfo vegetation_structure.shx vegetation_structure -so
 
 ogrinfo vegetation_structure.shx vegetation_structure -so
 
 
+---------------------------------------------
 
 INFO: Open of `cotter_veg_original.shp'
       using driver `ESRI Shapefile' successful.
@@ -42,9 +45,11 @@ PROJCS["AGD_1966_AMG_Zone_55",
     UNIT["Meter",1.0]]
 Veg_Key: Integer (9.0)
 Veg_Types: String (254.0)
+---------------------------------------------------
 
 
 
+----------------------------------------------------
 INFO: Open of `radiation250.shp'
       using driver `ESRI Shapefile' successful.
 
@@ -61,7 +66,10 @@ GEOGCS["GCS_WGS_1984",
 ID: Integer (10.0)
 GRIDCODE: Integer (10.0)
 
+-----------------------------------------------------
 
+
+-------------------------------------------------------
 
 INFO: Open of `slope_250.shx'
       using driver `ESRI Shapefile' successful.
@@ -78,10 +86,32 @@ GEOGCS["GCS_WGS_1984",
     UNIT["Degree",0.0174532925199433]]
 ID: Integer (10.0)
 GRIDCODE: Integer (10.0)
+---------------------------------------------------------
+
+
+--------------------------------------------------------
+INFO: Open of `vegetation_structure.shx'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: vegetation_structure
+Geometry: Polygon
+Feature Count: 152
+Extent: (148.766423, -35.760452) - (148.903227, -35.573661)
+Layer SRS WKT:
+GEOGCS["GCS_WGS_1984",
+    DATUM["WGS_1984",
+        SPHEROID["WGS_84",6378137.0,298.257223563]],
+    PRIMEM["Greenwich",0.0],
+    UNIT["Degree",0.0174532925199433]]
+ID: Integer (10.0)
+GRIDCODE: Integer (10.0)
+STRUCTURE: String (32.0)
+----------------------------------------------------------
 
 
 
 
+---------------------------------------------------------------
 INFO: Open of `ACVege_Cut_projected.shx'
       using driver `ESRI Shapefile' successful.
 
@@ -111,6 +141,10 @@ FuelType: Integer (6.0)
 FuelCode_V: String (50.0)
 Acres: Real (19.15)
 Hectares: Real (19.15)
+-----------------------------------------------------------
+
+
+
 
 
 
@@ -200,7 +234,10 @@ shp2pgsql -I -s 4326 vegetation_structure.shp  public.veg_tmp | psql -d fbr
 
 
 
-
+ALTER TABLE map_veget
+  ADD CONSTRAINT struct_id_refs_id_custom FOREIGN KEY (struct_id)
+      REFERENCES map_structure (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED;
 
 
 

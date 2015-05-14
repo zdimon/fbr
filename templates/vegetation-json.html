@@ -134,7 +134,25 @@ function init(){
            
         });
 
+        cotter = new OpenLayers.Layer.Vector("Cotter", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
 
+                url: "/cotter-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap
+           
+        });
 
          
             var highlightCtrl = new OpenLayers.Control.SelectFeature(forest, {
@@ -158,6 +176,7 @@ function init(){
          var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
          map.addLayer(forest);
+         map.addLayer(cotter);
          map.addLayer(forest_old);
          map.addLayer(radiation);
          map.addControl(highlightCtrl);
