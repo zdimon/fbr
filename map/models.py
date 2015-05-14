@@ -23,7 +23,25 @@ class Structure(models.Model):
 
     class Meta:
         verbose_name=_(u'Structure')
-        verbose_name_plural=_(u'Structures')    
+        verbose_name_plural=_(u'Structures')  
+        
+        
+
+class Veget(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    gridcode = models.IntegerField(_(u'Gridcode'))  
+    
+    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
+    struct = models.ForeignKey(Structure, null=True, blank=True)
+
+    geom = models.MultiPolygonField(null=True, blank=True)
+    def __unicode__(self):
+        return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_sp_1)
+
+    class Meta:
+        verbose_name=_(u'Vegetation')
+        verbose_name_plural=_(u'Vegetation')
+  
     
     
 

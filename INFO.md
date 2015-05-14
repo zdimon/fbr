@@ -186,24 +186,16 @@ shp2pgsql -I -s 4326 <shape file>  public.<table name> | psql -d fbr
 например
 
 shp2pgsql -I -s 4326 radiation250.shp  public.map_radiation | psql -d fbr
-shp2pgsql -I -s 4326 cotter_veg_original.shp  public.map_cotter | psql -d fbr
+shp2pgsql -I -s 4326 vegetation_structure.shp  public.map_veget | psql -d fbr
 shp2pgsql -I -s 4326 slope_250.shp  public.map_slope | psql -d fbr
 
 
 
 
-shp2pgsql -I -s 4326 ACVege_Cut_projected.shp  public.veg_tmp | psql -d fbr
-
-
-ALTER TABLE map_vegetation
-  ADD CONSTRAINT structure_id_refs_id FOREIGN KEY (structure_id)
-      REFERENCES map_structure (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED;
 
 
 
-ALTER TABLE veg_tmp ADD geom2d geometry;
-UPDATE veg_tmp SET geom2d = ST_Force_2D(geom); 
+
 
 
 
