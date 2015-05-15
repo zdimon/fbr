@@ -1,4 +1,1 @@
-﻿ALTER TABLE map_veget
-  ADD CONSTRAINT struct_id_refs_id_custom FOREIGN KEY (struct_id)
-      REFERENCES map_structure (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED;
+﻿ALTER TABLE map_vegetation ADD COLUMN struct_id integer;
