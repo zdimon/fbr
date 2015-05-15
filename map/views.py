@@ -21,6 +21,11 @@ def radiation(request):
 def vegetation(request):
     context = {}
     return render_to_response('vegetation.html', context, RequestContext(request))
+    
+
+def veget(request):
+    context = {}
+    return render_to_response('vegetstructure.html', context, RequestContext(request))    
 
 
 
