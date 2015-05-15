@@ -40,7 +40,7 @@ admin.site.register(Vegetation, VegetationAdmin)
 
 class VegetAdmin(OSMGeoAdmin):
     list_display = ("gid", "struct", "structure")
-    search_fields = ("gid")
+    search_fields = ("gid",)
     list_filter = ("struct",)    
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
