@@ -12,7 +12,7 @@ from map.models import *
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        for i in Vegetat.objects.all():
+        for i in Veget.objects.all():
             try:
                 s = Structure.objects.get(structure=i.structure)            
                 i.struct = s
