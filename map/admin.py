@@ -39,7 +39,7 @@ admin.site.register(Vegetation, VegetationAdmin)
 
 
 class VegetAdmin(OSMGeoAdmin):
-    list_display = ("gid", "struct", "structure")
+    list_display = ("gid", "structure")
     search_fields = ("gid",)
     list_filter = ("struct",)    
     map_template = 'gis/admin/google.html'
