@@ -48,6 +48,16 @@ class VegetAdmin(OSMGeoAdmin):
 admin.site.register(Veget, VegetAdmin)
 
 
+class StructureAdmin(OSMGeoAdmin):
+    list_display = ("id", "structure", "fuel_moisture", "fuel_load")
+    search_fields = ("id",)
+    list_filter = ("fuel_load",)    
+    map_template = 'gis/admin/google.html'
+    extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+
+admin.site.register(Structure, StructureAdmin)
+
+
 
 class SlopeAdmin(OSMGeoAdmin):
     list_display = ("id", "gridcode")
