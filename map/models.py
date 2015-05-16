@@ -36,7 +36,7 @@ class Veget(models.Model):
 
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
-        return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_sp_1)
+        return 'Vegetation_ #%s  (%s)' % (self.gid,self.struct)
 
     class Meta:
         verbose_name=_(u'Vegetation structure')
