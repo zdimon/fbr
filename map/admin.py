@@ -78,7 +78,7 @@ admin.site.register(Slope, SlopeAdmin)
 
 
 class RadiationAdmin(OSMGeoAdmin):
-    list_display = ("id", "gridcode")
+    list_display = ("id", "gridcode", "thumb")
     search_fields = ("gridcode",)
     list_filter = ("gridcode",)
     ordering = ('id',)

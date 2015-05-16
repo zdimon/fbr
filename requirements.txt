@@ -5,3 +5,4 @@ psycopg2
 fabric
 django-geojson
 django-colorful
+mapnik2
