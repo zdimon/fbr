@@ -3,9 +3,23 @@
 
  {% block body %}
 
+        <div class="col-md-9">
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
+    </div>
 
-
+    
+    <div class="col-md-3 well" >
+        <h3>Legend</h3>
+       <table>
+       {% for s in structures %}
+            <tr>
+                <td style="padding: 5px">  {{s.color_repr}}</td>
+                <td> {{ s }} </td>
+            </tr>
+          
+       {% endfor %}
+        </table>
+    </div>
 
 
 
@@ -33,9 +47,7 @@ function init(){
             $('#status-message').hide();
             }
 
-            var style = new OpenLayers.Style({fillColor : "green",
-                                          label: '${gridcode}',
-                                          fillOpacity : 0.4});
+
 
             var stylemap =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
@@ -69,27 +81,17 @@ function init(){
                     }) ;
       
 
+            var style = new OpenLayers.Style({fillColor : "green",
+                                          label: '${gridcode}',
+                                          fillOpacity : 0.4});
 
-        forest = new OpenLayers.Layer.Vector("Vegetation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/veget-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap
-           
-        });
-
+            var lookup = {
+                {% for s in structures %}
+                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
+                {% endfor %}
+                  
+              }
+            style.addUniqueValueRules("default", "struct", lookup);  
 
 
         forest_old = new OpenLayers.Layer.Vector("Vegetation_old", {
@@ -155,7 +157,7 @@ function init(){
         });
 
          
-            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest, {
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest_old, {
                 hover: true,
                 highlightOnly: true,
                 renderIntent: "temporary"
@@ -173,9 +175,9 @@ function init(){
             hover: false,
             onSelect: updateinfo
           };
-         var select = new OpenLayers.Control.SelectFeature(forest, select_options);
+         var select = new OpenLayers.Control.SelectFeature(forest_old, select_options);
          
-         map.addLayer(forest);
+         
          map.addLayer(slope);
          map.addLayer(forest_old);
          map.addLayer(radiation);

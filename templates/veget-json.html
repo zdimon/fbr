@@ -142,9 +142,11 @@ function init(){
 
         */
 
+            var style = new OpenLayers.Style({fillColor : "green",
+                                          label: '${gridcode}',
+                                          fillOpacity : 0.4});
 
-
-      var style =   new OpenLayers.StyleMap({
+      var stylemap =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
                         strokeColor: "#dd0000",
                         strokeOpacity:.7,
@@ -183,7 +185,7 @@ function init(){
           
       }
 
-      style.addUniqueValueRules("default", "struct", lookup);    
+      //style.addUniqueValueRules("default", "struct", lookup);    
 
          
                   
@@ -202,7 +204,7 @@ function init(){
                 format: new OpenLayers.Format.GeoJSON()
 
             }),
-            styleMap: style
+            styleMap: stylemap
         });
 
          var select_options = {

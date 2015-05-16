@@ -43,7 +43,7 @@ def radiation_json(request):
 
 
 def vegetation_json(request):
-    context = {}
+    context = {'structures': Structure.objects.all()}
     return render_to_response('vegetation-json.html', context, RequestContext(request))
 
 
@@ -55,8 +55,8 @@ def veget_json(request):
 class GetPolygonJsonCotter(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
-    precision = 4   # float
-    simplify = 0.5  # generalization
+    #precision = 4   # float
+    #simplify = 0.5  # generalization
     def get_queryset(self):
         return Cotter.objects.all()
 
@@ -76,8 +76,8 @@ class GetPolygonJsonCotter(GeoJSONLayerView):
         """
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
-        options = dict(properties=self.properties,
-                       precision=self.precision,
+        options = dict(#properties=self.properties,
+                       #precision=self.precision,
                        simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
@@ -138,8 +138,8 @@ class GetPolygonJsonRadiation(GeoJSONLayerView):
 
 class GetPolygonJsonVegetation(GeoJSONLayerView):
     from fbr.settings import BASE_DIR
-    precision = 4   # float
-    simplify = 0.5  # generalization
+    #precision = 4   # float
+    #simplify = 0.5  # generalization
     def get_queryset(self):
         return Vegetation.objects.all()
     def render_to_response(self, context, **response_kwargs):
@@ -158,8 +158,8 @@ class GetPolygonJsonVegetation(GeoJSONLayerView):
         """
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
-        options = dict(properties=self.properties,
-                       precision=self.precision,
+        options = dict(#properties=self.properties,
+                       #precision=self.precision,
                        simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
@@ -178,11 +178,12 @@ class GetPolygonJsonVegetation(GeoJSONLayerView):
 
 class GetPolygonJsonVeget(GeoJSONLayerView):
     from fbr.settings import BASE_DIR
-    precision = 4   # float
-    simplify = 0.5  # generalization
+    #precision = 4   # float
+    #simplify = 0.5  # generalization
     def get_queryset(self):
         return Veget.objects.all()
     def render_to_response(self, context, **response_kwargs):
+        #import pdb; pdb.set_trace()
         from fbr.settings import BASE_DIR
         import os.path
         cpath = BASE_DIR+'/map_cache/veget.txt'
@@ -199,11 +200,11 @@ class GetPolygonJsonVeget(GeoJSONLayerView):
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
         options = dict(properties=self.properties,
-                       precision=self.precision,
-                       simplify=self.simplify,
+                       #precision=self.precision,
+                       #simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
-                       force2d=self.force2d)
+                       force2d=True)
         serializer.serialize(self.get_queryset(), stream=response, ensure_ascii=False,
                              **options)
 
@@ -217,8 +218,8 @@ class GetPolygonJsonVeget(GeoJSONLayerView):
 
 class GetPolygonJsonVegetType(GeoJSONLayerView):
     from fbr.settings import BASE_DIR
-    precision = 4   # float
-    simplify = 0.5  # generalization
+    #precision = 4   # float
+    #simplify = 0.5  # generalization
     def get_queryset(self):
         #self.args[0]
         tp = Structure.objects.get(id=self.request.GET['type'])
@@ -226,7 +227,6 @@ class GetPolygonJsonVegetType(GeoJSONLayerView):
     def render_to_response(self, context, **response_kwargs):
         from fbr.settings import BASE_DIR
         import os.path
-        tp = Structure.objects.get(id=self.request.GET['type'])
         cpath = BASE_DIR+'/map_cache/veget%s.txt' % tp.id
         if(os.path.exists(cpath)):
             from django.http import HttpResponse
@@ -240,8 +240,8 @@ class GetPolygonJsonVegetType(GeoJSONLayerView):
         """
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
-        options = dict(properties=self.properties,
-                       precision=self.precision,
+        options = dict(#properties=self.properties,
+                       #precision=self.precision,
                        simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
