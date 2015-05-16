@@ -9,6 +9,9 @@
 
     
     <div class="col-md-3 well" >
+        <div id="info">
+        </div>
+
         <h3>Legend</h3>
        <table>
        {% for s in structures %}
@@ -115,6 +118,38 @@ function init(){
         });
 
 
+            var stylemap_grid =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "green",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+
 
         radiation = new OpenLayers.Layer.Vector("Radiation", {
             //isBaseLayer: true,
@@ -132,7 +167,7 @@ function init(){
                 
 
             }),
-            styleMap: stylemap
+            styleMap: stylemap_grid
            
         });
 
@@ -152,7 +187,7 @@ function init(){
                 
 
             }),
-            styleMap: stylemap
+            styleMap: stylemap_grid
            
         });
 
@@ -165,7 +200,15 @@ function init(){
         
         function updateinfo() {
 
-             alert('GRIDCODE:'+forest.selectedFeatures[0].data['structure']);
+
+           var request = OpenLayers.Request.GET({
+                url: "/get-old-info",
+                params: {id: forest_old.selectedFeatures[0].data['objectid']},
+                callback: setHTML
+
+            });
+
+             //alert('GRIDCODE:'+forest_old.selectedFeatures[0].data['objectid']);
                 
                
         }

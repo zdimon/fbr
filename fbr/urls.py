@@ -17,6 +17,7 @@ urlpatterns = patterns('',
      url(r'^vegetation_json$', 'map.views.vegetation_json', name='vegetation_json'),  
      url(r'^crap$', 'map.views.home', name='crap'),  
      url(r'^veget_json$', 'map.views.veget_json', name='veget_json'),  
+    url(r'^get-old-info$', 'map.views.get_old_info', name='get_old_info'),  
 
 
     url(r'^cotter-json/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types'))),

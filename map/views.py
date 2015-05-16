@@ -7,7 +7,10 @@ from djgeojson.serializers import Serializer as GeoJSONSerializer
 # Create your views here.
 from map.models import Structure
 
-
+def get_old_info(request):
+    obj = Vegetation.objects.get(objectid=request.GET['id'])
+    context = {'obj': obj}
+    return render_to_response('old_info.html', context, RequestContext(request))
 
 def home(request):
     context = {}
@@ -55,8 +58,8 @@ def veget_json(request):
 class GetPolygonJsonCotter(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
-    #precision = 4   # float
-    #simplify = 0.5  # generalization
+    precision = 4   # float
+    simplify = 0.5  # generalization
     def get_queryset(self):
         return Cotter.objects.all()
 
@@ -76,8 +79,8 @@ class GetPolygonJsonCotter(GeoJSONLayerView):
         """
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
-        options = dict(#properties=self.properties,
-                       #precision=self.precision,
+        options = dict(properties=self.properties,
+                       precision=self.precision,
                        simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
