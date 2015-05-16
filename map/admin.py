@@ -42,7 +42,8 @@ admin.site.register(Vegetation, VegetationAdmin)
 class VegetAdmin(OSMGeoAdmin):
     list_display = ("gid", "struct")
     search_fields = ("gid",)
-    list_filter = ("struct",)    
+    list_filter = ("struct",) 
+    ordering = ('gid',)   
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
@@ -52,7 +53,8 @@ admin.site.register(Veget, VegetAdmin)
 class StructureAdmin(OSMGeoAdmin):
     list_display = ("id", "structure", "fuel_moisture", "fuel_load")
     search_fields = ("id",)
-    list_filter = ("fuel_load",)    
+    list_filter = ("fuel_load",) 
+    ordering = ('id',)   
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
@@ -64,6 +66,7 @@ class SlopeAdmin(OSMGeoAdmin):
     list_display = ("id", "gridcode")
     search_fields = ("gridcode",)
     list_filter = ("gridcode",) 
+    ordering = ('id',)
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
@@ -75,6 +78,7 @@ class RadiationAdmin(OSMGeoAdmin):
     list_display = ("id", "gridcode")
     search_fields = ("gridcode",)
     list_filter = ("gridcode",)
+    ordering = ('id',)
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
