@@ -31,7 +31,8 @@ class MapLayer(GeoJSONLayerView):
 class VegetationAdmin(OSMGeoAdmin):
     list_display = ("gid", "struct", "objectid", "area", "perimeter", "veg", "veg_id", "veg_sp_1", "veg_sp_1", "veg_sp_1", "state", "fueltype", "fuelcode_v", "hectares")
     search_fields = ("gid", "objectid")
-    list_filter = ("struct",)    
+    list_filter = ("struct",)  
+    ordering = ('gid',)  
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
