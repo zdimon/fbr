@@ -53,7 +53,8 @@ admin.site.register(Veget, VegetAdmin)
 
 
 class StructureAdmin(OSMGeoAdmin):
-    list_display = ("id", "structure", "fuel_moisture", "fuel_load")
+    list_display = ("structure", "fuel_moisture", "fuel_load", 'color', 'color_repr')
+    list_editable = ('color',)
     search_fields = ("id",)
     list_filter = ("fuel_load",) 
     ordering = ('id',)   

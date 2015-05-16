@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 from colorful.fields import RGBColorField
+from django.utils.safestring import mark_safe
 
 class Cotter(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
@@ -22,7 +23,9 @@ class Structure(models.Model):
     color = RGBColorField()
     def __unicode__(self):
         return '%s  (%s)' % (self.structure,self.fuel_moisture)
-
+    @property
+    def color_repr(self):
+        return mark_safe('<div style="width: 50px; height: 50px; background-color: %s"></div>' % self.color)
     class Meta:
         verbose_name=_(u'Structure')
         verbose_name_plural=_(u'Structures')  

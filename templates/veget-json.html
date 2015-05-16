@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+
+ {% block body %}
+
+    <div class="col-md-9">
+     <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
+    </div>
+
+    
+    <div class="col-md-3 well" >
+        <h3>Legend</h3>
+       <table>
+       {% for s in structures %}
+            <tr>
+                <td style="padding: 5px">  {{s.color_repr}}</td>
+                <td> {{ s }} </td>
+            </tr>
+          
+       {% endfor %}
+        </table>
+    </div>
+
+
+
+
+
+
+<script type="text/javascript">
+function init(){
+ 
+     
+        var lon = 16569028.246562;
+       var lat = -4253744.1751931;
+    var zoom = 12;
+    var options = {
+        div: "map",
+        layers: [new OpenLayers.Layer.OSM()],
+        projection: new OpenLayers.Projection("EPSG:4326"),
+         maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
+    };
+    var  map = new OpenLayers.Map(options);
+
+
+
+
+            function setHTML(response) {
+            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            $('#status-message').hide();
+            }
+
+            var style = new OpenLayers.Style({fillColor : "green",
+                                          label: '${gridcode}',
+                                          fillOpacity : 0.4});
+
+
+      /*
+
+      {% for s in structures %}
+
+
+            var stylemap{{ s.id }} =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "{{ s.color }}",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+
+        forest{{s.id}} = new OpenLayers.Layer.Vector("{{ s }}", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/veget-json",
+
+                params: {
+                    type: '{{ s.id }}',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap{{ s.id }}
+           
+        });
+        map.addLayer(forest{{s.id}});
+
+
+            var highlightCtrl{{ s.id }} = new OpenLayers.Control.SelectFeature(forest{{ s.id }}, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+            });  
+
+        var select_options{{ s.id }} = {
+            hover: false,
+            onSelect: updateinfo{{ s.id }}
+          };
+         var select{{ s.id }} = new OpenLayers.Control.SelectFeature(forest{{ s.id }}, select_options{{ s.id }});
+         map.addControl(highlightCtrl{{ s.id }});
+         highlightCtrl{{ s.id }}.activate();
+
+        map.addControl(select{{ s.id }});
+
+        select{{ s.id }}.activate();
+
+        function updateinfo{{ s.id }}() {
+
+             alert('STRUCTURE:'+forest{{ s.id }}.selectedFeatures[0].data['structure']);
+                
+               
+        }
+
+       {% endfor %}
+
+        */
+
+
+
+      var style =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#dd0000",
+                        strokeOpacity:.7,
+                        strokeWidth: 1,
+                        //fillColor: "#aa0000",
+                        fillOpacity: 1,
+                        //label: '${firerisk}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#ffff33",
+                        fillOpacity: 0,
+                        //label: '${number}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${number}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+        
+     var lookup = {
+        {% for s in structures %}
+            "{{ s.id }}": {fillColor: "{{ s.color }}"},
+        {% endfor %}
+          
+      }
+
+      style.addUniqueValueRules("default", "struct", lookup);    
+
+         
+                  
+      forest = new OpenLayers.Layer.Vector("Информация", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/vegetstrycture-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON()
+
+            }),
+            styleMap: style
+        });
+
+         var select_options = {
+            hover: false,
+            onSelect: updateinfo
+          };
+         var select = new OpenLayers.Control.SelectFeature(forest, select_options);
+
+         var highlightCtrl = new OpenLayers.Control.SelectFeature(forest, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+            });
+
+         map.addControl(highlightCtrl);
+         map.addControl(select);
+
+         highlightCtrl.activate();
+         select.activate();
+
+         map.addLayer(forest);
+
+
+        function updateinfo{{ s.id }}() {
+
+             alert('STRUCTURE:'+forest{{ s.id }}.selectedFeatures[0].data['structure']);
+                
+               
+        }         
+        
+
+
+         map.addControl(new OpenLayers.Control.LayerSwitcher({}));
+
+
+       map.events.register("click", map, function (e) {            
+        var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
+            alert('lon:'+point.lon+'  lat:'+point.lat)
+        });
+
+
+
+
+   
+
+    //if(!map.getCenter()){
+    //    map.zoomToMaxExtent();
+    // }
+
+       
+
+
+ 
+        var point = new OpenLayers.LonLat(lon, lat);
+        map.setCenter(point, zoom);
+
+
+   // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
+} ;
+$(document).ready(function(){ init() });
+</script>
+
+{% endblock %}
+
