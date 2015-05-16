@@ -57,7 +57,7 @@ class Vegetation(models.Model):
     veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
     
     structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
-    struct = models.ForeignKey(Structure, null=True, blank=True)
+    struct = models.ForeignKey(Structure, null=True, blank=True, verbose_name='structure')
 
     
     class1 = models.IntegerField(_(u'Class'), null=True, blank=True)
