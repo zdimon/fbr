@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
+from colorful.fields import RGBColorField
 
 class Cotter(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
@@ -18,6 +19,7 @@ class Structure(models.Model):
     structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True, default='')
     fuel_moisture = models.CharField(_(u'Fuel moisture'), max_length=25, null=True, blank=True)
     fuel_load = models.CharField(_(u'Fuel load'), max_length=25, null=True, blank=True)
+    color = RGBColorField()
     def __unicode__(self):
         return '%s  (%s)' % (self.structure,self.fuel_moisture)
 

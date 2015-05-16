@@ -4,3 +4,4 @@ selenium==2.44
 psycopg2
 fabric
 django-geojson
+django-colorful
