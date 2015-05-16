@@ -53,8 +53,8 @@ class Vegetation(models.Model):
     veg = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_id = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_sp_1 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
-    veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
-    veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
+    veg_sp_2 = models.CharField(_(u'Veg_sp_2'), max_length=25, null=True, blank=True)
+    veg_sp_3 = models.CharField(_(u'Veg_sp_3'), max_length=25, null=True, blank=True) 
     
     structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
     struct = models.ForeignKey(Structure, null=True, blank=True, verbose_name='structure')
