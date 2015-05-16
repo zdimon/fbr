@@ -38,11 +38,11 @@ class Veget(models.Model):
 
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
-        return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_sp_1)
+        return 'Vegetation_ #%s  (%s)' % (self.gid,self.struct)
 
     class Meta:
-        verbose_name=_(u'Vegetation')
-        verbose_name_plural=_(u'Vegetation')
+        verbose_name=_(u'Vegetation structure')
+        verbose_name_plural=_(u'Vegetation structures')
   
     
     
@@ -53,13 +53,13 @@ class Vegetation(models.Model):
     area = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blank=True)
     perimeter = models.DecimalField(_(u'Perimeter'), max_digits=25, decimal_places=15, null=True, blank=True)
     veg = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
-    veg_id = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
+    veg_id = models.DecimalField(_(u'Veg_id'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_sp_1 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
-    veg_sp_2 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
-    veg_sp_3 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True) 
+    veg_sp_2 = models.CharField(_(u'Veg_sp_2'), max_length=25, null=True, blank=True)
+    veg_sp_3 = models.CharField(_(u'Veg_sp_3'), max_length=25, null=True, blank=True) 
     
     structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
-    struct = models.ForeignKey(Structure, null=True, blank=True)
+    struct = models.ForeignKey(Structure, null=True, blank=True, verbose_name='structure')
 
     
     class1 = models.IntegerField(_(u'Class'), null=True, blank=True)

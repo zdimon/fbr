@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # Examples:
      url(r'^$', 'map.views.radiation', name='home'),
      url(r'^cotter/$', 'map.views.cot', name='cotter'),
-     url(r'^vegetation/$', 'map.views.vegetation', name='vegetation'),  
+     url(r'^vegetation/$', 'map.views.vegetation', name='vegetation'),
+     url(r'^vegetstructure/$', 'map.views.veget', name='vegetation structure'),  
      url(r'^radiation$', 'map.views.radiation', name='radiation'),  
      url(r'^slope$', 'map.views.slope', name='slope'),  
      url(r'^radiation_json$', 'map.views.radiation_json', name='radiation_json'),
@@ -21,7 +22,7 @@ urlpatterns = patterns('',
 
     url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure'))),
-    url(r'^veget-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure'))),
+    url(r'^vegetstrycture-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure'))),
     url(r'^slope-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure'))),
     
 
