@@ -39,8 +39,8 @@ class Veget(models.Model):
         return 'Vegetation_ #%s  (%s)' % (self.gid,self.veg_sp_1)
 
     class Meta:
-        verbose_name=_(u'Vegetation')
-        verbose_name_plural=_(u'Vegetation')
+        verbose_name=_(u'Vegetation structure')
+        verbose_name_plural=_(u'Vegetation structures')
   
     
     
