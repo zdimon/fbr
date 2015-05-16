@@ -45,6 +45,7 @@ class VegetAdmin(OSMGeoAdmin):
     search_fields = ("gid",)
     list_filter = ("struct",) 
     ordering = ('gid',)   
+    fields = ('gid', 'gridcode', 'struct', 'geom')    
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
