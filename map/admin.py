@@ -29,7 +29,7 @@ class MapLayer(GeoJSONLayerView):
 
 
 class VegetationAdmin(OSMGeoAdmin):
-    list_display = ("gid", "struct", "objectid", "area", "perimeter", "veg", "veg_id", "veg_sp_1", "veg_sp_1", "veg_sp_1", "state", "fueltype", "fuelcode_v", "hectares")
+    list_display = ("gid", "struct", "objectid", "area", "perimeter", "veg", "veg_id", "veg_sp_1", "veg_sp_2", "veg_sp_3", "state", "fueltype", "fuelcode_v", "hectares")
     search_fields = ("gid", "objectid")
     list_filter = ("struct",)  
     ordering = ('gid',)  
