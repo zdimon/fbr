@@ -108,7 +108,7 @@ class Radiation(models.Model):
 #        return 'Radiation #%s' % self.gridcode
         return u'id - %s gridcode - %s' % (self.id, self.gridcode)
     @property
-    '''def thumb(self):
+    v = '''def thumb(self):
         from fbr.settings import BASE_DIR
         filename = BASE_DIR+'/static/thumbnails/radiation/radiation-%s.png' % str(self.gid)
         import os.path
