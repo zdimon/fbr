@@ -108,7 +108,7 @@ class Radiation(models.Model):
 #        return 'Radiation #%s' % self.gridcode
         return u'id - %s gridcode - %s' % (self.id, self.gridcode)
     @property
-    def thumb(self):
+    '''def thumb(self):
         from fbr.settings import BASE_DIR
         filename = BASE_DIR+'/static/thumbnails/radiation/radiation-%s.png' % str(self.gid)
         import os.path
@@ -142,7 +142,7 @@ class Radiation(models.Model):
         m.zoom_all()
         
         mapnik.render_to_file(m,filename, 'png')
-        return mark_safe('<img src="/static/thumbnails/radiation/radiation-%s.png">' % str(self.gid))
+        return mark_safe('<img src="/static/thumbnails/radiation/radiation-%s.png">' % str(self.gid))'''
 
 
     class Meta:
