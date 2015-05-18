@@ -144,7 +144,7 @@ class Fires(models.Model):
     twi = models.DecimalField(_(u'TWI'), max_digits=15, decimal_places=10, null=True, blank=True)
     litter = models.DecimalField(_(u'Litter (t/ha)'), max_digits=15, decimal_places=10, null=True, blank=True)
     cwd = models.DecimalField(_(u'CWD'), max_digits=15, decimal_places=10, null=True, blank=True)
-    fuel_hazard = models.DecimalField(_(u'Fuel hazard'), max_digits=15, decimal_places=10, null=True, blank=True)t
+    fuel_hazard = models.DecimalField(_(u'Fuel hazard'), max_digits=15, decimal_places=10, null=True, blank=True)
     fuel_moisture = models.DecimalField(_(u'Fuel moisture'), max_digits=15, decimal_places=10, null=True, blank=True)
     fire_date = models.DateTimeField(_(u'Date time'), null=True, blank=True)
     ndvi = models.DecimalField(_(u'NDVI'), max_digits=15, decimal_places=10, null=True, blank=True)
