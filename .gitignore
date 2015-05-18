@@ -1,3 +1,4 @@
 /fbr/local.py
 *.pyc
 /map_cache
+map/static/thumbnails
