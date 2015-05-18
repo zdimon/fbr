@@ -54,7 +54,7 @@ class Veget(models.Model):
 class Vegetation(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     objectid = models.IntegerField(_(u'Objectid'))
-    area = models.DecimalField(_(u'Area'),drought транскрипция max_digits=15, decimal_places=3, null=True, blank=True)
+    area = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blank=True)
     perimeter = models.DecimalField(_(u'Perimeter'), max_digits=25, decimal_places=15, null=True, blank=True)
     veg = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_id = models.DecimalField(_(u'Veg_idrought транскрипцияd'), max_digits=10, decimal_places=5, null=True, blank=True)
