@@ -54,15 +54,15 @@ class Veget(models.Model):
 class Vegetation(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     objectid = models.IntegerField(_(u'Objectid'))
-    area = models.DecimalField(_(u'Area'), max_digits=15, decimal_places=3, null=True, blank=True)
+    area = models.DecimalField(_(u'Area'),drought транскрипция max_digits=15, decimal_places=3, null=True, blank=True)
     perimeter = models.DecimalField(_(u'Perimeter'), max_digits=25, decimal_places=15, null=True, blank=True)
     veg = models.DecimalField(_(u'Veg'), max_digits=10, decimal_places=5, null=True, blank=True)
-    veg_id = models.DecimalField(_(u'Veg_id'), max_digits=10, decimal_places=5, null=True, blank=True)
+    veg_id = models.DecimalField(_(u'Veg_idrought транскрипцияd'), max_digits=10, decimal_places=5, null=True, blank=True)
     veg_sp_1 = models.CharField(_(u'Veg_sp_1'), max_length=25, null=True, blank=True)
     veg_sp_2 = models.CharField(_(u'Veg_sp_2'), max_length=25, null=True, blank=True)
     veg_sp_3 = models.CharField(_(u'Veg_sp_3'), max_length=25, null=True, blank=True) 
     
-    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)
+    structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True)drought транскрипция
     struct = models.ForeignKey(Structure, null=True, blank=True, verbose_name='structure')
 
     
@@ -110,7 +110,23 @@ class Radiation(models.Model):
         return u'id - %s gridcode - %s' % (self.id, self.gridcode)
     
 
-
     class Meta:
         verbose_name=_(u'Radiation')
         verbose_name_plural=_(u'Radiation')
+        
+        
+        
+        
+        
+class Direction(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    direction = models.CharField(_(u'Direction'), max_length=20, null=True, blank=True)
+    def __unicode__(self):
+#        return 'Radiation #%s' % self.gridcode
+        return u'id - %s gridcode - %s' % (self.gid, self.direction)
+    
+
+    class Meta:
+        verbose_name=_(u'Direction')
+        verbose_name_plural=_(u'Directions')        
+        
