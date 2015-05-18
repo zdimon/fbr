@@ -2,6 +2,7 @@ from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 from colorful.fields import RGBColorField
 from django.utils.safestring import mark_safe
+from datetime import date
 
 class Cotter(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
@@ -129,4 +130,37 @@ class Direction(models.Model):
     class Meta:
         verbose_name=_(u'Direction')
         verbose_name_plural=_(u'Directions')        
+        
+        
+       
+        
+        
+class Fires(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    plot_name = models.CharField(_(u'Plot name'), max_length=10, null=True, blank=True)
+    tsf = models.CharField(_(u'TSF'), max_length=4, null=True, blank=True)
+    struct = models.ForeignKey(Structure, null=True, blank=True, verbose_name='structure')
+    tree_density = models.DecimalField(_(u'Tree density'), max_digits=15, decimal_places=10, null=True, blank=True)
+    twi = models.DecimalField(_(u'TWI'), max_digits=15, decimal_places=10, null=True, blank=True)
+    litter = models.DecimalField(_(u'Litter (t/ha)'), max_digits=15, decimal_places=10, null=True, blank=True)
+    cwd = models.DecimalField(_(u'CWD'), max_digits=15, decimal_places=10, null=True, blank=True)
+    fuel_hazard = models.DecimalField(_(u'Fuel hazard'), max_digits=15, decimal_places=10, null=True, blank=True)t
+    fuel_moisture = models.DecimalField(_(u'Fuel moisture'), max_digits=15, decimal_places=10, null=True, blank=True)
+    fire_date = models.DateTimeField(_(u'Date time'), null=True, blank=True)
+    ndvi = models.DecimalField(_(u'NDVI'), max_digits=15, decimal_places=10, null=True, blank=True)
+    slope_degree = models.DecimalField(_(u'Slope degree'), max_digits=5, decimal_places=2, null=True, blank=True)
+    aspect = models.DecimalField(_(u'Aspect'), max_digits=15, decimal_places=10, null=True, blank=True)
+    elevation = models.DecimalField(_(u'Elevation'), max_digits=15, decimal_places=10, null=True, blank=True)
+    radiation = models.DecimalField(_(u'Radiation'), max_digits=15, decimal_places=10, null=True, blank=True)
+    
+    fuel_type = models.CharField(_(u'Fuel type'), max_length=25, null=True, blank=True)
+    lai_over = models.CharField(_(u'LAI over'), max_length=25, null=True, blank=True)
+    lai_under = models.CharField(_(u'LAI under'), max_length=25, null=True, blank=True)
+    
+    def __unicode__(self):
+        return 'Fires_ #%s  (%s)' % (self.gid,self.plot_name)
+
+    class Meta:
+        verbose_name=_(u'Fire')
+        verbose_name_plural=_(u'Fires')
         
