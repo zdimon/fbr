@@ -66,11 +66,12 @@ admin.site.register(Veget, VegetAdmin)
 
 
 class StructureAdmin(OSMGeoAdmin):
-    list_display = ("structure", "fuel_moisture", "fuel_load", 'color', 'color_repr')
+    list_display = ("structure", "fuel_moisture", "fuel_load", "litter", 'color', 'color_repr')
     list_editable = ('color',)
     search_fields = ("id",)
     list_filter = ("fuel_load",) 
     ordering = ('id',)   
+    fields = ("structure", "fuel_moisture", "fuel_load", "litter", 'color', 'color_repr')
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
