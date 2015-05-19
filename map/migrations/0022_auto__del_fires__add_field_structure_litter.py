@@ -8,42 +8,43 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Deleting model 'Fires'
+        #db.delete_table(u'map_fires')
+
         # Adding field 'Structure.litter'
         db.add_column(u'map_structure', 'litter',
                       self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=6, decimal_places=2, blank=True),
                       keep_default=False)
 
-        # Deleting field 'Fires.ndvi'
-        db.delete_column(u'map_fires', 'ndvi')
-
-
-        # Changing field 'Fires.fuel_type'
-        db.alter_column(u'map_fires', 'fuel_type', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10))
-
-        # Changing field 'Fires.lai_over'
-        db.alter_column(u'map_fires', 'lai_over', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10))
-
-        # Changing field 'Fires.lai_under'
-        db.alter_column(u'map_fires', 'lai_under', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10))
 
     def backwards(self, orm):
+        # Adding model 'Fires'
+        db.create_table(u'map_fires', (
+            ('fuel_hazard', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('elevation', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('struct', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['map.Structure'], null=True, blank=True)),
+            ('fire_date', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
+            ('tsf', self.gf('django.db.models.fields.CharField')(max_length=4, null=True, blank=True)),
+            ('radiation', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('fuel_type', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('twi', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('fuel_moisture', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('ndvi', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('plot_name', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+            ('litter', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('aspect', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('lai_over', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('lai_under', self.gf('django.db.models.fields.CharField')(max_length=25, null=True, blank=True)),
+            ('gid', self.gf('django.db.models.fields.IntegerField')(primary_key=True, db_index=True)),
+            ('slope_degree', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2, blank=True)),
+            ('cwd', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+            ('tree_density', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True)),
+        ))
+        db.send_create_signal(u'map', ['Fires'])
+
         # Deleting field 'Structure.litter'
         db.delete_column(u'map_structure', 'litter')
 
-        # Adding field 'Fires.ndvi'
-        db.add_column(u'map_fires', 'ndvi',
-                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=15, decimal_places=10, blank=True),
-                      keep_default=False)
-
-
-        # Changing field 'Fires.fuel_type'
-        db.alter_column(u'map_fires', 'fuel_type', self.gf('django.db.models.fields.CharField')(max_length=25, null=True))
-
-        # Changing field 'Fires.lai_over'
-        db.alter_column(u'map_fires', 'lai_over', self.gf('django.db.models.fields.CharField')(max_length=25, null=True))
-
-        # Changing field 'Fires.lai_under'
-        db.alter_column(u'map_fires', 'lai_under', self.gf('django.db.models.fields.CharField')(max_length=25, null=True))
 
     models = {
         u'map.cotter': {
@@ -57,27 +58,6 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Direction'},
             'direction': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
             'gid': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True', 'db_index': 'True'})
-        },
-        u'map.fires': {
-            'Meta': {'object_name': 'Fires'},
-            'aspect': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'cwd': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'elevation': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'fire_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'fuel_hazard': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'fuel_moisture': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'fuel_type': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'gid': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True', 'db_index': 'True'}),
-            'lai_over': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'lai_under': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'litter': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'plot_name': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
-            'radiation': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'slope_degree': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '2', 'blank': 'True'}),
-            'struct': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['map.Structure']", 'null': 'True', 'blank': 'True'}),
-            'tree_density': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'}),
-            'tsf': ('django.db.models.fields.CharField', [], {'max_length': '4', 'null': 'True', 'blank': 'True'}),
-            'twi': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '15', 'decimal_places': '10', 'blank': 'True'})
         },
         u'map.radiation': {
             'Meta': {'object_name': 'Radiation'},
