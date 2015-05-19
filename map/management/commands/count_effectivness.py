@@ -14,11 +14,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'start'
         for s in Slope.objects.all():
-            if s.struct.structure == 'LOW WOODLAND':
+            sq = Veget.objects.filter(geom__bboverlaps=s.geom)
+            if sq.structure == 'LOW WOODLAND':
                 x = 1
             else:
                 x = 0 
-            eff =  s.grodcode * 2.606 + x * s.struct.litter
+            eff =  s.gridcode * 2.606 + x * s.struct.litter
             s.effectiveness = eff
             s.save()
             print 'proccess.......%s' % s.gid
