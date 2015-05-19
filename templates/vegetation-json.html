@@ -219,7 +219,7 @@ function init(){
             onSelect: updateinfo
           };
          var select = new OpenLayers.Control.SelectFeature(forest_old, select_options);
-         
+         // select.select(forest_old.features[2]);
          
          map.addLayer(slope);
          map.addLayer(forest_old);
@@ -229,6 +229,7 @@ function init(){
 
          map.addControl(new OpenLayers.Control.LayerSwitcher({}));
 
+        
 
        map.events.register("click", map, function (e) {            
         var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
