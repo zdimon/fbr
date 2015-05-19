@@ -21,6 +21,7 @@ class Structure(models.Model):
     structure = models.CharField(_(u'Structure'), max_length=25, null=True, blank=True, default='')
     fuel_moisture = models.CharField(_(u'Fuel moisture'), max_length=25, null=True, blank=True)
     fuel_load = models.CharField(_(u'Fuel load'), max_length=25, null=True, blank=True)
+    litter = models.DecimalField(_(u'Litter before burning'), max_digits=6, decimal_places=2, null=True, blank=True)
     color = RGBColorField()
     def __unicode__(self):
   #      return '%s  (%s)' % (self.structure,self.fuel_moisture)
