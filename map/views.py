@@ -264,8 +264,8 @@ class GetPolygonJsonVegetType(GeoJSONLayerView):
 class GetPolygonJsonSlope(GeoJSONLayerView):
     # Options
     from fbr.settings import BASE_DIR
-    precision = 4   # float
-    simplify = 0.5  # generalization
+    #precision = 4   # float
+    #simplify = 0.5  # generalization
     def get_queryset(self):
         return Slope.objects.all()
 
@@ -286,8 +286,8 @@ class GetPolygonJsonSlope(GeoJSONLayerView):
         serializer = GeoJSONSerializer()
         response = self.response_class(**response_kwargs)
         options = dict(properties=self.properties,
-                       precision=self.precision,
-                       simplify=self.simplify,
+                       #precision=self.precision,
+                       #simplify=self.simplify,
                        srid=self.srid,
                        geometry_field=self.geometry_field,
                        force2d=self.force2d)
