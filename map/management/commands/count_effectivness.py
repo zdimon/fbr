@@ -19,7 +19,8 @@ class Command(BaseCommand):
                 x = 1
             else:
                 x = 0 
-            eff =  s.gridcode * 2.606 + x * s.struct.litter
+                
+            eff =  s.gridcode * 2.606 + x * sq[0].struct.litter
             s.effectiveness = eff
             s.save()
             print 'proccess.......%s' % s.gid
