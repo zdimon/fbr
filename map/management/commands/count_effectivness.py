@@ -23,7 +23,8 @@ class Command(BaseCommand):
             try:
                 eff =  Decimal(s.gridcode) * Decimal('2.606') + Decimal(x) * Decimal(sq[0].struct.litter)
             except:
-                import pdb; pdb.set_trace()    
+                pass
+                #import pdb; pdb.set_trace()    
             s.effectiveness = eff
             s.save()
             print 'proccess.......%s' % s.gid
