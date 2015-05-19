@@ -17,7 +17,7 @@ class Command(BaseCommand):
         print 'start'
         max_ef = Slope.objects.all().aggregate(Max('effectiveness'))
         min_ef = Slope.objects.all().aggregate(Min('effectiveness'))
-        h = (Decimal(max_ef[0]) - Decimal(min_ef[0])) / Decimal(5);
+        h = (Decimal(max_ef[1]) - Decimal(min_ef[1])) / Decimal(5);
         
         for s in Slope.objects.all():
             try:
