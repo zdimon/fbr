@@ -15,7 +15,7 @@ class Command(BaseCommand):
         print 'start'
         for s in Slope.objects.all():
             sq = Veget.objects.filter(geom__bboverlaps=s.geom)
-            if sq.structure == 'LOW WOODLAND':
+            if sq[0].structure == 'LOW WOODLAND':
                 x = 1
             else:
                 x = 0 
