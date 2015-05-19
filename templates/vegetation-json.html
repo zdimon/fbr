@@ -171,6 +171,59 @@ function init(){
            
         });
 
+
+
+     var stylemap_slope =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#dd0000",
+                        strokeOpacity:.7,
+                        strokeWidth: 1,
+                        //fillColor: "#aa0000",
+                        fillOpacity: 1,
+                        //label: '${firerisk}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#ffff33",
+                        fillOpacity: 0,
+                        //label: '${number}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${number}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+     
+
+     var lookup_slope = {
+       
+            "1": {fillColor: "#ff0000"},
+            "2": {fillColor: "#00ff00"},
+            "3": {fillColor: "#ff00ff"},
+            "4": {fillColor: "#ffddd0"},
+            "5": {fillColor: "#ff00dd"},
+        
+          
+      }
+
+      stylemap_slope.addUniqueValueRules("default", "effectiveness_category", lookup_slope);   
+
+  
+
+
+
+
+
         slope = new OpenLayers.Layer.Vector("Slope", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
@@ -187,7 +240,7 @@ function init(){
                 
 
             }),
-            styleMap: stylemap_grid
+            styleMap: stylemap_slope
            
         });
 
