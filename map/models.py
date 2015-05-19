@@ -95,6 +95,7 @@ class Slope(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     id = models.IntegerField(_(u'Id'))
     gridcode = models.IntegerField(_(u'Grid code'))
+    effectiveness = models.DecimalField(_(u'Burning effectiveness'), max_digits=10, decimal_places=3, null=True, blank=True)
     geom = models.MultiPolygonField(null=True, blank=True)
     objects = models.GeoManager()
     def __unicode__(self):
@@ -157,7 +158,7 @@ class Direction(models.Model):
 #    slope_degree = models.CharField(_(u'Slope degree'), max_length=250,  null=True, blank=True)
 #    aspect = models.CharField(_(u'Aspect'), max_length=250, null=True, blank=True)
 #    elevation = models.CharField(_(u'Elevation'), max_length=250,  null=True, blank=True)
-#    radiation = models.CharField(_(u'Radiation'), max_length=250, null=True, blank=True)
+#    radiation = models.CharField(_(u'Radiatihttp://hntu.com.ua:8008/admin/map/structure/on'), max_length=250, null=True, blank=True)
 #    
 #    fuel_type = models.CharField(_(u'Fuel type'), max_length=250, null=True, blank=True)
 #    lai_over = models.CharField(_(u'LAI over'), max_length=250,  null=True, blank=True)
