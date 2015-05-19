@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from django.utils.translation import ugettext_lazy as _
 from map.models import *
+from decimal import Decimal
 
 #logger = logging.getLogger(__name__)
 
@@ -16,11 +17,11 @@ class Command(BaseCommand):
         for s in Slope.objects.all():
             sq = Veget.objects.filter(geom__bboverlaps=s.geom)
             if sq[0].structure == 'LOW WOODLAND':
-                x = 1.00001
+                x = 1
             else:
-                x = 0.000001 
+                x = 0 
                 
-            eff =  s.gridcode * 2.606 + x * sq[0].struct.litter
+            eff =  Decimal(s.gridcode) * 2.606 + Decimal(x) * Decimal(sq[0].struct.litter)
             s.effectiveness = eff
             s.save()
             print 'proccess.......%s' % s.gid
