@@ -147,15 +147,15 @@ class Fires(models.Model):
     fuel_hazard = models.DecimalField(_(u'Fuel hazard'), max_digits=15, decimal_places=10, null=True, blank=True)
     fuel_moisture = models.DecimalField(_(u'Fuel moisture'), max_digits=15, decimal_places=10, null=True, blank=True)
     fire_date = models.DateTimeField(_(u'Date time'), null=True, blank=True)
-    ndvi = models.DecimalField(_(u'NDVI'), max_digits=15, decimal_places=10, null=True, blank=True)
+    ndvi = models.MultiPolygonField(null=True, blank=True)
     slope_degree = models.DecimalField(_(u'Slope degree'), max_digits=5, decimal_places=2, null=True, blank=True)
     aspect = models.DecimalField(_(u'Aspect'), max_digits=15, decimal_places=10, null=True, blank=True)
     elevation = models.DecimalField(_(u'Elevation'), max_digits=15, decimal_places=10, null=True, blank=True)
     radiation = models.DecimalField(_(u'Radiation'), max_digits=15, decimal_places=10, null=True, blank=True)
     
-    fuel_type = models.CharField(_(u'Fuel type'), max_length=25, null=True, blank=True)
-    lai_over = models.CharField(_(u'LAI over'), max_length=25, null=True, blank=True)
-    lai_under = models.CharField(_(u'LAI under'), max_length=25, null=True, blank=True)
+    fuel_type = models.DecimalField(_(u'Fuel type'), max_digits=15, decimal_places=10, null=True, blank=True)
+    lai_over = models.DecimalField(_(u'LAI over'), max_digits=15, decimal_places=10, null=True, blank=True)
+    lai_under = models.DecimalField(_(u'LAI under'), max_digits=15, decimal_places=10, null=True, blank=True)
     
     def __unicode__(self):
         return 'Fires_ #%s  (%s)' % (self.gid,self.plot_name)
