@@ -18,26 +18,25 @@ class Command(BaseCommand):
         max_ef = Slope.objects.all().aggregate(Max('effectiveness'))
         min_ef = Slope.objects.all().aggregate(Min('effectiveness'))
         print min_ef
-       # h = (Decimal(max_ef[1]) - Decimal(min_ef[1])) / Decimal(5);
         
+        h = (Decimal( max_ef['effectiveness__max']) - Decimal( min_ef['effectiveness__min'])) / Decimal(5);
+        #import pdb; pdb.set_trace()    
         for s in Slope.objects.all():
-            try:
-         #       if min_ef <= s.effectiveness < (min_ef + h):
-                    s.effectiveness_category = 1
-          #      elif (min_ef + h) <= s.effectiveness < (min_ef + 2*h):
-                    s.effectiveness_category = 2
-           #     elif (min_ef + 2*h) <= s.effectiveness < (min_ef + 3*h):
-                    s.effectiveness_category = 3
-            #    elif (min_ef + 3*h) <= s.effectiveness < (min_ef + 4*h):
-                    s.effectiveness_category = 4 
-             #   elif (min_ef + 4*h) <= s.effectiveness <= max_ef:
-                    s.effectiveness_category = 5       
-    
+
+            if min_ef['effectiveness__min'] <= s.effectiveness < (min_ef['effectiveness__min'] + h):
+                s.effectiveness_category = 1
+            elif (min_ef['effectiveness__min'] + h) <= s.effectiveness < (min_ef['effectiveness__min'] + 2*h):
+                s.effectiveness_category = 2
+            elif (min_ef['effectiveness__min'] + Decimal(2)*h) <= s.effectiveness < (min_ef['effectiveness__min'] + 3*h):
+                s.effectiveness_category = 3
+            elif (min_ef['effectiveness__min'] + Decimal(3)*h) <= s.effectiveness < (min_ef['effectiveness__min'] + 4*h):
+                s.effectiveness_category = 4 
+            elif (min_ef['effectiveness__min'] + Decimal(4)*h) <= s.effectiveness <= max_ef['effectiveness__max']:
+                s.effectiveness_category = 5       
+        
                 
                 
-            except:
-                pass
-                #import pdb; pdb.set_trace()    
+               
             
             s.save()
             print 'proccess.......%s' % s.gid
