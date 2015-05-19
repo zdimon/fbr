@@ -16,11 +16,12 @@ class Command(BaseCommand):
         print 'start'
         for s in Slope.objects.all():
             sq = Veget.objects.filter(geom__bboverlaps=s.geom)
-            if sq[0].structure == 'LOW WOODLAND':
-                x = 1
-            else:
-                x = 0 
             try:
+                if sq[0].structure == 'LOW WOODLAND':
+                    x = 1
+                else:
+                    x = 0 
+                
                 eff =  Decimal(s.gridcode) * Decimal('2.606') + Decimal(x) * Decimal(sq[0].struct.litter)
             except:
                 pass
