@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'start'
         max_ef = Slope.objects.all().aggregate(Max('effectiveness'))
-        min_ef = Slope.objects.all).aggregate(Min('effectiveness'))
+        min_ef = Slope.objects.all().aggregate(Min('effectiveness'))
         h = (max_ef - min_ef) / 5;
         
         for s in Slope.objects.all():
