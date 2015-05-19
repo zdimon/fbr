@@ -147,7 +147,7 @@ class Fires(models.Model):
     fuel_hazard = models.DecimalField(_(u'Fuel hazard'), max_digits=15, decimal_places=10, null=True, blank=True)
     fuel_moisture = models.DecimalField(_(u'Fuel moisture'), max_digits=15, decimal_places=10, null=True, blank=True)
     fire_date = models.DateTimeField(_(u'Date time'), null=True, blank=True)
-    ndvi = models.MultiPolygonField(null=True, blank=True)
+  #  ndvi = models.MultiPolygonField(null=True, blank=True)
     slope_degree = models.DecimalField(_(u'Slope degree'), max_digits=5, decimal_places=2, null=True, blank=True)
     aspect = models.DecimalField(_(u'Aspect'), max_digits=15, decimal_places=10, null=True, blank=True)
     elevation = models.DecimalField(_(u'Elevation'), max_digits=15, decimal_places=10, null=True, blank=True)
