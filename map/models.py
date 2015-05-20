@@ -123,7 +123,7 @@ class Slope(models.Model):
         return u'id - %s gridcode - %s' % (self.id, self.gridcode)
 
     class Meta:
-        verbose_name=_(u'Slope')
+        verbose_name=_(u'Slope')effectiveness = models.DecimalField(_(u'Burning effectiveness'), max_digits=10, decimal_places=3, null=True, blank=True)
         verbose_name_plural=_(u'Slope')
 
 
@@ -164,13 +164,29 @@ class Month(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     month = models.CharField(_(u'Month'), max_length=20, null=True, blank=True)
     def __unicode__(self):
-#        return 'Radiation #%s' % self.gridcode
+#        return 'Raeffectiveness = models.DecimalField(_(u'Burning effectiveness'), max_digits=10, decimal_places=3, null=True, blank=True)diation #%s' % self.gridcode
         return u'id - %s gridcode - %s' % (self.gid, self.direction)
     
 
     class Meta:
         verbose_name=_(u'Month')
-        verbose_name_plural=_(u'Months')             
+        verbose_name_plural=_(u'Months')  
+        
+        
+        
+class DroughtIndex(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    month = models.ForeignKey(Month, null=True, blank=True)
+    direction = models.ManyToManyField(Direction, null=True, blank=True)
+    value = models.DecimalField(_(u'Drought index'), max_digits=2, decimal_places=1, null=True, blank=True)
+    def __unicode__(self):
+#        return 'Radiation #%s' % self.gridcode
+        return u'id - %s value - %s' % (self.gid, self.value)
+    
+
+    class Meta:
+        verbose_name=_(u'Drought index')
+        verbose_name_plural=_(u'Drough indexes')                     
         
         
        
