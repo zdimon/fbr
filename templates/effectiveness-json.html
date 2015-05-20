@@ -68,7 +68,13 @@ function init(){
                     })
                     }) ;
       
-
+            var lookup = {
+                {% for s in structures %}
+                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
+                {% endfor %}
+                  
+              }
+            stylemap.addUniqueValueRules("default", "struct", lookup);
 
         forest = new OpenLayers.Layer.Vector("Vegetation structure", {
             //isBaseLayer: true,
