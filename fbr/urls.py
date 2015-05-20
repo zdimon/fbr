@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure','struct'))),
     url(r'^vegetstructure-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure','struct'))),
-    url(r'^slope-json/$', 'map.views.slope_json', name='slope_json'),
+    url(r'^slope_json/$', 'map.views.slope_json', name='slope_json'),
     
     #url(r'^effectiveness-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure','effectiveness_category'))),
     
