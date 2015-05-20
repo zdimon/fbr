@@ -41,7 +41,7 @@ class Command(BaseCommand):
         # Drought factor
         d = ((Decimal('0.191')) * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5')*(Decimal(n) + Decimal('1'))**(Decimal('1.5')) + Decimal(p) - Decimal('1'))
         #Fire danger index
-        f = Decimal('1.25') * Decimal (d)
+        f = Decimal('1.25') * Decimal (d) * exp((Decimal(t) - Decimal(u)))
  
         
         print d
