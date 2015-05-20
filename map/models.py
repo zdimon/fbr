@@ -35,6 +35,23 @@ class Structure(models.Model):
         verbose_name_plural=_(u'Structures')  
         
         
+#Burning effectiveness        
+class Effectiveness(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    effectiveness = models.CharField(_(u'Structure'), max_length=10, null=True, blank=True, default='')
+    color = RGBColorField()
+    def __unicode__(self):
+  #      return '%s  (%s)' % (self.structure,self.fuel_moisture)
+        return '%s' % (self.effectiveness)
+    @property
+    def color_repr(self):
+        return mark_safe('<div style="width: 50px; height: 50px; background-color: %s"></div>' % self.color)
+    class Meta:
+        verbose_name=_(u'Effectiveness')
+        verbose_name_plural=_(u'Effectiveness')        
+        
+        
+        
 
 class Veget(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
