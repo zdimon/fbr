@@ -12,25 +12,26 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
-        make_option("-s", "--datestart",
-                    dest="date_start",
-                    help=u"Start date"),
-        make_option("-e", "--dateend",
-                    dest="date_end",
-                    help=u"Start end"),
+        make_option("-t", "--temperature",
+                    dest="Temperature",
+                    help=u"Air temperature"),
+  #      make_option("-e", "--dateend",
+   #                 dest="date_end",
+    #                help=u"Start end"),
     )
     def handle(self, *args, **options):
-        from journal.models.models import Issue
-        translation.activate('ru')
-        date_start = options["date_start"]
-        date_end = options["date_end"]
-        logger.error("Start from %s to %s" % (date_start, date_end))
-        for i in Issue.objects.filter(is_public=True, release_date__lte=date_end, release_date__gte=date_start):
-            if i.journal.is_export_to_litres:
-                litres_create_journal(i.journal.id)
-                litres_create_year(i.id)
-                litres_create_issue(i.id)
-                litres_ftpexport(i.id)
-                litres_loadpdf(i.id)
-                litres_upload_cover(i.id)
-        logger.error("Done")
+     #   from journal.models.models import Issue
+      #  translation.activate('ru')
+        temperature = options["temperature"]
+      #  date_end = options["date_end"]
+      #  logger.error("Start from %s to %s" % (date_start, date_end))
+     #   for i in Issue.objects.filter(is_public=True, release_date__lte=date_end, release_date__gte=date_start):
+      #      if i.journal.is_export_to_litres:
+       #         litres_create_journal(i.journal.id)
+        #        litres_create_year(i.id)
+         #       litres_create_issue(i.id)
+          #      litres_ftpexport(i.id)
+           #     litres_loadpdf(i.id)
+            #    litres_upload_cover(i.id)
+     #   logger.error("Done")
+        print temperature
