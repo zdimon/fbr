@@ -4,7 +4,7 @@ from optparse import make_option
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from django.utils.translation import ugettext_lazy as _
-from litres.tasks import *
+#from litres.tasks import *
 from django.utils import translation
 
 logger = logging.getLogger(__name__)
