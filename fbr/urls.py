@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^vegetstructure-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure','struct'))),
     url(r'^slope-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure','effectiveness_category'))),
     
-    url(r'^effectiveness-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure','effectiveness_category'))),
+    #url(r'^effectiveness-json/$', GetPolygonJsonSlope.as_view(model=Slope,properties=('gid','structure','effectiveness_category'))),
     
     url(r'^veget-json/$', GetPolygonJsonVegetType.as_view(model=Vegetation,properties=('gid','structure'))),
     
