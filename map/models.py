@@ -115,7 +115,7 @@ class Slope(models.Model):
     effectiveness = models.DecimalField(_(u'Burning effectiveness'), max_digits=10, decimal_places=3, null=True, blank=True)
     
     effectiveness_category = models.IntegerField(_(u'Effectiveness category'), null=True, blank=True) 
-    
+    effectiv = models.ForeignKey(Effectiveness, null=True, blank=True)
     geom = models.MultiPolygonField(null=True, blank=True)
     objects = models.GeoManager()
     def __unicode__(self):

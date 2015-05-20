@@ -95,7 +95,7 @@ admin.site.register(Effectiveness, EffectivenessAdmin)
 
 
 class SlopeAdmin(OSMGeoAdmin):
-    list_display = ("id", "gridcode")
+    list_display = ("id", "gridcode", 'effectiv')
     search_fields = ("gridcode",)
     list_filter = ("gridcode",) 
     ordering = ('id',)
