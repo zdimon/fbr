@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     help=u"Time rain"),  
         make_option("p", "--precipitation",
                     dest="precipitation",
-                    help=u""),
+                    help=u"Precipittion"),
                                                                        
     )
     def handle(self, *args, **options):
