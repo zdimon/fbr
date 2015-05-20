@@ -4,21 +4,27 @@
  {% block body %}
 
      <div class="col-md-12">
+
+ <h3>Legend</h3>
+       <table>
+            <tr>
+       {% for s in structures %}
+            
+                <td style="padding: 5px">  {{s.color_repr}}</td>
+                <td> {{ s }} </td>
+            
+          
+       {% endfor %}
+
+</tr>
+        </table>
+
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
 
     
    
-        <h3>Legend</h3>
-       <table>
-       {% for s in structures %}
-            <tr>
-                <td style="padding: 5px">  {{s.color_repr}}</td>
-                <td> {{ s }} </td>
-            </tr>
-          
-       {% endfor %}
-        </table>
+       
 
 
 
