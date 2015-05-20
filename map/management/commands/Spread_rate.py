@@ -16,7 +16,7 @@ class Command(BaseCommand):
         make_option("-t", "--temperature",
                     dest="temperature",
                     help=u"Air temperature"),
-        make_option("-h", "--humidity",
+        make_option("-u", "--humidity",
                     dest="humidity",
                     help=u"Relitive humidity"),
         make_option("-i", "--drought",
@@ -34,7 +34,7 @@ class Command(BaseCommand):
      #   from journal.models.models import Issue
       #  translation.activate('ru')
         t = options["temperature"]
-        h = options["humidity"]
+        u = options["humidity"]
         i = options["drought"]
         n = options["rain"]
         p = options["precipitation"]
