@@ -24,7 +24,7 @@ class Command(BaseCommand):
                     help=u"Drought index"),
         make_option("-n", "--rain",
                     dest="rain",
-                    help=u"Time rain"),  on level to undulating ground
+                    help=u"Time rain"),  
         make_option("-p", "--precipitation",
                     dest="precipitation",   
                     help=u"Precipittion"),
