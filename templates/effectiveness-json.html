@@ -88,13 +88,7 @@ function init(){
                                           label: '${gridcode}',
                                           fillOpacity : 0.4});
 
-            var lookup = {
-                {% for s in structures %}
-                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
-                {% endfor %}
-                  
-              }
-            stylemap.addUniqueValueRules("default", "struct", lookup);  
+          
 
 
 
@@ -102,57 +96,7 @@ function init(){
 
 
 
-        forest_old = new OpenLayers.Layer.Vector("Vegetation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/vegetation-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap
-           
-        });
-
-
-            var stylemap_grid =   new OpenLayers.StyleMap({
-                    "default": new OpenLayers.Style({
-                        strokeColor: "#ff0000",
-                        strokeOpacity: .7,
-                        strokeWidth: 1,
-                        fillColor: "green",
-                        fillOpacity: .7,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    }),
-                    "temporary": new OpenLayers.Style({
-                        strokeColor: "#ffff33",
-                        strokeOpacity: .9,
-                        strokeWidth: 2,
-                        fillColor: "red",
-                        fillOpacity: .3,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    }),
-                    "select": new OpenLayers.Style({
-                        strokeColor: "#0033ff",
-                        strokeOpacity: .7,
-                        strokeWidth: 2,
-                        fillColor: "#0033ff",
-                        fillOpacity: 0,
-                        graphicZIndex: 2,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    })
-                    }) ;
+        
 
 
 
@@ -163,7 +107,7 @@ function init(){
 
 
 
-     var stylemap_slope =   new OpenLayers.StyleMap({
+     var stylemap =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
                         strokeColor: "#dd0000",
                         strokeOpacity:.7,
@@ -195,65 +139,38 @@ function init(){
                     }) ;
      
 
-     var lookup_slope = {
-       
-            "1": {fillColor: "#479F0C"},
-            "2": {fillColor: "#AF5325"},
-            "3": {fillColor: "#AF3C25"},
-            "4": {fillColor: "#D23D20"},
-            "5": {fillColor: "#FF0000"},
-        
-          
-      }
-
-      stylemap_slope.addUniqueValueRules("default", "effectiveness_category", lookup_slope);   
-
+      var lookup = {
+                {% for s in structures %}
+                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
+                {% endfor %}
+                  
+              }
+            stylemap.addUniqueValueRules("default", "struct", lookup);  
   
 
-
-
-
-
-        slope = new OpenLayers.Layer.Vector("Slope", {
+      slope = new OpenLayers.Layer.Vector("Slope", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
-                url: "/slope-json", radiation = new OpenLayers.Layer.Vector("Radiation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/radiation-json",
+                url: "/slope-json",
 
                 params: {
                     attrs: 'id,name',
                     epsg: '900913'
                 },
-                format: new OpenLayers.Format.GeoJSON(),
-                
+                format: new OpenLayers.Format.GeoJSON()
 
             }),
-            styleMap: stylemap_grid
-           
+            styleMap: stylemap
         });
 
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
 
-            }),
-            styleMap: stylemap_slope
-           
-        });
 
+       
          
-            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest_old, {
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(slope, {
                 hover: true,
                 highlightOnly: true,
                 renderIntent: "temporary"
@@ -297,48 +214,10 @@ function init(){
             hover: false,
             onSelect: updateinfo
           };
-         var select = new OpenLayers.Control.SelectFeature(forest_old, select_options);
+         var select = new OpenLayers.Control.SelectFeature(slope, select_options);
          // select.select(forest_old.features[2]);
          
-         map.addLayer(slope); radiation = new OpenLayers.Layer.Vector("Radiation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
- radiation = new OpenLayers.Layer.Vector("Radiation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/radiation-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap_grid
-           
-        });
-                url: "/radiation-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap_grid
-           
-        });
-         map.addLayer(forest_old);
-         map.addLayer(radiation);
+         map.addLayer(slope); 
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
 
