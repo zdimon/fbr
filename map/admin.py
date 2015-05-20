@@ -1,5 +1,5 @@
 from django.contrib import admin
-from map.models import Cotter, Slope, Radiation, Vegetation, Structure, Veget, Direction
+from map.models import Cotter, Slope, Radiation, Vegetation, Structure, Veget, Direction, Effectiveness
 from djgeojson.views import GeoJSONLayerView
 from django.contrib.gis.admin import OSMGeoAdmin, GeoModelAdmin
 from django.conf import settings
@@ -76,6 +76,21 @@ class StructureAdmin(OSMGeoAdmin):
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
 admin.site.register(Structure, StructureAdmin)
+
+
+
+class EffectivenessAdmin(OSMGeoAdmin):
+    list_display = ("gid", "effectiveness", 'color', 'color_repr')
+    list_editable = ('color',)
+    search_fields = ("gid",)
+    #list_filter = ("fuel_load",) 
+    ordering = ('id',)   
+    fields = ("effectiveness", 'color', 'color_repr')
+    map_template = 'gis/admin/google.html'
+    extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+
+admin.site.register(Effectiveness, EffectivenessAdmin)
+
 
 
 
