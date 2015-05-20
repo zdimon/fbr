@@ -41,6 +41,6 @@ class Command(BaseCommand):
         
         d = (Decimal('0.191')) * (Decimal('104'))
       #  d = (Decimal('0.191') * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5') * (Decimal(n) + Decimal(1'))**(Decimal('1.5')) + Decimal(P) - Decimal('1'))
-        print t
+        print u
         print "!!!!!!!!!!!!!!!!!!!!!!!!!"
         print d
