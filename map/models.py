@@ -38,7 +38,7 @@ class Structure(models.Model):
 #Burning effectiveness        
 class Effectiveness(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
-    effectiveness = models.CharField(_(u'Structure'), max_length=10, null=True, blank=True, default='')
+    effectiveness = models.CharField(_(u'Effectiveness'), max_length=10, null=True, blank=True, default='')
     color = RGBColorField()
     def __unicode__(self):
   #      return '%s  (%s)' % (self.structure,self.fuel_moisture)
