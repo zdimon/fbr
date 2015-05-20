@@ -3,26 +3,9 @@
 
  {% block body %}
 
-        <div class="col-md-12">
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
-    </div>
 
-    
-    
-        <div id="info">
-        </div>
 
-        <h3>Legend</h3>
-       <table>
-       {% for s in structures %}
-            <tr>
-                <td style="padding: 5px">  {{s.color_repr}}</td>
-                <td> {{ s }} </td>
-            </tr>
-          
-       {% endfor %}
-        </table>
-    
 
 
 
@@ -50,33 +33,27 @@ function init(){
             $('#status-message').hide();
             }
 
-
-
-      
-
-            var st = new OpenLayers.Style({fillColor : "green",
+            var style = new OpenLayers.Style({fillColor : "green",
                                           label: '${gridcode}',
                                           fillOpacity : 0.4});
 
-
-
-     var stylemap =   new OpenLayers.StyleMap({
+            var stylemap =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
-                        strokeColor: "#dd0000",
-                        strokeOpacity:.7,
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
                         strokeWidth: 1,
-                        //fillColor: "#aa0000",
-                        fillOpacity: 1,
-                        //label: '${firerisk}',
+                        fillColor: "green",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
                         cursor: "pointer"
                     }),
                     "temporary": new OpenLayers.Style({
-                        strokeColor: "#ff0000",
-                        strokeOpacity: .7,
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
                         strokeWidth: 2,
-                        fillColor: "#ffff33",
-                        fillOpacity: 0,
-                        //label: '${number}',
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
                         cursor: "pointer"
                     }),
                     "select": new OpenLayers.Style({
@@ -86,44 +63,58 @@ function init(){
                         fillColor: "#0033ff",
                         fillOpacity: 0,
                         graphicZIndex: 2,
-                        //label: '${number}',
+                        //label: '${gridcode}',
                         cursor: "pointer"
                     })
                     }) ;
-     
+      
 
-      var lookup = {
-                {% for s in structures %}
-                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
-                {% endfor %}
-                  
-              }
-        stylemap.addUniqueValueRules("default", "effectiveness_category", lookup);  
-  
 
-      slope = new OpenLayers.Layer.Vector("Slope", {
+        forest = new OpenLayers.Layer.Vector("Vegetation structure", {
             //isBaseLayer: true,
             projection: new OpenLayers.Projection('EPSG:4326'),
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
-                url: "/slope-json",
+                url: "/vegetstructure-json",
 
                 params: {
                     attrs: 'id,name',
                     epsg: '900913'
                 },
-                format: new OpenLayers.Format.GeoJSON()
+                format: new OpenLayers.Format.GeoJSON(),
+                
 
             }),
             styleMap: stylemap
+           
+        });
+
+
+        radiation = new OpenLayers.Layer.Vector("Radiation", {
+            //isBaseLayer: true,
+            projection: new OpenLayers.Projection('EPSG:4326'),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+
+                url: "/radiation-json",
+
+                params: {
+                    attrs: 'id,name',
+                    epsg: '900913'
+                },
+                format: new OpenLayers.Format.GeoJSON(),
+                
+
+            }),
+            styleMap: stylemap
+           
         });
 
 
 
-       
          
-            var highlightCtrl = new OpenLayers.Control.SelectFeature(slope, {
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest, {
                 hover: true,
                 highlightOnly: true,
                 renderIntent: "temporary"
@@ -131,8 +122,7 @@ function init(){
         
         function updateinfo() {
 
-
-        
+             alert('GRIDCODE:'+forest.selectedFeatures[0].data['gridcode']);
                 
                
         }
@@ -142,16 +132,15 @@ function init(){
             hover: false,
             onSelect: updateinfo
           };
-         var select = new OpenLayers.Control.SelectFeature(slope, select_options);
-         // select.select(forest_old.features[2]);
+         var select = new OpenLayers.Control.SelectFeature(forest, select_options);
          
-         map.addLayer(slope); 
+         map.addLayer(forest);
+         map.addLayer(radiation);
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
 
          map.addControl(new OpenLayers.Control.LayerSwitcher({}));
 
-        
 
        map.events.register("click", map, function (e) {            
         var point = map.getLonLatFromPixel( this.events.getMousePosition(e) )     
