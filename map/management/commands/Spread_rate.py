@@ -22,7 +22,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
      #   from journal.models.models import Issue
       #  translation.activate('ru')
-        temperature = options["temperature"]
+        t = options["temperature"]
       #  date_end = options["date_end"]
       #  logger.error("Start from %s to %s" % (date_start, date_end))
      #   for i in Issue.objects.filter(is_public=True, release_date__lte=date_end, release_date__gte=date_start):
@@ -34,4 +34,4 @@ class Command(BaseCommand):
            #     litres_loadpdf(i.id)
             #    litres_upload_cover(i.id)
      #   logger.error("Done")
-        print temperature
+        print t
