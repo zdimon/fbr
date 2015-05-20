@@ -71,7 +71,7 @@ class StructureAdmin(OSMGeoAdmin):
     search_fields = ("id",)
     list_filter = ("fuel_load",) 
     ordering = ('id',)   
-    fields = ("structure", "fuel_moisture", "fuel_load", "litter", 'color', 'color_repr')
+    fields = ("structure", "fuel_moisture", "fuel_load", "litter", 'color')
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
@@ -85,7 +85,7 @@ class EffectivenessAdmin(OSMGeoAdmin):
     search_fields = ("gid",)
     list_filter = ("effectiveness",) 
     ordering = ('gid',)   
-    fields = ("effectiveness", 'color', 'color_repr')
+    fields = ("effectiveness", 'color')
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
