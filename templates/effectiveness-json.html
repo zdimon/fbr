@@ -88,23 +88,6 @@ function init(){
                                           label: '${gridcode}',
                                           fillOpacity : 0.4});
 
-          
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-       
-
 
 
      var stylemap =   new OpenLayers.StyleMap({
@@ -179,32 +162,7 @@ function init(){
         function updateinfo() {
 
 
-           var request = OpenLayers.Request.GET({ radiation = new OpenLayers.Layer.Vector("Radiation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/radiation-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap_grid
-           
-        });
-                url: "/get-old-info",
-                params: {id: forest_old.selectedFeatures[0].data['objectid']},
-                callback: setHTML
-
-            });
-
-             //alert('GRIDCODE:'+forest_old.selectedFeatures[0].data['objectid']);
+        
                 
                
         }
