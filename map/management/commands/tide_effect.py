@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print 'start'
-        for s in Slope.objects.all()
+        for s in Slope.objects.all():
             if s.effectiveness_category == '1':
                 c = Effectiveness.objects.get(pk=1)
                 s.effectiv = c
