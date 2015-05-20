@@ -30,7 +30,10 @@ class Command(BaseCommand):
                     help=u"Precipittion"),
         make_option("-w", "--wind",
                     dest="wind",
-                    help=u"Wind speed"),                    
+                    help=u"Wind speed"), 
+        make_option("-l", "--load",
+                    dest="load",
+                    help=u"Fuel Load"),                                          
                                                                        
     )
     def handle(self, *args, **options):
@@ -46,7 +49,10 @@ class Command(BaseCommand):
         d = ((Decimal('0.191')) * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5')*(Decimal(n) + Decimal('1'))**(Decimal('1.5')) + Decimal(p) - Decimal('1'))
         #Fire danger index
         f = Decimal('1.25') * Decimal (d) * ((Decimal(t) - Decimal(u)) / Decimal('30') + Decimal('0.0234') * Decimal(w))
+        #Rate of forward spread of fire
+        r = Decimal('0.0012') * Decimal(f) * Decimal(l)
  
         
         print d
         print f
+        print r
