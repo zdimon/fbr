@@ -28,6 +28,9 @@ class Command(BaseCommand):
         make_option("-p", "--precipitation",
                     dest="precipitation",
                     help=u"Precipittion"),
+        make_option("-v", "--wind",
+                    dest="wind",
+                    help=u"Wind speed"),                    
                                                                        
     )
     def handle(self, *args, **options):
@@ -38,10 +41,11 @@ class Command(BaseCommand):
         i = options["drought"]
         n = options["rain"]
         p = options["precipitation"]
+        v = options["wind"]
         # Drought factor
         d = ((Decimal('0.191')) * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5')*(Decimal(n) + Decimal('1'))**(Decimal('1.5')) + Decimal(p) - Decimal('1'))
         #Fire danger index
-        f = Decimal('1.25') * Decimal (d) * exp((Decimal(t) - Decimal(u)))
+        f = Decimal('1.25') * Decimal (d) * ((Decimal(t) - Decimal(u)) / Decimal('30') + Decimal('0.0234') * Decimal('v'))
  
         
         print d
