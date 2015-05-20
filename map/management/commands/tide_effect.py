@@ -16,19 +16,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'start'
         for s in Slope.objects.all():
-            if s.effectiveness_category == '1':
+            if s.effectiveness_category == 1:
                 c = Effectiveness.objects.get(pk=1)
                 s.effectiv = c
-            elif s.effectiveness_category == '2':
+            elif s.effectiveness_category == 2:
                 c = Effectiveness.objects.get(pk=2)
                 s.effectiv = c
-            elif s.effectiveness_category == '3':
+            elif s.effectiveness_category == 3:
                 c = Effectiveness.objects.get(pk=3)
                 s.effectiv = c
-            elif s.effectiveness_category == '4':
+            elif s.effectiveness_category == 4:
                 c = Effectiveness.objects.get(pk=4)
                 s.effectiv = c
-            elif s.effectiveness_category == '5':
+            elif s.effectiveness_category == 5:
                 c = Effectiveness.objects.get(pk=5)
                 s.effectiv = c
             s.save()
