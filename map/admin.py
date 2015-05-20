@@ -84,7 +84,7 @@ class EffectivenessAdmin(OSMGeoAdmin):
     list_editable = ('color',)
     search_fields = ("gid",)
     #list_filter = ("fuel_load",) 
-    ordering = ('id',)   
+    ordering = ('gid',)   
     fields = ("effectiveness", 'color', 'color_repr')
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
