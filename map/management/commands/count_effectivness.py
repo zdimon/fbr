@@ -27,5 +27,7 @@ class Command(BaseCommand):
                 pass
                 #import pdb; pdb.set_trace()    
             s.effectiveness = eff
+            s.litter = sq[0].struct.litter
+            s.structure = sq[0].struct.structure
             s.save()
             print 'proccess.......%s' % s.gid

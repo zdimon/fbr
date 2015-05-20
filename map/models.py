@@ -117,6 +117,8 @@ class Slope(models.Model):
     effectiveness_category = models.IntegerField(_(u'Effectiveness category'), null=True, blank=True) 
     effectiv = models.ForeignKey(Effectiveness, null=True, blank=True)
     geom = models.MultiPolygonField(null=True, blank=True)
+    litter = models.CharField(_(u'Litter'), max_length=25, null=True, blank=True)
+    structure = models.CharField(_(u'Litter'), max_length=25, null=True, blank=True)
     objects = models.GeoManager()
     def __unicode__(self):
     #    return 'Slope #%s' % self.gridcode
