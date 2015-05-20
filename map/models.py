@@ -123,7 +123,7 @@ class Slope(models.Model):
         return u'id - %s gridcode - %s' % (self.id, self.gridcode)
 
     class Meta:
-        verbose_name=_(u'Slope')effectiveness = models.DecimalField(_(u'Burning effectiveness'), max_digits=10, decimal_places=3, null=True, blank=True)
+        verbose_name=_(u'Slope')
         verbose_name_plural=_(u'Slope')
 
 
