@@ -156,7 +156,21 @@ class Direction(models.Model):
 
     class Meta:
         verbose_name=_(u'Direction')
-        verbose_name_plural=_(u'Directions')        
+        verbose_name_plural=_(u'Directions')    
+        
+        
+        
+class Month(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    month = models.CharField(_(u'Month'), max_length=20, null=True, blank=True)
+    def __unicode__(self):
+#        return 'Radiation #%s' % self.gridcode
+        return u'id - %s gridcode - %s' % (self.gid, self.direction)
+    
+
+    class Meta:
+        verbose_name=_(u'Month')
+        verbose_name_plural=_(u'Months')             
         
         
        

@@ -15,9 +15,9 @@ class Command(BaseCommand):
         make_option("-t", "--temperature",
                     dest="temperature",
                     help=u"Air temperature"),
-  #      make_option("-e", "--dateend",
-   #                 dest="date_end",
-    #                help=u"Start end"),
+        make_option("-h", "--humidity",
+                    dest="humidity",
+                    help=u"Relitive humidity"),
     )
     def handle(self, *args, **options):
      #   from journal.models.models import Issue
