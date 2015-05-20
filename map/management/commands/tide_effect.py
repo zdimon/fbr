@@ -31,5 +31,5 @@ class Command(BaseCommand):
             elif s.effectiveness_category == '5':
                 c = Effectiveness.objects.get(pk=5)
                 s.effectiv = c
-            c.save()
+            s.save()
             print 'proccess.......%s' % s.gid

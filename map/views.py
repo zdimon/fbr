@@ -40,6 +40,11 @@ def slope(request):
     context = {}
     return render_to_response('slope.html', context, RequestContext(request))
 
+def slope_json(request):
+    context = {}
+    return render_to_response('effectiveness-json.html', context, RequestContext(request))
+
+
 def radiation_json(request):
     context = {}
     return render_to_response('radiation-json.html', context, RequestContext(request))
