@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand
 from django.utils.translation import ugettext_lazy as _
 #from litres.tasks import *
 from django.utils import translation
+from decimal import Decimal
 
 logger = logging.getLogger(__name__)
 
@@ -18,20 +19,25 @@ class Command(BaseCommand):
         make_option("-h", "--humidity",
                     dest="humidity",
                     help=u"Relitive humidity"),
+        make_option("-i", "--drought",
+                    dest="drought",
+                    help=u"Drought index"),
+        make_option("-n", "--rain",
+                    dest="rain",
+                    help=u"Time rain"),  
+        make_option("p", "--precipitation",
+                    dest="precipitation",
+                    help=u""),
+                                                                       
     )
     def handle(self, *args, **options):
      #   from journal.models.models import Issue
       #  translation.activate('ru')
         t = options["temperature"]
-      #  date_end = options["date_end"]
-      #  logger.error("Start from %s to %s" % (date_start, date_end))
-     #   for i in Issue.objects.filter(is_public=True, release_date__lte=date_end, release_date__gte=date_start):
-      #      if i.journal.is_export_to_litres:
-       #         litres_create_journal(i.journal.id)
-        #        litres_create_year(i.id)
-         #       litres_create_issue(i.id)
-          #      litres_ftpexport(i.id)
-           #     litres_loadpdf(i.id)
-            #    litres_upload_cover(i.id)
-     #   logger.error("Done")
-        print t
+        h = options["humidity"]
+        i = options["drought"]
+        n = options["rain"]
+        p = options["precipitation"]
+        d = (Decimal('0.191') * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5') * (Decimal(n) + Decimal(1'))**(Decimal('1.5')) + Decimal(P) - Decimal('1'))
+
+        print d
