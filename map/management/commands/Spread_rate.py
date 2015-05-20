@@ -11,7 +11,7 @@ from decimal import Decimal
 logger = logging.getLogger(__name__)
 
 
-class Command(BaseCommand):on level to undulating ground
+class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option("-t", "--temperature",
                     dest="temperature",
