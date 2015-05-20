@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option("-t", "--temperature",
-                    dest="Temperature",
+                    dest="temperature",
                     help=u"Air temperature"),
   #      make_option("-e", "--dateend",
    #                 dest="date_end",
