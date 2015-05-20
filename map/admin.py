@@ -83,7 +83,7 @@ class EffectivenessAdmin(OSMGeoAdmin):
     list_display = ("gid", "effectiveness", 'color', 'color_repr')
     list_editable = ('color',)
     search_fields = ("gid",)
-    #list_filter = ("fuel_load",) 
+    list_filter = ("effectiveness",) 
     ordering = ('gid',)   
     fields = ("effectiveness", 'color', 'color_repr')
     map_template = 'gis/admin/google.html'
