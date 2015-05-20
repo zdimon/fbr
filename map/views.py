@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import loader, RequestContext
-from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Structure
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Structure, Effectiveness
 from djgeojson.views import GeoJSONLayerView
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # Create your views here.
@@ -41,7 +41,7 @@ def slope(request):
     return render_to_response('slope.html', context, RequestContext(request))
 
 def slope_json(request):
-    context = {}
+    context = {'structures': Effectiveness.objects.all()}
     return render_to_response('effectiveness-json.html', context, RequestContext(request))
 
 
