@@ -45,7 +45,7 @@ class Command(BaseCommand):
         n = options["rain"]
         p = options["precipitation"]
         w = options["wind"]
-        i = options["load"]
+        l = options["load"]
         # Drought factor
         d = ((Decimal('0.191')) * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5')*(Decimal(n) + Decimal('1'))**(Decimal('1.5')) + Decimal(p) - Decimal('1'))
         #Fire danger index
