@@ -25,7 +25,7 @@ class Command(BaseCommand):
         make_option("-n", "--rain",
                     dest="rain",
                     help=u"Time rain"),  
-        make_option("p", "--precipitation",
+        make_option("-p", "--precipitation",
                     dest="precipitation",
                     help=u"Precipittion"),
                                                                        
