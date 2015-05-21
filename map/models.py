@@ -179,7 +179,7 @@ class Month(models.Model):
 class DroughtIndex(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     month = models.ForeignKey(Month, null=True, blank=True)
-    direction = models.ManyToManyField(Direction, null=True, blank=True)
+    direction = models.ForegnKey(Direction, null=True, blank=True)
     value = models.DecimalField(_(u'Drought index'), max_digits=2, decimal_places=1, null=True, blank=True)
     def __unicode__(self):
 #        return 'Radiation #%s' % self.gridcode
@@ -188,7 +188,7 @@ class DroughtIndex(models.Model):
 
     class Meta:
         verbose_name=_(u'Drought index')
-        verbose_name_plural=_(u'Drought indexes')                     
+        verbose_name_plural=_(u'Drough indexes')                     
         
         
        
