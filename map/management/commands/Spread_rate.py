@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 #from litres.tasks import *
 from django.utils import translation
 from decimal import Decimal
+from math import exp
 
 logger = logging.getLogger(__name__)
 
