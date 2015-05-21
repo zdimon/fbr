@@ -55,7 +55,7 @@ class Command(BaseCommand):
         # Drought factor
         d = ((Decimal('0.191')) * (Decimal(i) + Decimal('104')) * (Decimal(n) + Decimal('1'))**(Decimal('1.5'))) / (Decimal('3.5')*(Decimal(n) + Decimal('1'))**(Decimal('1.5')) + Decimal(p) - Decimal('1'))
         #Fire danger index
-        f = Decimal('1.25') * Decimal (d) * exp(((Decimal(t) - Decimal(u)) / Decimal('30') + Decimal('0.0234') * Decimal(w))) 
+        f = Decimal('1.25') * Decimal (d) * Decimal(exp(((Decimal(t) - Decimal(u)) / Decimal('30') + Decimal('0.0234') * Decimal(w)))) 
         #Rate of forward spread of fire on level to undulating ground
         r = Decimal('0.0012') * Decimal(f) * Decimal(l)
         #Rate of spread on ground of slope 
