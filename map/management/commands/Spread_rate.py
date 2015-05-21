@@ -59,7 +59,7 @@ class Command(BaseCommand):
         #Rate of forward spread of fire on level to undulating ground
         r = Decimal('0.0012') * Decimal(f) * Decimal(l)
         #Rate of spread on ground of slope 
-        rs = Decimal(r) * (Decimal('0.069') * Decimal(s))
+        rs = Decimal(r) * Decimal(exp(Decimal('0.069') * Decimal(s)))
  
          
         print d
