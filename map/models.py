@@ -188,7 +188,7 @@ class DroughtIndex(models.Model):
 
     class Meta:
         verbose_name=_(u'Drought index')
-        verbose_name_plural=_(u'Drough indexes')                     
+        verbose_name_plural=_(u'Drought indexes')                     
         
         
        
