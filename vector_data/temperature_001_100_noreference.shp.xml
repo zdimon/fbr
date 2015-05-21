@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20150521</CreaDate><CreaTime>15262500</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="C:\Program Files (x86)\ArcGIS\Desktop10.0\ArcToolbox\Toolboxes\Conversion Tools.tbx\RasterToPolygon" Date="20150521" Time="152625">RasterToPolygon int_T_1_100 K:\data_Marina\Phoenix_inputs\temperature\temperature_001_100_noreference.shp SIMPLIFY VALUE</Process></lineage></DataProperties></Esri></metadata>
