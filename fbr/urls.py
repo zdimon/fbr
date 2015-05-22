@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     #############Fire simulation############3
      url(r'^fire-init/(?P<gid>\d+)$', 'map.firesim.fire_init', name='fire_init'),
      url(r'^fire-count/(?P<time>\d+)$', 'map.firesim.fire_count', name='fire_count'),
+     url(r'^fire-simulation/$', 'map.firesim.fire_simulation', name='fire_sim'),
+
 
 
      url(r'^vegetation/$', 'map.views.vegetation', name='vegetation'),
