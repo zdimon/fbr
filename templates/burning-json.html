@@ -5,7 +5,7 @@
 
         <div class="col-md-12">
 
-      <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 10-20 sec.</div>
+      <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 20-40 sec.</div>
 
      <div id="info"> </div>
 
@@ -100,7 +100,7 @@ function init(){
 
                     map.addLayer(forest_old);
                     $('#wait_init').hide();
-                    radiation.setVisibility(true)
+                    radiation.setVisibility(false)
             }
 
 
@@ -238,7 +238,7 @@ function init(){
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);
         map.addControl(select);
-        radiation.setVisibility(false)
+        //radiation.setVisibility(false)
 
         select.activate();
 
@@ -252,7 +252,7 @@ $(document).ready(function(){ init()
          
             e.preventDefault();
             alert('ss');
-
+            $('#info').html('Wait!!!!!');
             
         });   
         //**************************************************
