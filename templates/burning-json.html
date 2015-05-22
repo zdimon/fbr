@@ -8,7 +8,7 @@
       <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 20-40 sec.</div>
 
      <div id="info"> </div>
-     <div id="fire_form" style="display: none"> Time: <input id="fire_time" value="1"> hour <a href="#" onclick="return false" id="firesim" > Go! </a> </div>
+     <div id="fire_form" style="display: none"> Time: <input id="time_fire" value="1"> hour <a href="#" onclick="return false" id="firesim" > Go! </a> </div>
 
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
@@ -35,9 +35,7 @@
 <script type="text/javascript">
 function init(){
  
-    $('#info').on('change', '#time_fire', function () {
-     alert($(this).val());
-});
+    
      
         var lon = 16569028.246562;
        var lat = -4253744.1751931;
