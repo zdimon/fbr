@@ -23,7 +23,17 @@ def fire_init(request,gid):
     html = 'Done!!!'
     return HttpResponse(html)
 
-def fire_count(request,gid):
+def fire_count(request,time):
+    from decimal import Decimals
+    try:
+        Burning.objects.get(time=time)
+    except:
+        s = Burning.objects.get(time=0)
+        dist = Decimal(0.003)*Decimal(time)
+        for r in Burning.objects.filter(geom__dwithin=(s.geom , dist))):
+            r.burning = 1
+            r.save()            
+    
     html = 'Done count!!!'
     return HttpResponse(html)
 
