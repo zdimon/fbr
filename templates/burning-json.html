@@ -100,7 +100,7 @@ function init(){
 
                     map.addLayer(forest_old);
                     $('#wait_init').hide();
-                    radiation.setVisibility(false)
+                    radiation.setVisibility(true)
             }
 
 
@@ -238,6 +238,7 @@ function init(){
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);
         map.addControl(select);
+        radiation.setVisibility(false)
 
         select.activate();
 
