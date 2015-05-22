@@ -234,8 +234,9 @@ class DroughtIndex(models.Model):
 class Ndvi001250(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     id = models.IntegerField(_(u'Id'))
-    gridcode = models.IntegerField(_(u'Grid code'))
+    gridcode = models.IntegerField(_(u'Value'))
     ndvi_category = models.IntegerField(_(u'NDVI category'), null=True, blank=True)
+    fuel_load = models.DecimalField(_(u'Fuel load'), max_digits=5, decimal_places=2, null=True, blank=True)
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
     #    return 'Slope #%s' % self.gridcode
