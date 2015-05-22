@@ -35,7 +35,7 @@ class Command(BaseCommand):
         #for r in Radiation.objects.filter(geom__dwithin=(input_point , D(km=DISTANCE_LIMIT_METERS))):
         dist = Distance(m=5000)
         #dist = 5000
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
 
         pnt = fromstr('POINT(-35.581528 148.869028)', srid=4326)
         # If numeric parameter, units of field (meters in this case) are assumed.
