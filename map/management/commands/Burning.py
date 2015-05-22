@@ -41,7 +41,7 @@ class Command(BaseCommand):
         # If numeric parameter, units of field (meters in this case) are assumed.
         #objs = Radiation.objects.filter(geom__distance_lte=(pnt, 700000))
 
-        objs = Radiation.objects.filter(geom__dwithin=(b.geom, Distance(m=5000)))
+        objs = Radiation.objects.filter(geom__dwithin=(b.geom, 0.001))
         for r in objs:
             bb = Burning()
             bb.gridcode = r.gridcode
