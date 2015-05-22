@@ -46,6 +46,7 @@ function init(){
 
 
             function setHTML(response) {
+            console.log(map);
             OpenLayers.Util.getElement('info').innerHTML = response.responseText;
             $('#status-message').hide();
             }
@@ -146,7 +147,7 @@ function init(){
             hover: false,
             onSelect: updateinfo
           };
-         var select = new OpenLayers.Control.SelectFeature(radiadion, select_options);
+         var select = new OpenLayers.Control.SelectFeature(radiation, select_options);
          // select.select(forest_old.features[2]);
 
             var highlightCtrl = new OpenLayers.Control.SelectFeature(radiadion, {
