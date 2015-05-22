@@ -260,7 +260,7 @@ $(document).ready(function(){ init()
             alert('Are you ready?');
             $('#info').html('Wait!!!!!');
             time = $('#time_fire').val();
-            alert(time);
+            //alert(time);
 
            
             $.ajax({
@@ -308,7 +308,7 @@ $(document).ready(function(){ init()
                         strategies: [new OpenLayers.Strategy.Fixed()],
                         protocol: new OpenLayers.Protocol.HTTP({
 
-                            url: "/burning-json?time=0",
+                            url: "/burning-json?time="+text,
                             format: new OpenLayers.Format.GeoJSON(),
                             
 
