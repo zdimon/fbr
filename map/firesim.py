@@ -28,7 +28,7 @@ def fire_count(request,time):
     try:
         Burning.objects.get(time=time)
     except:
-        s = Burning.objects.get(time=0)
+        s = Burning.objects.get(burning=1)
         dist = Decimal(0.003)*Decimal(time)
         for r in Burning.objects.filter(geom__dwithin=(s.geom , dist)):
             r.burning = 1
