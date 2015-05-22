@@ -15,11 +15,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'start'
         Burning.objects.all().delete()
-        o = Radiation.objects.get(pk=1088)
+        o = Radiation.objects.get(pk=939)
         b = Burning()
         b.gid = 1
         b.id = 1
-        b.gridcode = 1
+        b.gridcode = o.gridcode
         b.day = 1
         b.time = 1
         b.geom = o.geom
