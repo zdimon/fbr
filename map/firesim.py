@@ -20,7 +20,7 @@ def fire_init(request,gid):
         b.geom = r.geom
         b.gridcode = r.gridcode
         b.save()
-    html = 'Time: <input name="time" value="1"> hour <a href="#" onclick="return false" id="firesim" >'
+    html = 'Time: <input name="time" value="1"> hour <a href="#" onclick="return false" id="firesim" > Go! </a>'
     return HttpResponse(html)
 
 
