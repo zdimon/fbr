@@ -17,6 +17,9 @@ class Command(BaseCommand):
         Burning.objects.all().delete()
         o = Radiation.objects.get(pk=1088)
         b = Burning()
+        b.gid = 1
+        b.id = 1
+        b.gridcode = 1
         b.day = 1
         b.time = 1
         b.geom = o.geom
