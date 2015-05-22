@@ -9,6 +9,8 @@ def fire_init(request):
     b.burning = 1
     b.day = 1
     b.time = 1
+    b.geom = r.geom
+    b.gridcode = r.gridcode
     b.save()
     html = 'Time:<input name="time">'
     return HttpResponse(html)
