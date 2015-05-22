@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print 'start'
-        Burning.objects.all().delete()
+  #      Burning.objects.all().delete()
         o = Radiation.objects.get(pk=939)
         b = Burning()
         b.gridcode = o.gridcode
@@ -22,6 +22,9 @@ class Command(BaseCommand):
         b.time = 1
         b.geom = o.geom
         b.save()
+        
+        objs = Burning.objects.filter(pk=939)
+        
 
         ###################DISTANCE########################
         from django.contrib.gis.measure import Distance
