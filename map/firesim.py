@@ -24,7 +24,7 @@ def fire_init(request,gid):
         b.geom = r.geom
         b.gridcode = r.gridcode
         b.save()
-    html = 'Done!!! So now you can choice a distance of time what you are interested in'
+    html = 'Done!!! So now you can choice a distance of time (in hours) what you are interested in'
     return HttpResponse(html)
 
 def fire_count(request,time):
