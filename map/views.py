@@ -418,7 +418,7 @@ class GetBurningJson(GeoJSONLayerView):
             return Burning.objects.all().filter(time=int(self.request.GET['time']))
 
     def render_to_response(self, context, **response_kwargs):
-        from config.settings import BASE_DIR
+        from fbr.settings import BASE_DIR
         import os.path
         cpath = BASE_DIR+'/map_cache/burning_'+self.request.GET['id']+'.txt'
         if(os.path.exists(cpath)):
