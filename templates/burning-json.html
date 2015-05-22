@@ -47,7 +47,7 @@ function init(){
 
             function setHTML(response) {
             console.log(map);
-            //OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
             //$('#status-message').hide();
             var stylemap_ajax =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
