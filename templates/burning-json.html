@@ -255,7 +255,7 @@ $(document).ready(function(){ init()
             $('#info').html('Wait!!!!!');
             time = $('#time_fire').val();
             //alert(time);
-
+            $('#fire_form').hide();
            
             $.ajax({
                  url: "/fire-count/"+time,
@@ -312,7 +312,7 @@ $(document).ready(function(){ init()
                     });
 
                     map.addLayer(layer);
-
+                    $('#fire_form').show();
                     
 
 
