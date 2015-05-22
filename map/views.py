@@ -413,9 +413,9 @@ class GetBurningJson(GeoJSONLayerView):
 
     def get_queryset(self):
         if(self.request.GET['time']=='0'):
-            return Burning.objects.all()
+            return Burning.objects.filter(burning=1)
         else:
-            return Burning.objects.all().filter(time=int(self.request.GET['time']))
+            return Burning.objects.all().filter(burning=1, time=int(self.request.GET['time']))
 
     def render_to_response(self, context, **response_kwargs):
         from fbr.settings import BASE_DIR
