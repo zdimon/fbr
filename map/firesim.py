@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from map.models import Burning, Radiation
+
 
 def fire_init(request,gid):
     Burning.objects.all().delete()
