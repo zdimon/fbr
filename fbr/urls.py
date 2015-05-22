@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget, GetPolygonJsonSlope, GetPolygonJsonVegetType, GetPolygonJsonNdvi001250, GetPolygonJsonBurning
-from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Effectiveness, Ndvi001250, Burning, GetBurningJson
+from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget, GetPolygonJsonSlope, GetPolygonJsonVegetType, GetPolygonJsonNdvi001250, GetPolygonJsonBurning, GetBurningJson
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Effectiveness, Ndvi001250, Burning
 
 from django.contrib import admin
 admin.autodiscover()
