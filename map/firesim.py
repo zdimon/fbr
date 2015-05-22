@@ -38,11 +38,12 @@ def fire_count(request,time):
     if max_time == 0: # start of the burning (when only one object is burning)
         s = Burning.objects.get(burning=1)
         Burning.objects.filter(geom__dwithin=(s.geom , dist)).update(burning=1,time=time)
+        return HttpResponse(max_time) # return current time
     else: # continue
         new_time = int(time) + int(max_time) # make the new time layer mark
         for i in Burning.objects.filter(time=max_time):
             Burning.objects.filter(geom__dwithin=(i.geom , dist), burning=0).update(time=new_time, burning=1)
-    html = time
-    return HttpResponse(html) # return current time
+        return HttpResponse(new_time) # return current time
+
 
 
