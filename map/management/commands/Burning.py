@@ -50,6 +50,20 @@ class Command(BaseCommand):
             bb.geom = r.geom
             bb.save()
             print 'adding............%s' % b.id
+            
+            
+            
+            
+            
+        objs = Radiation.objects.filter(geom__dwithin=(b.geom, 0.002))
+        for r in objs:
+            bb = Burning()
+            bb.gridcode = r.gridcode
+            bb.day = 1
+            bb.time = 2
+            bb.geom = r.geom
+            bb.save()
+            print 'adding............%s' % b.id            
 
        
         
