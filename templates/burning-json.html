@@ -8,6 +8,7 @@
       <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 20-40 sec.</div>
 
      <div id="info"> </div>
+     <div id="fire_form" style="display: none"> Time: <input id="fire_time" value="1"> hour <a href="#" onclick="return false" id="firesim" > Go! </a> </div>
 
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
@@ -103,6 +104,7 @@ function init(){
 
                     map.addLayer(forest_old);
                     $('#wait_init').hide();
+                    $('#fire_form').show();
                     radiation.setVisibility(false)
             }
 
@@ -256,7 +258,7 @@ $(document).ready(function(){ init()
             e.preventDefault();
             alert('Are you ready?');
             $('#info').html('Wait!!!!!');
-            time = $('#time_fire').attr('value');
+            time = $('#time_fire').val();
             alert(time);
 
             $("#fire_form").ajaxSubmit({url: '/fire-count', type: 'get'})
