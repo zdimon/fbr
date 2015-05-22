@@ -64,7 +64,7 @@ class Command(BaseCommand):
             
         objs = Burning.objects.filter(geom__dwithin=(b.geom, 0.001))
         for bb in objs:
-            bb.gridcode = r.gridcode
+            
             bb.day = 1
             bb.time = 1
             bb.burning = 1
@@ -74,7 +74,7 @@ class Command(BaseCommand):
             
         objs = Burning.objects.filter(geom__dwithin=(b.geom, 0.002))
         for bb in objs:
-            bb.gridcode = r.gridcode
+            
             bb.day = 1
             bb.time = 1
             bb.burning = 1
