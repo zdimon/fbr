@@ -34,7 +34,7 @@ def fire_count(request,time):
             r.burning = 1
             r.save()            
     
-    html = 'Done count!!!'
+    html = time
     return HttpResponse(html)
 
 
