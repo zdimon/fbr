@@ -420,7 +420,7 @@ class GetBurningJson(GeoJSONLayerView):
     def render_to_response(self, context, **response_kwargs):
         from fbr.settings import BASE_DIR
         import os.path
-        cpath = BASE_DIR+'/map_cache/burning_'+self.request.GET['id']+'.txt'
+        cpath = BASE_DIR+'/map_cache/burning_'+self.request.GET['time']+'.txt'
         if(os.path.exists(cpath)):
             from django.http import HttpResponse
             f = open(cpath,'r')
