@@ -1,5 +1,5 @@
 from django.contrib import admin
-from map.models import Cotter, Slope, Radiation, Vegetation, Structure, Veget, Direction, Effectiveness
+from map.models import Cotter, Slope, Radiation, Vegetation, Structure, Veget, Direction, Effectiveness, Ndvi001250
 from djgeojson.views import GeoJSONLayerView
 from django.contrib.gis.admin import OSMGeoAdmin, GeoModelAdmin
 from django.conf import settings
@@ -127,4 +127,16 @@ class RadiationAdmin(OSMGeoAdmin):
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
 admin.site.register(Radiation, RadiationAdmin)
+
+
+
+class Ndvi001250Admin(OSMGeoAdmin):
+    list_display = ("gid", "gridcode", 'ndvi_category', 'fuel_load')
+    search_fields = ("gridcode",)
+    list_filter = ("gridcode","fuel_load") 
+    ordering = ('gid',)
+    map_template = 'gis/admin/google.html'
+    extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+
+admin.site.register(Slope, SlopeAdmin)
 
