@@ -100,11 +100,11 @@ function init(){
         
         function updateinfo() {
 
-             alert('Radiation:'+forest.selectedFeatures[0].data['gridcode']);
+             alert('gid:'+forest.selectedFeatures[0].data['gid']);
 
                 var request = OpenLayers.Request.GET({
                 url: "/get-region-info",
-                params: {id: forest.selectedFeatures[0].data['gridcode']},
+                params: {id: forest.selectedFeatures[0].data['gid']},
                 callback: setHTML
 
             });           
