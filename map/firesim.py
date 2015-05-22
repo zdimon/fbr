@@ -37,7 +37,7 @@ def fire_count(request,time):
     dist = Decimal(0.001)*Decimal(time) # 0.001 ~ 115 miters
     if max_time == 0: # start of the burning (when only one object is burning)
         s = Burning.objects.get(burning=1)
-        Burning.objects.filter(geom__dwithin=(s.geom , dist)).update(burning=1)
+        Burning.objects.filter(geom__dwithin=(s.geom , dist)).update(burning=1,time=time)
     else: # continue
         new_time = int(time) + int(max_time) # make the new time layer mark
         for i in Burning.objects.filter(time=max_time):
