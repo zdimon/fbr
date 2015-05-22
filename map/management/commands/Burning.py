@@ -23,7 +23,7 @@ class Command(BaseCommand):
   #     b.geom = o.geom
   #     b.save()
         
-        b = Burning.object.filter(pk=939)
+        b = Burning.objects.get(pk=939)
         b.burning = 1
         b.day = 1
         b.time = 1
