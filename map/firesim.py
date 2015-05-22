@@ -12,6 +12,14 @@ def fire_init(request,gid):
     b.geom = r.geom
     b.gridcode = r.gridcode
     b.save()
+    for r in Radiation.objects.all():
+        b = Burning()
+        b.burning = 0
+        b.day = 1
+        b.time = 0
+        b.geom = r.geom
+        b.gridcode = r.gridcode
+        b.save()
     html = 'Time:<input name="time">'
     return HttpResponse(html)
 
