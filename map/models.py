@@ -296,7 +296,7 @@ class Temperature213100(models.Model):
         
         
 # BURNING IMITATION. FHOENIX MODEL        
-'''        
+        
 class Burning(models.Model):
     gridcode = models.IntegerField(_(u'Grid code'))
     geom = models.MultiPolygonField(null=True, blank=True)
@@ -312,4 +312,4 @@ class Burning(models.Model):
         verbose_name=_(u'Burning')
         verbose_name_plural=_(u'Burning')          
 
-      '''  
+
