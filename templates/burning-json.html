@@ -47,8 +47,61 @@ function init(){
 
             function setHTML(response) {
             console.log(map);
-            OpenLayers.Util.getElement('info').innerHTML = response.responseText;
-            $('#status-message').hide();
+            //OpenLayers.Util.getElement('info').innerHTML = response.responseText;
+            //$('#status-message').hide();
+            var stylemap_ajax =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "green",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+                        forest_old = new OpenLayers.Layer.Vector("Vegetation", {
+                        projection: new OpenLayers.Projection('EPSG:4326'),
+                        strategies: [new OpenLayers.Strategy.Fixed()],
+                        protocol: new OpenLayers.Protocol.HTTP({
+
+                            url: "/vegetation-json",
+
+                            params: {
+                                attrs: 'id,name',
+                                epsg: '900913'
+                            },
+                            format: new OpenLayers.Format.GeoJSON(),
+                            
+
+                        }),
+                        styleMap: stylemap_ajax
+                       
+                    });
+
+                    map.addLayer(stylemap_ajax);
+
+
             }
 
 
