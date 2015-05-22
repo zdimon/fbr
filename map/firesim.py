@@ -39,7 +39,7 @@ def fire_count(request,time):
         s = Burning.objects.get(burning=1)
         Burning.objects.filter(geom__dwithin=(s.geom , dist)).update(burning=1)
     else: # continue
-        new_time = time + max_time # make the new time layer mark
+        new_time = add(int(time) + int(max_time)) # make the new time layer mark
         for i in Burning.objects.filter(time=max_time):
             Burning.objects.filter(geom__dwithin=(i.geom , dist)).update(time=new_time, burning=1)
     html = time
