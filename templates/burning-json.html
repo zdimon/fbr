@@ -89,12 +89,7 @@ function init(){
                         strategies: [new OpenLayers.Strategy.Fixed()],
                         protocol: new OpenLayers.Protocol.HTTP({
 
-                            url: "/burning-json",
-
-                            params: {
-                                attrs: 'id,name',
-                                epsg: '900913'
-                            },
+                            url: "/burning-json?time=0",
                             format: new OpenLayers.Format.GeoJSON(),
                             
 
