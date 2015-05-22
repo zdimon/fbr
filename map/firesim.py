@@ -24,7 +24,7 @@ def fire_init(request,gid):
     return HttpResponse(html)
 
 def fire_count(request,time):
-    from decimal import Decimals
+    from decimal import Decimal
     try:
         Burning.objects.get(time=time)
     except:
