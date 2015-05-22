@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure','struct'))),
     
-    url(r'^burning-json/$', GetPolygonJsonBurning.as_view(model=Burning,properties=('gid','gridcode'))),
+    url(r'^burning-json/$', GetBurningJson.as_view(model=Burning,properties=('gid','gridcode'))),
     
     url(r'^vegetstructure-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure','struct'))),
     url(r'^slope_json/$', 'map.views.slope_json', name='slope_json'),

@@ -5,14 +5,15 @@
 
         <div class="col-md-12">
 
-      <div style="display: none; color: red; font-size: 16;" id="wait"> WAIT!! </div>
+      <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 10-20 sec.</div>
+
+     <div id="info"> </div>
 
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
 
     
-     <div id="info">
-        </div>
+
 
         <h3>Legend</h3>
        <table>
@@ -57,7 +58,7 @@ function init(){
                         strokeColor: "#ff0000",
                         strokeOpacity: .7,
                         strokeWidth: 1,
-                        fillColor: "green",
+                        fillColor: "red",
                         fillOpacity: .7,
                         //label: '${gridcode}',
                         cursor: "pointer"
@@ -88,7 +89,7 @@ function init(){
                         strategies: [new OpenLayers.Strategy.Fixed()],
                         protocol: new OpenLayers.Protocol.HTTP({
 
-                            url: "/vegetation-json",
+                            url: "/burning-json",
 
                             params: {
                                 attrs: 'id,name',
@@ -103,7 +104,7 @@ function init(){
                     });
 
                     map.addLayer(forest_old);
-                    $('#wait').hide();
+                    $('#wait_init').hide();
                     radiation.setVisibility(false)
             }
 
@@ -185,7 +186,7 @@ function init(){
         
         function updateinfo() {
 
-           $('#wait').show();
+           $('#wait_init').show();
            var request = OpenLayers.Request.GET({
                 url: "/fire-init/"+radiation.selectedFeatures[0].data['gid'],
                 callback: setHTML
@@ -247,7 +248,24 @@ function init(){
 
    // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
 } ;
-$(document).ready(function(){ init() });
+$(document).ready(function(){ init() 
+
+
+//// become invisible **************************
+         $('#info').on('click', '#firesim', function(e) {
+         
+            e.preventDefault();
+            alert('ss');
+
+            
+        });   
+        //**************************************************
+
+
+
+
+
+});
 </script>
 
 {% endblock %}
