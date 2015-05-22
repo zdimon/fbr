@@ -33,6 +33,9 @@
 
 
 <script type="text/javascript">
+
+var  map
+
 function init(){
  
     
@@ -46,7 +49,7 @@ function init(){
         projection: new OpenLayers.Projection("EPSG:4326"),
          maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
     };
-    var  map = new OpenLayers.Map(options);
+    map = new OpenLayers.Map(options);
 
 
 
