@@ -269,7 +269,7 @@ $(document).ready(function(){ init()
 
 
 
-                  var 'stylemap_'+time =   new OpenLayers.StyleMap({
+                  style =   new OpenLayers.StyleMap({
                     "default": new OpenLayers.Style({
                         strokeColor: "#ff0000",
                         strokeOpacity: .7,
@@ -300,7 +300,7 @@ $(document).ready(function(){ init()
                     })
                     }) ;
 
-                        'forest_'+time = new OpenLayers.Layer.Vector("Vegetation"+'forest_'+time, {
+                        layer = new OpenLayers.Layer.Vector("Vegetation s"+time, {
                         projection: new OpenLayers.Projection('EPSG:4326'),
                         strategies: [new OpenLayers.Strategy.Fixed()],
                         protocol: new OpenLayers.Protocol.HTTP({
@@ -310,11 +310,11 @@ $(document).ready(function(){ init()
                             
 
                         }),
-                        styleMap: 'stylemap_'+time
+                        styleMap: style
                        
                     });
 
-                    map.addLayer('forest_'+time);
+                    map.addLayer(layer);
 
                     
 
