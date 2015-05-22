@@ -235,6 +235,7 @@ class Ndvi001250(models.Model):
     gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
     id = models.IntegerField(_(u'Id'))
     gridcode = models.IntegerField(_(u'Grid code'))
+    ndvi_category = models.IntegerField(_(u'NDVI category'), null=True, blank=True)
     geom = models.MultiPolygonField(null=True, blank=True)
     def __unicode__(self):
     #    return 'Slope #%s' % self.gridcode
@@ -242,7 +243,7 @@ class Ndvi001250(models.Model):
 
     class Meta:
         verbose_name=_(u'NDVI day 1')
-        verbose_name_plural=_(u'NDBI day 1')
+        verbose_name_plural=_(u'NDVI day 1')
 
 
 #NDVI day 209 raster 250
@@ -258,7 +259,7 @@ class Ndvi209250(models.Model):
 
     class Meta:
         verbose_name=_(u'NDVI day 209')
-        verbose_name_plural=_(u'NDBI day 209')
+        verbose_name_plural=_(u'NDVI day 209')
         
         
 class Temperature001100(models.Model):
