@@ -15,13 +15,13 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print 'start'
-        max_ef = Ndvi001250.objects.all().aggregate(Max('gridcode'))
-        min_ef = Ndvi001250.objects.all().aggregate(Min('gridcode'))
+        max_ef = Ndvi209250.objects.all().aggregate(Max('gridcode'))
+        min_ef = Ndvi209250.objects.all().aggregate(Min('gridcode'))
         print min_ef
         
         h = (Decimal( max_ef['gridcode__max']) - Decimal( min_ef['gridcode__min'])) / Decimal(5);
         #import pdb; pdb.set_trace()    
-        for s in Ndvi001250.objects.all():
+        for s in Ndvi209250.objects.all():
 
             if min_ef['gridcode__min'] <= s.gridcode < (min_ef['gridcode__min'] + h):
                 s.ndvi_category = 1
