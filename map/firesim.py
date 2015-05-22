@@ -23,4 +23,8 @@ def fire_init(request,gid):
     html = 'Done!!!'
     return HttpResponse(html)
 
+def fire_count(request,gid):
+    html = 'Done count!!!'
+    return HttpResponse(html)
+
 
