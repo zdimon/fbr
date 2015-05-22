@@ -11,7 +11,7 @@ urlpatterns = patterns('',
      url(r'^cotter/$', 'map.views.cot', name='cotter'),
 
     #############Fire simulation############3
-     url(r'^fire-init/$', 'map.firesim.fire_init', name='fire_init'),
+     url(r'^fire-init/(?P<gid>\d+)$', 'map.firesim.fire_init', name='fire_init'),
 
 
      url(r'^vegetation/$', 'map.views.vegetation', name='vegetation'),

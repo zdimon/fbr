@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from map.models import Burning, Radiation
 
 
-def fire_init(request):
+def fire_init(request,gid):
     Burning.objects.all().delete()
-    r = Radiation.objects.get(pk=request.GET['gid'])
+    r = Radiation.objects.get(pk=gid)
     b = Burning()
     b.burning = 1
     b.day = 1
