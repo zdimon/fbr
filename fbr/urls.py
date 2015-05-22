@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget, GetPolygonJsonSlope, GetPolygonJsonVegetType
-from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Effectiveness
+from map.views import GetPolygonJsonCotter, GetPolygonJsonRadiation, GetPolygonJsonVegetation, GetPolygonJsonVeget, GetPolygonJsonSlope, GetPolygonJsonVegetType, GetPolygonJsonNdvi001250
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Effectiveness, Ndvi001250
 
 from django.contrib import admin
 admin.autodiscover()
@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r'^get-old-info$', 'map.views.get_old_info', name='get_old_info'),  
     url(r'^cotter-json/$', GetPolygonJsonCotter.as_view(model=Cotter,properties=('gid','veg_types'))),
     url(r'^radiation-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
+    
+    url(r'^ndvi001250-json/$', GetPolygonJsonRadiation.as_view(model=Radiation,properties=('gid','gridcode'))),
+    
     url(r'^vegetation-json/$', GetPolygonJsonVegetation.as_view(model=Vegetation,properties=('gid','structure','struct'))),
     url(r'^vegetstructure-json/$', GetPolygonJsonVeget.as_view(model=Veget,properties=('gid','structure','struct'))),
     url(r'^slope_json/$', 'map.views.slope_json', name='slope_json'),

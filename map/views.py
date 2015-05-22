@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import loader, RequestContext
-from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Structure, Effectiveness
+from map.models import Cotter, Radiation, Vegetation, Veget, Slope, Structure, Effectiveness, Ndvi001250
 from djgeojson.views import GeoJSONLayerView
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # Create your views here.
@@ -20,6 +20,11 @@ def home(request):
 def radiation(request):
     context = {}
     return render_to_response('radiation.html', context, RequestContext(request))
+    
+def ndvi001250(request):
+    context = {}
+    return render_to_response('ndvi001250.html', context, RequestContext(request))    
+
 
 def vegetation(request):
     context = {}
@@ -48,6 +53,11 @@ def slope_json(request):
 def radiation_json(request):
     context = {}
     return render_to_response('radiation-json.html', context, RequestContext(request))
+    
+    
+def ndvi001250_json(request):
+    context = {}
+    return render_to_response('ndvi001250-json.html', context, RequestContext(request))    
 
 
 def vegetation_json(request):
@@ -112,6 +122,48 @@ class GetPolygonJsonRadiation(GeoJSONLayerView):
         from fbr.settings import BASE_DIR
         import os.path
         cpath = BASE_DIR+'/map_cache/radiation.txt'
+        if(os.path.exists(cpath)):
+            from django.http import HttpResponse
+            f = open(cpath,'r')
+            out = f.read()
+            f.close()
+            return HttpResponse(out, content_type="application/json")
+
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        serializer = GeoJSONSerializer()
+        response = self.response_class(**response_kwargs)
+        options = dict(properties=self.properties,
+                       precision=self.precision,
+                       simplify=self.simplify,
+                       srid=self.srid,
+                       geometry_field=self.geometry_field,
+                       force2d=self.force2d)
+        serializer.serialize(self.get_queryset(), stream=response, ensure_ascii=False,
+                             **options)
+
+        #import pdb; pdb.set_trace()
+        f = open(cpath,'w')
+        f.write(response.content)
+        f.close()
+        return response
+
+
+
+
+class GetPolygonJsonNdvi001250(GeoJSONLayerView):
+    # Options
+    from fbr.settings import BASE_DIR
+    precision = 4   # float
+    simplify = 0.5  # generalization
+    def get_queryset(self):
+        return Ndvi001250.objects.all()
+
+    def render_to_response(self, context, **response_kwargs):
+        from fbr.settings import BASE_DIR
+        import os.path
+        cpath = BASE_DIR+'/map_cache/ndvi001250.txt'
         if(os.path.exists(cpath)):
             from django.http import HttpResponse
             f = open(cpath,'r')
