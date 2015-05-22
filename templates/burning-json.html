@@ -184,8 +184,8 @@ function init(){
 
 
            var request = OpenLayers.Request.GET({
-                url: "/start-fire",
-                params: {id: radiation.selectedFeatures[0].data['gid']},
+                url: "/fire-init",
+                params: {gid: radiation.selectedFeatures[0].data['gid']},
                 callback: setHTML
 
             });

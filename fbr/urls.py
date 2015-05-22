@@ -9,6 +9,11 @@ urlpatterns = patterns('',
     # Examples:
      url(r'^$', 'map.views.radiation', name='home'),
      url(r'^cotter/$', 'map.views.cot', name='cotter'),
+
+    #############Fire simulation############3
+     url(r'^fire-init/$', 'map.firesim.fire_init', name='fire_init'),
+
+
      url(r'^vegetation/$', 'map.views.vegetation', name='vegetation'),
      url(r'^burning/$', 'map.views.burning', name='burning'),
      url(r'^vegetstructure/$', 'map.views.veget', name='vegetation structure'),  
