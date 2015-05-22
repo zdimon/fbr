@@ -255,10 +255,12 @@ $(document).ready(function(){ init()
             $('#info').html('Wait!!!!!');
             time = $('#time_fire').val();
             $.ajax({
-              url: "/fire-count/"+time,
-              context: document.body
-            }).done(function() {
-               $('#info').html('done')
+                 url: "/fire-count/"+time,
+                 success : function(text)
+                 {
+                     response = text;
+                     $('#info').html(response);
+                 }
             });
 
             
