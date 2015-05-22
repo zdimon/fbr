@@ -298,7 +298,7 @@ class Temperature213100(models.Model):
 # BURNING IMITATION. FHOENIX MODEL        
         
 class Burning(models.Model):
-    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    gid = models.IntegerField(_(u'Primary key'), unique=True, db_index=True, primary_key=True)
     id = models.IntegerField(_(u'Id'))
     gridcode = models.IntegerField(_(u'Grid code'))
     geom = models.MultiPolygonField(null=True, blank=True)
