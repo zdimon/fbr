@@ -259,8 +259,7 @@ $(document).ready(function(){ init()
             time = $('#time_fire').val();
             alert(time);
 
-            $("#fire_form").ajaxSubmit({url: '/fire-count', type: 'get'})
-
+           
             $.ajax({
                  url: "/fire-count/"+time,
                  success : function(text)
