@@ -15,15 +15,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'start'
   #      Burning.objects.all().delete()
-        o = Radiation.objects.get(pk=939)
-        b = Burning()
-        b.gridcode = o.gridcode
+  #      o = Radiation.objects.get(pk=939)
+  #     b = Burning()
+  #     b.gridcode = o.gridcode
+  #     b.day = 1
+  #     b.time = 1
+  #     b.geom = o.geom
+  #     b.save()
+        
+        b = Burning.object.filter(pk=939)
+        b.burning = 1
         b.day = 1
         b.time = 1
-        b.geom = o.geom
         b.save()
-        
-        objs = Burning.objects.filter(pk=939)
         
 
         ###################DISTANCE########################
@@ -44,29 +48,38 @@ class Command(BaseCommand):
         # If numeric parameter, units of field (meters in this case) are assumed.
         #objs = Radiation.objects.filter(geom__distance_lte=(pnt, 700000))
 
-        objs = Radiation.objects.filter(geom__dwithin=(b.geom, 0.001))
-        for r in objs:
-            bb = Burning()
+#        objs = Radiation.objects.filter(geom__dwithin=(b.geom, 0.001))
+ #       for r in objs:
+  #          bb = Burning()
+   #         bb.gridcode = r.gridcode
+    #        bb.day = 1
+     #       bb.time = 1
+      #      bb.geom = r.geom
+       #     bb.save()
+        #    print 'adding............%s' % b.id
+            
+            
+            
+            
+            
+        objs = Burning.objects.filter(geom__dwithin=(b.geom, 0.001))
+        for bb in objs:
             bb.gridcode = r.gridcode
             bb.day = 1
             bb.time = 1
-            bb.geom = r.geom
+            bb.burning = 1
             bb.save()
-            print 'adding............%s' % b.id
+            print 'adding............%s' % b.id   
             
             
-            
-            
-            
-        objs = Radiation.objects.filter(geom__dwithin=(b.geom, 0.002))
-        for r in objs:
-            bb = Burning()
+        objs = Burning.objects.filter(geom__dwithin=(b.geom, 0.002))
+        for bb in objs:
             bb.gridcode = r.gridcode
             bb.day = 1
-            bb.time = 2
-            bb.geom = r.geom
+            bb.time = 1
+            bb.burning = 1
             bb.save()
-            print 'adding............%s' % b.id            
+            print 'adding............%s' % b.id                     
 
        
         
