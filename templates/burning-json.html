@@ -4,6 +4,9 @@
  {% block body %}
 
         <div class="col-md-12">
+
+      <div style="display: none; color: red; font-size: 16;" id="wait"> WAIT!! </div>
+
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
 
@@ -100,8 +103,8 @@ function init(){
                     });
 
                     map.addLayer(forest_old);
-
-
+                    $('#wait').hide();
+                    radiation.setVisibility(false)
             }
 
 
@@ -182,7 +185,7 @@ function init(){
         
         function updateinfo() {
 
-
+           $('#wait').show();
            var request = OpenLayers.Request.GET({
                 url: "/fire-init/"+radiation.selectedFeatures[0].data['gid'],
                 callback: setHTML
