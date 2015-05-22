@@ -291,6 +291,27 @@ class Temperature213100(models.Model):
 
     class Meta:
         verbose_name=_(u'Temperature day 213')
-        verbose_name_plural=_(u'Temperature day 213')        
+        verbose_name_plural=_(u'Temperature day 213')      
+        
+        
+        
+# BURNING IMITATION. FHOENIX MODEL        
+        
+class Burning(models.Model):
+    gid = models.IntegerField(_(u'Primary key'), db_index=True, primary_key=True)
+    id = models.IntegerField(_(u'Id'))
+    gridcode = models.IntegerField(_(u'Grid code'))
+    geom = models.MultiPolygonField(null=True, blank=True)
+    day = models.IntegerField(_(u'Day'), null=True, blank=True)
+    time = models.IntegerField(_(u'Time'), null=True, blank=True) 
+    objects = models.GeoManager()
+    def __unicode__(self):
+#        return 'Radiation #%s' % self.gridcode
+        return u'id - %s gridcode - %s' % (self.id, self.gridcode)
+    
+
+    class Meta:
+        verbose_name=_(u'Burning')
+        verbose_name_plural=_(u'Burning')          
 
         
