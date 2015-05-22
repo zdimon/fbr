@@ -22,4 +22,4 @@ class Command(BaseCommand):
             b.gridcode = r.gridcode
             b.geom = r.geom
             b.save()
-            print 'proccess.......%s' % s.gid
+            print 'proccess.......%s' % b.gid
