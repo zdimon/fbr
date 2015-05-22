@@ -25,7 +25,31 @@ class Command(BaseCommand):
         b.geom = o.geom
         b.save()
 
+        ###################DISTANCE########################
+        from django.contrib.gis.measure import D
+        from django.contrib.gis.geos import Point
+        from django.contrib.gis.geos import GEOSGeometry
+        lon = 148.869028 
+        lat = -35.581528
+        DISTANCE_LIMIT_METERS = 5000
+        input_point = Point(lon, lat, srid=4326)
+        input_point.transform(900913)
+        #for r in Radiation.objects.filter(geom__dwithin=(input_point , D(km=DISTANCE_LIMIT_METERS))):
+        dist = D(m=5000)
+        #import pdb; pdb.set_trace()
+        objs = Radiation.objects.filter(geom__dwithin=(GEOSGeometry('POINT(-35.581528 148.869028)'), dist))
+        for r in objs:
+            b = Burning()
+            b.gid = 1
+            b.id = 1
+            b.gridcode = o.gridcode
+            b.day = 1
+            b.time = 1
+            b.geom = o.geom
+            b.save()
+            print 'adding............%s' % b.gid
 
+       
         
         
         
