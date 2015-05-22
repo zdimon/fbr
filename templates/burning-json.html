@@ -4,7 +4,7 @@
  {% block body %}
 
         <div class="col-md-12">
-
+        <div id="cur_time_fire"></div>
       <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT!! Process of initialization is going and it can takes about 20-40 sec.</div>
 
      <div id="info"> </div>
@@ -34,6 +34,7 @@
 <script type="text/javascript">
 function init(){
  
+    
      
         var lon = 16569028.246562;
        var lat = -4253744.1751931;
@@ -253,7 +254,8 @@ $(document).ready(function(){ init()
             e.preventDefault();
             alert('Are you ready?');
             $('#info').html('Wait!!!!!');
-            time = $('#time_fire').val();
+            time = $('#time_fire').attr('value');
+            alert(time);
             $.ajax({
                  url: "/fire-count/"+time,
                  success : function(text)
