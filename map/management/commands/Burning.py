@@ -17,8 +17,6 @@ class Command(BaseCommand):
         Burning.objects.all().delete()
         o = Radiation.objects.get(pk=939)
         b = Burning()
-        b.gid = 1
-        b.id = 1
         b.gridcode = o.gridcode
         b.day = 1
         b.time = 1
@@ -26,7 +24,7 @@ class Command(BaseCommand):
         b.save()
 
         ###################DISTANCE########################
-        from django.contrib.gis.measure import D
+        from django.contrib.gis.measure import Distance
         from django.contrib.gis.geos import *
         #from django.contrib.gis.geos import GEOSGeometry
         lon = 148.869028 
@@ -35,24 +33,23 @@ class Command(BaseCommand):
         input_point = Point(lon, lat, srid=4326)
         #input_point.transform(900913)
         #for r in Radiation.objects.filter(geom__dwithin=(input_point , D(km=DISTANCE_LIMIT_METERS))):
-        dist = D(m=5000)
-        dist = 5000
+        dist = Distance(m=5000)
+        #dist = 5000
         #import pdb; pdb.set_trace()
 
         pnt = fromstr('POINT(-35.581528 148.869028)', srid=4326)
         # If numeric parameter, units of field (meters in this case) are assumed.
         #objs = Radiation.objects.filter(geom__distance_lte=(pnt, 700000))
 
-        objs = Radiation.objects.filter(geom__dwithin=(GEOSGeometry('POINT(-35.581528 148.869028)'), dist))
+        objs = Radiation.objects.filter(geom__dwithin=(b.geom, Distance(m=5000)))
         for r in objs:
-            b = Burning()
-            b.id = 1
-            b.gridcode = r.gridcode
-            b.day = 1
-            b.time = 1
-            b.geom = r.geom
-            b.save()
-            print 'adding............%s' % b.gid
+            bb = Burning()
+            bb.gridcode = r.gridcode
+            bb.day = 1
+            bb.time = 1
+            bb.geom = r.geom
+            bb.save()
+            print 'adding............%s' % b.id
 
        
         
