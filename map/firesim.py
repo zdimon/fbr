@@ -11,7 +11,7 @@ def fire_init(request,gid):
     b = Burning()
     b.burning = 1
     b.day = 1
-    b.time = 1
+    b.time = 0
     b.geom = r.geom
     b.gridcode = r.gridcode
     b.save()
