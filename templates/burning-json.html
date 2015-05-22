@@ -251,8 +251,16 @@ $(document).ready(function(){ init()
          $('#info').on('click', '#firesim', function(e) {
          
             e.preventDefault();
-            alert('ss');
+            alert('Are you ready?');
             $('#info').html('Wait!!!!!');
+            time = $('#time_fire').val();
+            $.ajax({
+              url: "/fire-count/"+time,
+              context: document.body
+            }).done(function() {
+               $('#info').html('done')
+            });
+
             
         });   
         //**************************************************
