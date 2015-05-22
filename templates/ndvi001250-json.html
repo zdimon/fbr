@@ -76,7 +76,7 @@ function init(){
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
 
-                url: "/radiation-json",
+                url: "/ndvi001250-json",
 
                 params: {
                     attrs: 'id,name',
@@ -100,7 +100,7 @@ function init(){
         
         function updateinfo() {
 
-             alert('Radiation:'+forest.selectedFeatures[0].data['gridcode']);
+             alert('NDVI:'+forest.selectedFeatures[0].data['gridcode']);
 
                 var request = OpenLayers.Request.GET({
                 url: "/get-region-info",
