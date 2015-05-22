@@ -129,7 +129,6 @@ class RadiationAdmin(OSMGeoAdmin):
 admin.site.register(Radiation, RadiationAdmin)
 
 
-
 class Ndvi001250Admin(OSMGeoAdmin):
     list_display = ("gid", "gridcode", 'ndvi_category', 'fuel_load')
     search_fields = ("gridcode",)
@@ -138,5 +137,5 @@ class Ndvi001250Admin(OSMGeoAdmin):
     map_template = 'gis/admin/google.html'
     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
 
-admin.site.register(Slope, SlopeAdmin)
+admin.site.register(Ndvi001250, Ndvi001250Admin)
 
