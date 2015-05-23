@@ -48,7 +48,7 @@ def fire_count(request,time):
 
 
 def fire_simulation(request):
-    return HttpResponse('FFFF')   
+    return HttpResponse('on reconstruction')   
 
 
 
