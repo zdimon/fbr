@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from map.models import Burning, Radiation
 from django.db.models import Max, Min
 
+
 def fire_init(request,gid):
     # DEL ALL 
     Burning.objects.all().delete()
@@ -24,12 +25,14 @@ def fire_init(request,gid):
         b.geom = r.geom
         b.gridcode = r.gridcode
         b.save()
-    html = 'Done!!! So now you can choose time (in hours) of simulation'
+    html = 'Done!!! So now you can enter the time of simulation'
     return HttpResponse(html)
+
+
 
 def fire_count(request,time):
     '''
-        time - int value in hour
+        time - int value in hours
     '''
     from decimal import Decimal # to  convert fucking numbers
     #to know max val of time in db
