@@ -4,23 +4,21 @@
  {% block body %}
 
         <div class="col-md-12">
+        <div id="cur_time_fire"></div>
+      <div style="font-weight: bold; display: none; color: red; font-size: 16;" id="wait_init"> WAIT! Process of initialization is going and it can take about 20-40 sec.</div>
+
+     <div id="info"> Click on the origin point of the burning process</div>
+     <div id="fire_form" style="display: none"> Time: <input id="time_fire" value="3"> hour <a href="#" onclick="return false" id="firesim" > Go! </a> </div>
+
+     <div> <a href="/fire-simulation" target=_blank> Result </a></div>
+
      <div id="map" style="width:1000px; height:700px; border: 2px solid silver"></div>
     </div>
 
     
-     <div id="info">
-        </div>
 
-        <h3>Legend</h3>
-       <table>
-       {% for s in structures %}
-            <tr>
-                <td style="padding: 5px">  {{s.color_repr}}</td>
-                <td> {{ s }} </td>
-            </tr>
-          
-       {% endfor %}
-        </table>
+
+       
     
       
 
@@ -28,8 +26,12 @@
 
 
 <script type="text/javascript">
+
+var  map
+
 function init(){
  
+    
      
         var lon = 16569028.246562;
        var lat = -4253744.1751931;
@@ -40,14 +42,64 @@ function init(){
         projection: new OpenLayers.Projection("EPSG:4326"),
          maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34)
     };
-    var  map = new OpenLayers.Map(options);
+    map = new OpenLayers.Map(options);
 
 
 
 
             function setHTML(response) {
+            console.log(map);
             OpenLayers.Util.getElement('info').innerHTML = response.responseText;
-            $('#status-message').hide();
+            //$('#status-message').hide();
+            var stylemap_ajax =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "red",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+                        forest_old = new OpenLayers.Layer.Vector("Vegetation", {
+                        projection: new OpenLayers.Projection('EPSG:4326'),
+                        strategies: [new OpenLayers.Strategy.Fixed()],
+                        protocol: new OpenLayers.Protocol.HTTP({
+
+                            url: "/burning-json?time=0",
+                            format: new OpenLayers.Format.GeoJSON(),
+                            
+
+                        }),
+                        styleMap: stylemap_ajax
+                       
+                    });
+
+                    map.addLayer(forest_old);
+                    $('#wait_init').hide();
+                    $('#fire_form').show();
+                    radiation.setVisibility(false)
             }
 
 
@@ -88,175 +140,50 @@ function init(){
                                           label: '${gridcode}',
                                           fillOpacity : 0.4});
 
-            var lookup = {
-                {% for s in structures %}
-                    "{{ s.id }}": {fillColor: "{{ s.color }}"},
-                {% endfor %}
-                  
-              }
-            stylemap.addUniqueValueRules("default", "struct", lookup);  
+
+           radiation = new OpenLayers.Layer.Vector("Information", {
+                //isBaseLayer: true,
+                projection: new OpenLayers.Projection('EPSG:4326'),
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+
+                    url: "/radiation-json",
+
+                    params: {
+                        attrs: 'id,name',
+                        epsg: '900913'
+                    },
+                    format: new OpenLayers.Format.GeoJSON(),
+                    
+
+                }),
+                styleMap: stylemap
+               
+            });
+
+          
 
 
-        burning = new OpenLayers.Layer.Vector("Burning", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
+        
 
-                url: "/burning-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap
-           
-        });
-
-
-            var stylemap_grid =   new OpenLayers.StyleMap({
-                    "default": new OpenLayers.Style({
-                        strokeColor: "#ff0000",
-                        strokeOpacity: .7,
-                        strokeWidth: 1,
-                        fillColor: "green",
-                        fillOpacity: .7,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    }),
-                    "temporary": new OpenLayers.Style({
-                        strokeColor: "#ffff33",
-                        strokeOpacity: .9,
-                        strokeWidth: 2,
-                        fillColor: "red",
-                        fillOpacity: .3,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    }),
-                    "select": new OpenLayers.Style({
-                        strokeColor: "#0033ff",
-                        strokeOpacity: .7,
-                        strokeWidth: 2,
-                        fillColor: "#0033ff",
-                        fillOpacity: 0,
-                        graphicZIndex: 2,
-                        //label: '${gridcode}',
-                        cursor: "pointer"
-                    })
-                    }) ;
-
-
-
-        radiation = new OpenLayers.Layer.Vector("Radiation", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/radiation-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap_grid
-           
-        });
-
-
-
-     var stylemap_slope =   new OpenLayers.StyleMap({
-                    "default": new OpenLayers.Style({
-                        strokeColor: "#dd0000",
-                        strokeOpacity:.7,
-                        strokeWidth: 1,
-                        //fillColor: "#aa0000",
-                        fillOpacity: 1,
-                        //label: '${firerisk}',
-                        cursor: "pointer"
-                    }),
-                    "temporary": new OpenLayers.Style({
-                        strokeColor: "#ff0000",
-                        strokeOpacity: .7,
-                        strokeWidth: 2,
-                        fillColor: "#ffff33",
-                        fillOpacity: 0,
-                        //label: '${number}',
-                        cursor: "pointer"
-                    }),
-                    "select": new OpenLayers.Style({
-                        strokeColor: "#0033ff",
-                        strokeOpacity: .7,
-                        strokeWidth: 2,
-                        fillColor: "#0033ff",
-                        fillOpacity: 0,
-                        graphicZIndex: 2,
-                        //label: '${number}',
-                        cursor: "pointer"
-                    })
-                    }) ;
+     
      
 
-     var lookup_slope = {
+     
+
+
+
+
        
-            "1": {fillColor: "#479F0C"},
-            "2": {fillColor: "#32CD32"},
-            "3": {fillColor: "#008B8B"},
-            "4": {fillColor: "#698B69"},
-            "5": {fillColor: "#1C1C1C"},
-        
-          
-      }
-
-      stylemap_slope.addUniqueValueRules("default", "effectiveness_category", lookup_slope);   
-
-  
-
-
-
-
-
-        slope = new OpenLayers.Layer.Vector("Slope", {
-            //isBaseLayer: true,
-            projection: new OpenLayers.Projection('EPSG:4326'),
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            protocol: new OpenLayers.Protocol.HTTP({
-
-                url: "/slope-json",
-
-                params: {
-                    attrs: 'id,name',
-                    epsg: '900913'
-                },
-                format: new OpenLayers.Format.GeoJSON(),
-                
-
-            }),
-            styleMap: stylemap_slope
-           
-        });
-
          
-            var highlightCtrl = new OpenLayers.Control.SelectFeature(forest_old, {
-                hover: true,
-                highlightOnly: true,
-                renderIntent: "temporary"
-            });        
+               
         
         function updateinfo() {
 
-
+           $('#wait_init').show();
+            $('#info').html('');
            var request = OpenLayers.Request.GET({
-                url: "/get-old-info",
-                params: {id: forest_old.selectedFeatures[0].data['objectid']},
+                url: "/fire-init/"+radiation.selectedFeatures[0].data['gid'],
                 callback: setHTML
 
             });
@@ -267,15 +194,21 @@ function init(){
         }
 
 
-        var select_options = {
+         var select_options = {
             hover: false,
             onSelect: updateinfo
           };
-         var select = new OpenLayers.Control.SelectFeature(forest_old, select_options);
+         var select = new OpenLayers.Control.SelectFeature(radiation, select_options);
          // select.select(forest_old.features[2]);
+
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(radiation, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+            });    
          
-         map.addLayer(slope);
-         map.addLayer(burning);
+         //map.addLayer(slope);
+         //map.addLayer(burning);
          map.addLayer(radiation);
          map.addControl(highlightCtrl);
          highlightCtrl.activate();
@@ -305,12 +238,97 @@ function init(){
         var point = new OpenLayers.LonLat(lon, lat);
         map.setCenter(point, zoom);
         map.addControl(select);
+        //radiation.setVisibility(false)
 
         select.activate();
 
    // map.zoomToExtent([3062373.1007906, 8962088.6911328, 18560133.457509, 9930698.7134278]);
 } ;
-$(document).ready(function(){ init() });
+$(document).ready(function(){ init() 
+
+
+//// become invisible **************************
+         $('#firesim').on('click', function(e) {
+         
+            e.preventDefault();
+            
+            $('#info').html('Wait!!!!!');
+            time = $('#time_fire').val();
+            //alert(time);
+            $('#fire_form').hide();
+           
+            $.ajax({
+                 url: "/fire-count/"+time,
+                 success : function(text)
+                 {
+                     response = text;
+                     $('#info').html('Done!');
+
+
+
+                  style =   new OpenLayers.StyleMap({
+                    "default": new OpenLayers.Style({
+                        strokeColor: "#ff0000",
+                        strokeOpacity: .7,
+                        strokeWidth: 1,
+                        fillColor: "red",
+                        fillOpacity: .7,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "temporary": new OpenLayers.Style({
+                        strokeColor: "#ffff33",
+                        strokeOpacity: .9,
+                        strokeWidth: 2,
+                        fillColor: "red",
+                        fillOpacity: .3,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    }),
+                    "select": new OpenLayers.Style({
+                        strokeColor: "#0033ff",
+                        strokeOpacity: .7,
+                        strokeWidth: 2,
+                        fillColor: "#0033ff",
+                        fillOpacity: 0,
+                        graphicZIndex: 2,
+                        //label: '${gridcode}',
+                        cursor: "pointer"
+                    })
+                    }) ;
+
+                        layer = new OpenLayers.Layer.Vector("Stage "+text, {
+                        projection: new OpenLayers.Projection('EPSG:4326'),
+                        strategies: [new OpenLayers.Strategy.Fixed()],
+                        protocol: new OpenLayers.Protocol.HTTP({
+
+                            url: "/burning-json?time="+text,
+                            format: new OpenLayers.Format.GeoJSON(),
+                            
+
+                        }),
+                        styleMap: style
+                       
+                    });
+
+                    map.addLayer(layer);
+                    $('#fire_form').show();
+                    
+
+
+
+                 }
+            });
+
+            
+        });   
+        //**************************************************
+
+
+
+
+
+});
 </script>
 
 {% endblock %}

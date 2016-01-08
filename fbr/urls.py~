@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-     url(r'^$', 'map.views.vegetation_json', name='home'),
+     url(r'^$', 'map.views.radiation', name='home'),
      url(r'^cotter/$', 'map.views.cot', name='cotter'),
 
     #############Fire simulation############3

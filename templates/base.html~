@@ -30,7 +30,7 @@
                 <a class="navbar-brand" href="{% url 'radiation_json' %}">Radiation</a>
 
                
-             
+                <a class="navbar-brand" href="{% url 'slope' %}">Slope</a>
 
                
 

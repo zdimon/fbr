@@ -301,7 +301,8 @@ class Burning(models.Model):
     gridcode = models.IntegerField(_(u'Grid code'))
     geom = models.MultiPolygonField(null=True, blank=True)
     day = models.IntegerField(_(u'Day'), null=True, blank=True)
-    time = models.IntegerField(_(u'Time'), null=True, blank=True) 
+    time = models.IntegerField(_(u'Time'), null=True, blank=True)
+    burning = models.IntegerField(_(u'Burning'), null=True, blank=True) 
     objects = models.GeoManager()
     def __unicode__(self):
 #        return 'Radiation #%s' % self.gridcode

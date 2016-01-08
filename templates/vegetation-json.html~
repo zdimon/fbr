@@ -274,7 +274,7 @@ function init(){
          var select = new OpenLayers.Control.SelectFeature(forest_old, select_options);
          // select.select(forest_old.features[2]);
          
-         //map.addLayer(slope);
+         map.addLayer(slope);
          map.addLayer(forest_old);
          map.addLayer(radiation);
          map.addControl(highlightCtrl);

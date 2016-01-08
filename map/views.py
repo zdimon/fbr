@@ -408,4 +408,44 @@ class GetPolygonJsonSlope(GeoJSONLayerView):
         return response
 
 
+class GetBurningJson(GeoJSONLayerView):
+    # Options
+
+    def get_queryset(self):
+        if(self.request.GET['time']=='0'):
+            return Burning.objects.filter(burning=1)
+        else:
+            return Burning.objects.all().filter(burning=1, time=int(self.request.GET['time']))
+
+    def render_to_response(self, context, **response_kwargs):
+        from fbr.settings import BASE_DIR
+        import os.path
+        cpath = BASE_DIR+'/map_cache/burning_'+self.request.GET['time']+'.txt'
+        if(os.path.exists(cpath)):
+            from django.http import HttpResponse
+            f = open(cpath,'r')
+            out = f.read()
+            f.close()
+            return HttpResponse(out, content_type="application/json")
+
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        serializer = GeoJSONSerializer()
+        response = self.response_class(**response_kwargs)
+        options = dict(properties=self.properties,
+                       srid=self.srid,
+                       geometry_field=self.geometry_field,
+                       force2d=self.force2d)
+        serializer.serialize(self.get_queryset(), stream=response, ensure_ascii=False,
+                             **options)
+
+        #import pdb; pdb.set_trace()
+        #f = open(cpath,'w')
+        #f.write(response.content)
+        #f.close()
+        return response
+
+
+
 
